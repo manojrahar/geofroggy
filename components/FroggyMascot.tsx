@@ -7,7 +7,7 @@ export type FroggyVariant = "classic" | "traveller" | "umbrella";
 
 interface FroggyMascotProps {
   variant?: FroggyVariant;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
   className?: string;
   label?: string;
   onClick?: () => void;
@@ -19,6 +19,8 @@ const sizeMap = {
   sm: 64,
   md: 86,
   lg: 112,
+  xl: 148,
+  "2xl": 184,
 };
 
 export default function FroggyMascot({

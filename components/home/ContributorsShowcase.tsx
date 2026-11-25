@@ -1,40 +1,66 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Heart } from "lucide-react";
+import { playClickPop } from "@/lib/soundEffects";
 
 const contributors = [
   {
     name: "Adam Watts",
     country: "USA",
     image: "/website-images/contributor1.png",
-    tag: "Colors of Kano",
-    bio: "Amina is a photographer and cultural archivist based in northern Nigeria.",
+    tag: "Street Jazz",
+    bio: "Capturing vibrant neighborhood music traditions and oral histories across New Orleans.",
+    initialLikes: 42,
   },
   {
     name: "Luca Romano",
     country: "Italy",
     image: "/website-images/contributor2.png",
-    tag: "Colors of Kano",
-    bio: "Amina is a photographer and cultural archivist based in northern Nigeria.",
+    tag: "Artisan Craft",
+    bio: "Documenting family-run ceramic workshops and coastal culinary rituals in southern Italy.",
+    initialLikes: 58,
   },
   {
     name: "Anaya Patel",
     country: "India",
     image: "/website-images/contributor3.png",
-    tag: "Colors of Kano",
-    bio: "Amina is a photographer and cultural archivist based in northern Nigeria.",
+    tag: "Festival Lights",
+    bio: "Visual storyteller preserving regional folk dances, textiles, and Diwali traditions.",
+    initialLikes: 74,
   },
   {
     name: "Diego Rojas",
     country: "Mexico",
     image: "/website-images/contributor4.png",
-    tag: "Colors of Kano",
-    bio: "Amina is a photographer and cultural archivist based in northern Nigeria.",
+    tag: "Heritage Art",
+    bio: "Photographer celebrating Indigenous markets, marigold altars, and community murals.",
+    initialLikes: 63,
   },
 ];
 
 export default function ContributorsShowcase() {
+  const [likes, setLikes] = useState<number[]>(contributors.map((c) => c.initialLikes));
+  const [liked, setLiked] = useState<boolean[]>(contributors.map(() => false));
+
+  const toggleLike = (idx: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    playClickPop();
+    setLiked((prev) => {
+      const next = [...prev];
+      next[idx] = !next[idx];
+      return next;
+    });
+    setLikes((prev) => {
+      const next = [...prev];
+      next[idx] = liked[idx] ? next[idx] - 1 : next[idx] + 1;
+      return next;
+    });
+  };
+
   return (
     <section className="py-16 relative overflow-hidden green-patch-bg border-b border-secondary/15">
       {/* Subtle frog pattern backdrop */}
@@ -81,21 +107,39 @@ export default function ContributorsShowcase() {
           </Link>
         </div>
 
-        {/* 4 Cards Grid */}
+        {/* 4 Interactive Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {contributors.map((c, i) => (
             <div
               key={i}
-              className="group card-hover-effect bg-white rounded-[16px] overflow-hidden flex flex-col border-2 border-[#175883]/18 hover:border-secondary"
+              className="group card-hover-effect card-interactive bg-white rounded-[16px] overflow-hidden flex flex-col"
             >
               <div className="p-2.5 pt-2.5">
-                <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden">
                   <Image
                     src={c.image}
                     alt={c.name}
                     fill
-                    className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                   />
+                  {/* Interactive Applaud / Like Pill */}
+                  <button
+                    type="button"
+                    onClick={(e) => toggleLike(i, e)}
+                    aria-label={`Applaud ${c.name}`}
+                    className={`absolute top-2.5 right-2.5 z-20 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-display font-semibold shadow-md transition-all duration-200 active:scale-90 ${
+                      liked[i]
+                        ? "bg-rose-500 text-white scale-105"
+                        : "bg-white/90 text-gray-700 hover:bg-white"
+                    }`}
+                  >
+                    <Heart
+                      className={`w-3.5 h-3.5 transition-transform ${
+                        liked[i] ? "fill-white scale-110" : "text-rose-500"
+                      }`}
+                    />
+                    {likes[i]}
+                  </button>
                 </div>
               </div>
 
@@ -104,8 +148,8 @@ export default function ContributorsShowcase() {
                   <span className="font-display font-semibold text-[17px] text-[#383838] truncate group-hover:text-primary transition-colors">
                     {c.name}
                   </span>
-                  <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 whitespace-nowrap shadow-2xs">
-                    🔴 {c.tag}
+                  <span className="shrink-0 bg-primary/10 text-primary font-prose text-[11px] font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                    {c.tag}
                   </span>
                 </div>
 
@@ -113,13 +157,20 @@ export default function ContributorsShowcase() {
                   {c.bio}
                 </p>
 
-                <div className="flex items-center justify-between">
-                  <span className="font-prose text-[13px] text-primary font-medium underline underline-offset-2 cursor-pointer">
+                <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                  <Link
+                    href="/contributors"
+                    className="font-prose text-[13px] text-primary font-semibold hover:underline underline-offset-2"
+                  >
                     {c.country}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-secondary/20 group-hover:bg-secondary group-hover:text-white flex items-center justify-center text-secondary transition-all duration-300 transform group-hover:rotate-45">
+                  </Link>
+                  <Link
+                    href="/contributors"
+                    aria-label={`View ${c.name}`}
+                    className="w-8 h-8 rounded-full bg-secondary/20 group-hover:bg-secondary group-hover:text-white flex items-center justify-center text-secondary transition-all duration-300 transform group-hover:rotate-45"
+                  >
                     <ArrowUpRight className="w-4 h-4" />
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

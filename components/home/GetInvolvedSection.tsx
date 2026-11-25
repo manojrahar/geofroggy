@@ -60,8 +60,8 @@ export default function GetInvolvedSection() {
 
         {/* Left Side Content */}
         <div className="lg:max-w-[calc(100%-480px)]">
-          <div className="flex items-center gap-3">
-            <FroggyMascot variant="umbrella" size="md" catchInsect={true} />
+          <div className="flex items-center gap-4">
+            <FroggyMascot variant="umbrella" size="xl" catchInsect={true} className="shrink-0" />
             <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
               Get Involved with Geofroggy
             </h2>
@@ -118,7 +118,7 @@ export default function GetInvolvedSection() {
             <Link
               key={idx}
               href={card.href}
-              className="group card-hover-effect bg-white rounded-[16px] px-4 py-5 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[235px] lg:shrink-0 border-2 border-[#175883]/18 hover:border-secondary transition-all duration-300"
+              className="group card-hover-effect card-interactive bg-white rounded-[16px] px-4 py-5 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[235px] lg:shrink-0 transition-all duration-300 active:scale-95"
             >
               <div className="relative w-full h-16 mb-2 shrink-0 flex items-center justify-center">
                 <Image

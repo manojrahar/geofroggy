@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FroggyMascot from "@/components/FroggyMascot";
 
 const slides = [
   {
@@ -167,6 +168,16 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Big Interactive Traveller Froggy in Hero */}
+      <div className="hidden lg:flex absolute bottom-10 right-12 z-20 animate-float-gentle">
+        <FroggyMascot
+          variant="traveller"
+          size="2xl"
+          catchInsect={true}
+          label="Tap Froggy!"
+        />
       </div>
 
       {/* Slide Indicators */}

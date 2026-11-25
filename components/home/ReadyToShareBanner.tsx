@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FroggyMascot from "@/components/FroggyMascot";
 
 export default function ReadyToShareBanner() {
   return (
@@ -13,6 +14,14 @@ export default function ReadyToShareBanner() {
           fill
           className="object-cover"
         />
+      </div>
+
+      {/* Big Interactive Frog Characters Flanking the Banner */}
+      <div className="hidden md:block absolute left-8 lg:left-16 bottom-4 z-20 animate-float-gentle">
+        <FroggyMascot variant="traveller" size="xl" catchInsect={true} />
+      </div>
+      <div className="hidden md:block absolute right-8 lg:right-16 bottom-4 z-20 animate-float-gentle" style={{ animationDelay: "1.2s" }}>
+        <FroggyMascot variant="umbrella" size="xl" catchInsect={true} />
       </div>
 
       <div className="relative z-10 py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">

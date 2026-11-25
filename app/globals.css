@@ -235,6 +235,45 @@
   animation: rain-drop 1.4s linear infinite;
 }
 
+/* Interactive Card Shimmer & Glow Sweep */
+.card-interactive {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-interactive::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 15;
+}
+
+.card-interactive:hover::after {
+  left: 140%;
+}
+
+/* Gentle floating animation for big Frog characters */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3.8s ease-in-out infinite;
+}
+
 /* Button interactive states and shake animation */
 @keyframes button-shake {
   0%, 100% { transform: translateX(0); }
