@@ -26,25 +26,25 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary border-b border-white/15 shadow-[0_4px_18px_rgba(23,88,131,0.28)] transition-all">
-      <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Left: GeoFroggy Brand Logo inside crisp white pill on bluish navbar */}
+    <header className="sticky top-0 z-50 w-full bg-[#175883] border-b-2 border-[#8ac63c]/50 shadow-[0_4px_20px_rgba(15,61,92,0.22)] transition-all">
+      <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-4">
+        {/* Left: GeoFroggy Brand Logo */}
         <Link
           href="/"
-          className="flex items-center shrink-0 group bg-white/95 hover:bg-white px-4 py-1.5 rounded-full shadow-md transition-all duration-200"
+          className="flex items-center shrink-0 group bg-white px-3.5 py-1.5 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.14)] transition-transform duration-200 hover:scale-[1.02]"
         >
           <Image
             src="/website-images/main-logo.png"
             alt="GeoFroggy"
-            width={200}
-            height={48}
-            className="h-9 sm:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-103"
+            width={180}
+            height={44}
+            className="h-8 sm:h-9 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2">
+        <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-1.5">
           {navLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -53,10 +53,10 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3.5 py-2 font-display text-[15px] transition-all rounded-full ${
+                className={`relative px-3.5 py-1.5 font-display text-[14.5px] whitespace-nowrap transition-all duration-200 rounded-full ${
                   isActive
-                    ? "font-bold text-white bg-secondary shadow-md"
-                    : "font-medium text-white/90 hover:text-white hover:bg-white/15"
+                    ? "font-semibold text-white bg-[#8ac63c] shadow-[0_2px_8px_rgba(138,198,60,0.35)]"
+                    : "font-medium text-white/90 hover:text-white hover:bg-white/12"
                 }`}
               >
                 {link.label}
@@ -66,12 +66,12 @@ export default function Navbar() {
         </nav>
 
         {/* Right: Learn Portal & Sign Up Button */}
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
+        <div className="hidden lg:flex items-center gap-2.5 shrink-0">
           <a
             href="https://learningportal.geofroggy.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 font-display font-semibold text-[14px] px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-amber-300/40 transition-colors"
+            className="group inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 font-display font-semibold text-[13.5px] px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/18 border border-amber-300/40 whitespace-nowrap transition-all duration-200"
           >
             <GraduationCap className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" strokeWidth={2.25} />
             <span>Learn Portal</span>
@@ -80,7 +80,7 @@ export default function Navbar() {
             href="/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="animate-btn-shake bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[15px] px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform active:scale-95"
+            className="animate-btn-shake bg-[#8ac63c] hover:bg-[#7ab52e] text-white font-display font-semibold text-[14.5px] px-5 py-2 rounded-full shadow-[0_2px_10px_rgba(138,198,60,0.35)] hover:shadow-[0_4px_14px_rgba(138,198,60,0.5)] whitespace-nowrap transition-all duration-200 active:scale-95"
           >
             Sign Up
           </Link>

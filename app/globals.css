@@ -18,11 +18,27 @@
     --color-secondary: #8ac63c;
   }
 
+  html,
   body {
     color: var(--brand-text);
     background-color: #ffffff;
     font-family: var(--font-poppins), 'Poppins', sans-serif;
     overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
 
