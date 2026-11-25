@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Check, LoaderCircle } from "lucide-react";
 
 // Social Icons matching the live site
@@ -63,7 +64,12 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
   const [email, setEmail] = useState("");
+
+  if (pathname === "/signup" || pathname === "/login") {
+    return null;
+  }
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 

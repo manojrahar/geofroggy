@@ -21,6 +21,10 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname === "/signup" || pathname === "/login") {
+    return null;
+  }
+
   return (
     <header className="w-full">
       {/* 1. White Top Bar */}
