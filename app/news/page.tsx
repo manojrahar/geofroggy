@@ -121,12 +121,11 @@ export default function NewsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {platformNews.map((news, i) => (
               <article
                 key={i}
-                className="flex flex-col overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
-                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+                className="group card-hover-effect flex flex-col overflow-hidden rounded-[12px] bg-white border border-gray-100 hover:border-secondary/40"
               >
                 <div className="px-[10px] pt-3">
                   <div className="relative aspect-[16/9] rounded-[8px] overflow-hidden">
@@ -134,16 +133,16 @@ export default function NewsPage() {
                       src={news.image}
                       alt={news.title}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                     />
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col px-[15px] pt-4 pb-5">
                   <div className="flex items-center justify-between mb-2 text-[11px] font-prose text-[#8A8A8A]">
-                    <span className="font-semibold text-secondary">{news.tag}</span>
+                    <span className="font-semibold text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full">{news.tag}</span>
                     <span>{news.date}</span>
                   </div>
-                  <h3 className="mb-2 font-display text-[18px] font-medium leading-tight text-[#383838]">
+                  <h3 className="mb-2 font-display text-[18px] font-semibold leading-tight text-[#383838] group-hover:text-primary transition-colors">
                     {news.title}
                   </h3>
                   <p className="font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
@@ -190,15 +189,14 @@ export default function NewsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Buzz 1: Yangon Street Art */}
             <article
-              className="flex flex-col sm:flex-row overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+              className="group card-hover-effect flex flex-col sm:flex-row overflow-hidden rounded-[14px] bg-white border border-gray-100 hover:border-secondary/40"
             >
               <div className="relative aspect-[248/329] sm:w-[248px] sm:flex-shrink-0 sm:m-[7px] sm:rounded-[10px] sm:overflow-hidden">
                 <Image
                   src="/website-images/buzzing_1.png"
                   alt="Street Art as Resistance in Myanmar"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                 />
               </div>
               <div className="flex flex-1 flex-col p-5 sm:py-6 sm:pr-6 sm:pl-4">
@@ -213,7 +211,7 @@ export default function NewsPage() {
                     Most Viewed Story This Week
                   </span>
                 </div>
-                <h3 className="mb-3 font-display text-[17px] font-semibold leading-tight text-[#383838]">
+                <h3 className="mb-3 font-display text-[18px] font-semibold leading-tight text-[#383838] group-hover:text-primary transition-colors">
                   Street Art as Resistance in Myanmar
                 </h3>
                 <p className="mb-4 font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
@@ -227,15 +225,14 @@ export default function NewsPage() {
 
             {/* Buzz 2: Migration Diaries */}
             <article
-              className="flex flex-col sm:flex-row overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+              className="group card-hover-effect flex flex-col sm:flex-row overflow-hidden rounded-[14px] bg-white border border-gray-100 hover:border-secondary/40"
             >
               <div className="relative aspect-[248/329] sm:w-[248px] sm:flex-shrink-0 sm:m-[7px] sm:rounded-[10px] sm:overflow-hidden">
                 <Image
                   src="/website-images/buzzing_2.png"
                   alt="#MigrationDiaries Series"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                 />
               </div>
               <div className="flex flex-1 flex-col p-5 sm:py-6 sm:pr-6 sm:pl-4">
@@ -250,7 +247,7 @@ export default function NewsPage() {
                     Community Movement
                   </span>
                 </div>
-                <h3 className="mb-3 font-display text-[17px] font-semibold leading-tight text-[#383838]">
+                <h3 className="mb-3 font-display text-[18px] font-semibold leading-tight text-[#383838] group-hover:text-primary transition-colors">
                   #MigrationDiaries Series Goes Global
                 </h3>
                 <p className="mb-4 font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
@@ -286,29 +283,29 @@ export default function NewsPage() {
             {spotlights.map((spot, idx) => (
               <div
                 key={idx}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col"
+                className="group card-hover-effect bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={spot.image}
                     alt={spot.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center justify-between text-xs font-semibold text-secondary mb-2">
-                    <span>{spot.region}</span>
+                    <span className="bg-secondary/10 px-2.5 py-0.5 rounded-full">{spot.region}</span>
                     <span className="text-gray-400 font-normal">{spot.readTime}</span>
                   </div>
-                  <h3 className="font-display font-medium text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-secondary transition-colors">
+                  <h3 className="font-display font-semibold text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-primary transition-colors">
                     {spot.title}
                   </h3>
                   <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed mb-4 flex-1">
                     {spot.excerpt}
                   </p>
-                  <span className="inline-flex items-center gap-1 text-secondary font-display font-medium text-[14px]">
-                    Read story <ArrowUpRight className="w-4 h-4" />
+                  <span className="inline-flex items-center gap-1 text-secondary font-display font-medium text-[14px] group-hover:text-primary transition-colors">
+                    Read story <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </span>
                 </div>
               </div>
@@ -333,13 +330,13 @@ export default function NewsPage() {
               </p>
               <Link
                 href="/become-ambassador"
-                className="inline-block bg-primary hover:bg-primary-dark text-white font-display font-medium text-[15px] px-6 py-2.5 rounded-[5px] transition-colors shadow-sm"
+                className="animate-btn-shake inline-block bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[15px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
               >
                 Become an Ambassador
               </Link>
             </div>
 
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden card-hover-effect">
               <Image
                 src="/website-images/group-business-people-1.png"
                 alt="Ambassadors in action"

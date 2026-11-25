@@ -66,7 +66,7 @@ export default function ContributorsShowcase() {
 
           <Link
             href="/contributors"
-            className="shrink-0 bg-secondary text-white font-display font-medium text-[16px] px-6 py-2 rounded-[5px] hover:opacity-90 transition-opacity mt-2"
+            className="animate-btn-shake shrink-0 bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[15px] px-7 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 mt-2"
           >
             View All
           </Link>
@@ -77,26 +77,25 @@ export default function ContributorsShowcase() {
           {contributors.map((c, i) => (
             <div
               key={i}
-              className="bg-white rounded-[10px] overflow-hidden flex flex-col transition-transform hover:-translate-y-1"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+              className="group card-hover-effect bg-white rounded-[12px] overflow-hidden flex flex-col border border-gray-100"
             >
-              <div className="p-2 pt-2">
-                <div className="relative aspect-[4/3] rounded-[8px] overflow-hidden">
+              <div className="p-2.5 pt-2.5">
+                <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden">
                   <Image
                     src={c.image}
                     alt={c.name}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                   />
                 </div>
               </div>
 
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="font-display font-medium text-[16px] text-[#383838] truncate">
+                  <span className="font-display font-semibold text-[17px] text-[#383838] truncate group-hover:text-primary transition-colors">
                     {c.name}
                   </span>
-                  <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 whitespace-nowrap">
+                  <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 whitespace-nowrap shadow-2xs">
                     🔴 {c.tag}
                   </span>
                 </div>
@@ -106,10 +105,10 @@ export default function ContributorsShowcase() {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <span className="font-prose text-[13px] text-primary underline underline-offset-2 cursor-pointer">
+                  <span className="font-prose text-[13px] text-primary font-medium underline underline-offset-2 cursor-pointer">
                     {c.country}
                   </span>
-                  <div className="w-7 h-7 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
+                  <div className="w-8 h-8 rounded-full bg-secondary/20 group-hover:bg-secondary group-hover:text-white flex items-center justify-center text-secondary transition-all duration-300 transform group-hover:rotate-45">
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>

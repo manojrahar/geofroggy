@@ -95,8 +95,8 @@ export default function HeroSection() {
         </div>
       ))}
 
-      {/* Dim overlay */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Stronger readable overlay across all slide images */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none" />
 
       {/* Floating Contributor Avatars */}
       <div
@@ -129,11 +129,11 @@ export default function HeroSection() {
           </span>
         </div>
 
-        <h1 className="text-white font-display font-semibold text-[38px] sm:text-[55px] leading-tight mb-8 max-w-2xl">
+        <h1 className="text-white font-display font-semibold text-[38px] sm:text-[55px] leading-tight mb-8 max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]">
           {content.subtitle}
         </h1>
 
-        <p className="text-white font-prose text-[16px] sm:text-[18px] leading-[25px] max-w-[791px] mx-auto mb-10">
+        <p className="text-white font-prose text-[16px] sm:text-[18px] leading-[26px] max-w-[791px] mx-auto mb-10 drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]">
           {content.description}
         </p>
 
@@ -143,7 +143,7 @@ export default function HeroSection() {
             href="/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[18px] px-8 py-2.5 rounded-[5px] transition-colors"
+            className="animate-btn-shake bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[18px] px-9 py-3 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95"
           >
             Join Now
           </Link>

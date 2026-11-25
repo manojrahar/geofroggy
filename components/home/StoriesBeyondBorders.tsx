@@ -52,8 +52,8 @@ export default function StoriesBeyondBorders() {
         </div>
 
         {/* Highlighted Quote Box */}
-        <div className="max-w-197.25 mx-auto border border-dashed border-secondary rounded-[10px] bg-[#DEECF5] relative overflow-hidden mb-14">
-          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary rounded-l-[10px]" />
+        <div className="max-w-197.25 mx-auto border border-dashed border-secondary/60 rounded-[12px] bg-[#DEECF5]/90 relative overflow-hidden mb-14 card-shadow hover:shadow-md transition-shadow">
+          <div className="absolute left-0 top-0 bottom-0 w-2 bg-primary rounded-l-[12px]" />
           <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-30 pointer-events-none">
             <Image
               src="/website-images/Frog.png"
@@ -72,14 +72,15 @@ export default function StoriesBeyondBorders() {
           {photos.map((photo, i) => (
             <div
               key={i}
-              className="relative aspect-[3/4] rounded-t-[100px] rounded-b-2xl overflow-hidden shadow-md group"
+              className="card-hover-effect relative aspect-[3/4] rounded-t-[100px] rounded-b-2xl overflow-hidden group cursor-pointer"
             >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>

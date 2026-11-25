@@ -150,39 +150,38 @@ export default function ContributorsPage() {
               {filteredContributors.map((c) => (
                 <div
                   key={c.id}
-                  className="bg-white rounded-[10px] overflow-hidden flex flex-col transition-transform hover:-translate-y-1"
-                  style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+                  className="group card-hover-effect bg-white rounded-2xl overflow-hidden flex flex-col border border-gray-100 hover:border-secondary/40 cursor-pointer"
                 >
-                  <div className="p-2 pt-2">
-                    <div className="relative aspect-[4/3] rounded-[8px] overflow-hidden">
+                  <div className="p-3 pt-3">
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
                       <Image
                         src={c.avatar}
                         alt={c.name}
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                       />
                     </div>
                   </div>
 
-                  <div className="p-4 flex flex-col flex-1">
+                  <div className="p-5 pt-2 flex flex-col flex-1">
                     <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="font-display font-medium text-[16px] text-[#383838] truncate">
+                      <h3 className="font-display font-semibold text-[17px] text-[#222222] truncate group-hover:text-primary transition-colors">
                         {c.name}
-                      </span>
-                      <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 whitespace-nowrap">
+                      </h3>
+                      <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1 whitespace-nowrap shadow-2xs">
                         🔴 {c.tag}
                       </span>
                     </div>
 
-                    <p className="font-prose text-[13px] text-[#5E5E5E] leading-5 mb-3 flex-1">
+                    <p className="font-prose text-[13px] text-[#5E5E5E] leading-relaxed mb-4 flex-1 line-clamp-3">
                       {c.bio}
                     </p>
 
-                    <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                      <span className="font-prose text-[13px] text-primary underline underline-offset-2">
+                    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                      <span className="font-prose text-[13px] font-medium text-primary underline underline-offset-2">
                         {c.country}
                       </span>
-                      <span className="font-prose text-[12px] text-gray-400">
+                      <span className="font-prose text-[12px] font-semibold text-secondary bg-secondary/10 px-2.5 py-0.5 rounded-full">
                         {c.storiesCount} stories
                       </span>
                     </div>

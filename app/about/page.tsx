@@ -110,8 +110,8 @@ export default function AboutPage() {
               { src: "/website-images/culture_about_3.png", title: "Culinary Heritage" },
               { src: "/website-images/culture_about_1.png", title: "Generational Crafts" },
             ].map((c, i) => (
-              <div key={i} className="flex flex-col items-center text-center">
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-secondary/30 shadow-md mb-3 group">
+              <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-secondary/40 card-shadow mb-3 group-hover:border-secondary transition-all duration-300 transform group-hover:scale-105">
                   <Image
                     src={c.src}
                     alt={c.title}
@@ -119,7 +119,7 @@ export default function AboutPage() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <h4 className="font-display font-medium text-[16px] text-[#383838]">
+                <h4 className="font-display font-semibold text-[16px] text-[#383838] group-hover:text-primary transition-colors">
                   {c.title}
                 </h4>
               </div>
@@ -129,11 +129,11 @@ export default function AboutPage() {
           {/* 5 Live Counters */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-10 border-t border-gray-100 text-center">
             {stats.map((s, idx) => (
-              <div key={idx} className="p-4 bg-gray-50 rounded-xl">
-                <div className="font-display font-semibold text-[32px] sm:text-[38px] text-primary">
+              <div key={idx} className="p-5 bg-white rounded-2xl border border-gray-100 card-hover-effect">
+                <div className="font-display font-bold text-[32px] sm:text-[40px] text-primary">
                   {s.value}
                 </div>
-                <div className="font-prose text-[13px] text-[#6E6E6E] mt-1">
+                <div className="font-prose text-[13px] text-[#6E6E6E] mt-1 font-medium">
                   {s.label}
                 </div>
               </div>
@@ -179,7 +179,7 @@ export default function AboutPage() {
           </div>
 
           {/* Featured Quote with Big Quotation Mark */}
-          <div className="max-w-250 mx-auto mt-10 bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+          <div className="max-w-250 mx-auto mt-10 bg-white p-8 sm:p-10 rounded-2xl border border-gray-100 card-hover-effect flex items-start gap-4">
             <span
               aria-hidden="true"
               className="font-display font-bold text-secondary text-[64px] leading-none select-none flex-shrink-0"
@@ -202,7 +202,7 @@ export default function AboutPage() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden card-hover-effect">
               <Image
                 src="/website-images/Rectangle-86-1.jpg"
                 alt="Our Global Community"
@@ -242,17 +242,17 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Movement Banner CTA */}
-      <section className="bg-secondary py-14 px-4 text-center text-white">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="font-display font-semibold text-[32px] sm:text-[38px] mb-3">
+      <section className="bg-secondary py-18 px-4 text-center text-white relative overflow-hidden">
+        <div className="max-w-3xl mx-auto relative z-10">
+          <h2 className="font-display font-semibold text-[34px] sm:text-[42px] mb-3 leading-tight drop-shadow-sm">
             Join Our Global Movement
           </h2>
-          <p className="font-prose text-[16px] text-white/90 mb-8 max-w-xl mx-auto">
+          <p className="font-prose text-[17px] text-white/95 mb-8 max-w-xl mx-auto leading-relaxed">
             Become a part of the world's most vibrant archive of living human culture.
           </p>
           <Link
             href="/signup"
-            className="inline-block bg-primary hover:bg-primary-dark text-white font-display font-medium text-[16px] px-8 py-3 rounded-[5px] transition-colors shadow-md"
+            className="animate-btn-shake inline-block bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[16px] px-10 py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95"
           >
             Join the Community
           </Link>

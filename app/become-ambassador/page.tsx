@@ -94,11 +94,11 @@ export default function BecomeAmbassadorPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
+            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
                 <Globe className="w-8 h-8" />
               </div>
-              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
+              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Represent Your Nation
               </h3>
               <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed">
@@ -106,11 +106,11 @@ export default function BecomeAmbassadorPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
+            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
                 <Users className="w-8 h-8" />
               </div>
-              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
+              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Host Storytelling Circles
               </h3>
               <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed">
@@ -118,11 +118,11 @@ export default function BecomeAmbassadorPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
+            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
                 <Award className="w-8 h-8" />
               </div>
-              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
+              <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Grants & Recognition
               </h3>
               <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed">
@@ -318,7 +318,7 @@ export default function BecomeAmbassadorPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[16px] py-3 rounded-[6px] transition-colors shadow-sm"
+                  className="animate-btn-shake w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[16px] py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-102 active:scale-95"
                 >
                   Submit Ambassador Application
                 </button>

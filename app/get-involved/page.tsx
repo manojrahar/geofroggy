@@ -142,7 +142,7 @@ export default function GetInvolvedPage() {
 
                 <Link
                   href={sec.buttonHref}
-                  className="mt-6 inline-block rounded-[5px] bg-secondary hover:bg-secondary-dark px-6 py-2.5 font-display text-[15px] font-medium text-white transition-colors shadow-sm"
+                  className="animate-btn-shake mt-6 inline-block rounded-full bg-secondary hover:bg-secondary-dark px-8 py-3.5 font-display text-[15px] font-semibold text-white transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
                 >
                   {sec.buttonText}
                 </Link>
@@ -150,12 +150,12 @@ export default function GetInvolvedPage() {
 
               {/* Image Column */}
               <div className={sec.imageOrder}>
-                <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden shadow-md">
+                <div className="group card-hover-effect relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100">
                   <Image
                     src={sec.image}
                     alt={sec.imageAlt}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
                   />
                 </div>
               </div>

@@ -81,7 +81,7 @@ export default function NewsletterSection() {
               <button
                 type="submit"
                 disabled={status === "loading" || status === "success"}
-                className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[16px] px-8 h-12 rounded-[6px] transition-colors disabled:opacity-50 shrink-0 flex items-center justify-center gap-2"
+                className="animate-btn-shake bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[15px] px-8 h-12 rounded-full shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 shrink-0 flex items-center justify-center gap-2 transform hover:scale-102 active:scale-95"
               >
                 {status === "loading" ? (
                   <LoaderCircle className="w-5 h-5 animate-spin" />

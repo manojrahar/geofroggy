@@ -57,24 +57,23 @@ export default function WhatWeOffer() {
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="relative text-center px-8 py-10 flex flex-col items-center transition-transform hover:-translate-y-1"
+              className="group card-hover-effect relative text-center px-8 py-10 flex flex-col items-center rounded-[12px] bg-white/70 backdrop-blur-xs cursor-default"
               style={{
                 backgroundImage: "url('/website-images/Rectangle-14.svg')",
                 backgroundSize: "100% 100%",
-                borderRadius: "10px",
               }}
             >
-              <div className="w-18.5 h-18.5 mx-auto mb-5 rounded-full bg-secondary/40 flex items-center justify-center">
+              <div className="w-18.5 h-18.5 mx-auto mb-5 rounded-full bg-secondary/40 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-secondary/60">
                 <Image
                   src={offer.icon}
                   alt=""
                   width={34}
                   height={34}
-                  className="object-contain"
+                  className="object-contain transition-transform duration-300 group-hover:rotate-6"
                 />
               </div>
 
-              <h3 className="font-display font-medium text-[22px] text-[#383838] mb-3">
+              <h3 className="font-display font-medium text-[22px] text-[#383838] group-hover:text-primary transition-colors mb-3">
                 {offer.title}
               </h3>
 

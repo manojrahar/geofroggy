@@ -100,25 +100,24 @@ export default function GetInvolvedSection() {
         </div>
 
         {/* 4 Cards Row */}
-        <div className="grid grid-cols-2 lg:flex lg:flex-row gap-3">
+        <div className="grid grid-cols-2 lg:flex lg:flex-row gap-4">
           {pathways.map((card, idx) => (
             <Link
               key={idx}
               href={card.href}
-              className="bg-white rounded-[10px] px-4 py-4 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[226px] lg:shrink-0 transition-transform hover:-translate-y-1 hover:shadow-lg"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }}
+              className="group card-hover-effect bg-white rounded-[12px] px-4 py-5 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[235px] lg:shrink-0 border border-gray-100 hover:border-secondary/40 transition-all duration-300"
             >
               <div className="relative w-full h-16 mb-2 shrink-0 flex items-center justify-center">
                 <Image
                   src={card.icon}
                   alt=""
-                  width={42}
-                  height={42}
-                  className="object-contain"
+                  width={46}
+                  height={46}
+                  className="object-contain group-hover:scale-115 transition-transform duration-300"
                 />
               </div>
 
-              <h3 className="font-display font-medium text-[17px] text-[#383838] mb-1.5 whitespace-nowrap shrink-0">
+              <h3 className="font-display font-semibold text-[17px] text-[#383838] group-hover:text-primary transition-colors mb-1.5 whitespace-nowrap shrink-0">
                 {card.title}
               </h3>
 

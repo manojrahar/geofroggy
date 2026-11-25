@@ -169,27 +169,26 @@ export default function DonatePage() {
             </div>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {waysToGive.map((card, idx) => (
               <div
                 key={idx}
-                className="relative flex flex-col items-center px-6 py-10 transition-transform hover:-translate-y-1"
+                className="group card-hover-effect relative flex flex-col items-center px-6 py-10 rounded-[12px] bg-white border border-gray-100 hover:border-secondary/40 cursor-default"
                 style={{
                   backgroundImage: "url('/website-images/Rectangle-14.svg')",
                   backgroundSize: "100% 100%",
-                  borderRadius: "10px",
                 }}
               >
-                <div className="relative z-10 mb-5 h-14 w-14 rounded-full bg-secondary/30 flex items-center justify-center">
+                <div className="relative z-10 mb-5 h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-secondary/40 transition-all duration-300">
                   <Image
                     src={card.icon}
                     alt=""
-                    width={32}
-                    height={32}
+                    width={34}
+                    height={34}
                     className="object-contain"
                   />
                 </div>
-                <h3 className="relative z-10 mb-3 text-center font-display text-[17px] font-semibold text-brand-black">
+                <h3 className="relative z-10 mb-3 text-center font-display text-[18px] font-semibold text-brand-black group-hover:text-primary transition-colors">
                   {card.title}
                 </h3>
                 <p className="relative z-10 text-center font-prose text-[14px] leading-6 text-[#4B4B4B]">
@@ -409,7 +408,7 @@ export default function DonatePage() {
                 <button
                   type="submit"
                   disabled={finalAmount <= 0 || !email}
-                  className="w-full bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[17px] py-3.5 rounded-[6px] transition-colors shadow-sm disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="animate-btn-shake w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[17px] py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 flex items-center justify-center gap-2 transform hover:scale-102 active:scale-95"
                 >
                   <Heart className="w-5 h-5 fill-current" />
                   Give ${finalAmount} {frequency === "One - Time" ? "Now" : `(${frequency})`}

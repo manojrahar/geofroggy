@@ -191,7 +191,7 @@ export default function PartnerPage() {
                 <a
                   href="#partner-form"
                   onClick={() => setFormData({ ...formData, tier: tier.name })}
-                  className={`w-full py-2.5 rounded-lg text-center font-display font-medium text-[15px] transition-colors ${
+                  className={`animate-btn-shake w-full py-3 rounded-full text-center font-display font-semibold text-[15px] transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-102 active:scale-95 ${
                     tier.popular
                       ? "bg-secondary hover:bg-secondary-dark text-white"
                       : "bg-gray-100 hover:bg-gray-200 text-gray-800"

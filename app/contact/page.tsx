@@ -26,7 +26,7 @@ function FormInput({
     <div>
       <label
         htmlFor={name}
-        className="block font-prose text-[14px] font-medium text-brand-text"
+        className="block font-display text-[14px] font-semibold text-gray-800"
       >
         {label}
       </label>
@@ -38,7 +38,7 @@ function FormInput({
         value={value}
         required={required}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1.5 w-full rounded-[6px] border border-gray-300 px-3 py-2.5 font-prose text-[14px] text-brand-text outline-none transition-colors placeholder:text-gray-400 focus:border-secondary"
+        className="mt-1.5 w-full rounded-xl border border-gray-200 px-4 py-3 font-prose text-[15px] text-gray-900 bg-gray-50/50 outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-secondary focus:ring-4 focus:ring-secondary/15 shadow-2xs"
       />
     </div>
   );
@@ -95,13 +95,10 @@ export default function ContactPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            className="mx-auto grid max-w-[1140px] grid-cols-1 overflow-hidden rounded-[10px] bg-white lg:grid-cols-2"
-            style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
-          >
+          <div className="mx-auto grid max-w-[1140px] grid-cols-1 overflow-hidden rounded-3xl bg-white lg:grid-cols-2 card-hover-effect border border-gray-100 shadow-2xl">
             {/* Form Column */}
             <div className="px-6 py-10 sm:px-10 lg:px-12 lg:py-12">
-              <h2 className="text-center font-display text-[26px] font-medium leading-tight text-brand-text">
+              <h2 className="text-center font-display text-[28px] font-semibold leading-tight text-gray-900">
                 Send Us a Message
               </h2>
 
@@ -137,7 +134,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block font-prose text-[14px] font-medium text-brand-text"
+                    className="block font-display text-[14px] font-semibold text-gray-800"
                   >
                     Message
                   </label>
@@ -148,16 +145,17 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => updateField("message", e.target.value)}
                     required
-                    className="mt-1.5 w-full rounded-[6px] border border-gray-300 px-3 py-2.5 font-prose text-[14px] text-brand-text outline-none transition-colors placeholder:text-gray-400 focus:border-secondary"
+                    placeholder="Tell us what's on your mind..."
+                    className="mt-1.5 w-full rounded-xl border border-gray-200 px-4 py-3 font-prose text-[15px] text-gray-900 bg-gray-50/50 outline-none transition-all placeholder:text-gray-400 focus:bg-white focus:border-secondary focus:ring-4 focus:ring-secondary/15 shadow-2xs"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center rounded-[6px] bg-secondary hover:bg-secondary-dark px-6 py-2.5 font-display text-[14px] font-medium text-white transition-opacity disabled:opacity-60"
+                  className="animate-btn-shake w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-secondary hover:bg-secondary-dark px-10 py-3.5 font-display text-[15px] font-semibold text-white shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-60 transform hover:scale-102 active:scale-95"
                 >
-                  {loading ? "Sending…" : "Submit"}
+                  {loading ? "Sending…" : "Submit Message"}
                 </button>
 
                 {success && (

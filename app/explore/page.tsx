@@ -265,7 +265,7 @@ export default function ExplorePage() {
             </div>
 
             {/* Region Pills */}
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-2.5 justify-center">
               {regions.map((r) => (
                 <button
                   key={r}
@@ -273,10 +273,10 @@ export default function ExplorePage() {
                     setSelectedRegion(r);
                     setVisibleCount(12);
                   }}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-5 py-2 rounded-full text-[14px] font-display font-semibold transition-all shadow-2xs transform active:scale-95 ${
                     selectedRegion === r
-                      ? "bg-primary text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      ? "bg-primary text-white shadow-md scale-102"
+                      : "bg-white text-gray-700 border border-gray-200/80 hover:bg-gray-100 hover:text-primary"
                   }`}
                 >
                   {r}
@@ -369,26 +369,30 @@ export default function ExplorePage() {
               {displayed.map((country) => (
                 <div
                   key={country.code}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col"
+                  className="group card-hover-effect bg-white rounded-2xl overflow-hidden border border-gray-100/90 hover:border-secondary/40 flex flex-col hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={country.image}
                       alt={country.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                     />
+                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1.5 z-10 border border-gray-100">
+                      <TwemojiFlag code={country.code} size={16} />
+                      <span className="text-[11px] font-bold text-gray-700">{country.code}</span>
+                    </div>
                   </div>
 
                   <div className="p-5 flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <TwemojiFlag code={country.code} size={22} />
-                        <h3 className="font-display font-semibold text-[18px] text-[#1F1F1F]">
+                        <h3 className="font-display font-semibold text-[18px] text-[#1F1F1F] group-hover:text-primary transition-colors">
                           {country.name}
                         </h3>
                       </div>
-                      <span className="text-[11px] font-semibold text-secondary uppercase bg-secondary/10 px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] font-semibold text-secondary uppercase bg-secondary/10 px-2.5 py-0.5 rounded-full">
                         {country.region}
                       </span>
                     </div>
@@ -398,8 +402,8 @@ export default function ExplorePage() {
                     </p>
 
                     <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                      <span>{country.posts_count} stories shared</span>
-                      <span className="text-primary font-medium group-hover:underline">
+                      <span className="font-prose">{country.posts_count} stories shared</span>
+                      <span className="text-primary font-semibold group-hover:text-secondary group-hover:translate-x-1 transition-all inline-flex items-center gap-1">
                         Explore stories →
                       </span>
                     </div>

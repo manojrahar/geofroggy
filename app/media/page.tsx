@@ -126,9 +126,9 @@ export default function MediaPage() {
               {brandAssets.map((asset, i) => (
                 <div
                   key={i}
-                  className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                  className="card-hover-effect group bg-white p-6 rounded-2xl border border-gray-200/80 hover:border-secondary/40 flex flex-col hover:-translate-y-1.5 cursor-pointer"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-secondary/15 flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/15 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
                     <Image
                       src={asset.icon}
                       alt=""
@@ -137,7 +137,7 @@ export default function MediaPage() {
                       className="object-contain"
                     />
                   </div>
-                  <h3 className="font-display font-semibold text-[17px] text-[#1F1F1F] mb-1">
+                  <h3 className="font-display font-semibold text-[17px] text-[#1F1F1F] group-hover:text-primary transition-colors mb-1">
                     {asset.title}
                   </h3>
                   <span className="text-[12px] font-semibold text-secondary mb-2">
@@ -146,7 +146,7 @@ export default function MediaPage() {
                   <p className="font-prose text-[13px] text-[#6E6E6E] leading-relaxed mb-4 flex-1">
                     {asset.desc}
                   </p>
-                  <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
+                  <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-secondary transition-colors">
                     <Download className="w-3.5 h-3.5" /> Download Pack
                   </button>
                 </div>
@@ -193,7 +193,7 @@ export default function MediaPage() {
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
-                <button className="bg-primary hover:bg-primary-dark text-white font-display font-medium text-[15px] px-6 py-3 rounded-[5px] transition-colors flex items-center gap-2 shadow-sm">
+                <button className="animate-btn-shake bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg transform hover:scale-102 active:scale-95">
                   <Download className="w-4 h-4" /> Download Complete Press Kit (45 MB)
                 </button>
               </div>

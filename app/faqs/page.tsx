@@ -287,15 +287,36 @@ export default function FAQsPage() {
           </div>
 
           <div className="lg:pt-8">
-            <div className="sticky top-24">
-              <Image
-                src="/website-images/pana_faq.png"
-                alt="FAQ illustration"
-                width={680}
-                height={520}
-                className="h-auto w-full"
-                priority
-              />
+            <div className="sticky top-24 space-y-6">
+              <div className="card-hover-effect rounded-2xl bg-white border border-gray-100 p-4 overflow-hidden">
+                <Image
+                  src="/website-images/pana_faq.png"
+                  alt="FAQ illustration"
+                  width={680}
+                  height={520}
+                  className="h-auto w-full object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Helpful Support Card to keep right column rich & engaging */}
+              <div className="card-hover-effect rounded-2xl bg-[#F4F9EC] border border-secondary/30 p-6 text-center">
+                <div className="w-12 h-12 rounded-full bg-secondary/20 text-secondary mx-auto mb-3 flex items-center justify-center text-xl">
+                  💬
+                </div>
+                <h4 className="font-display font-semibold text-[18px] text-[#222222] mb-1">
+                  Still Have Questions?
+                </h4>
+                <p className="font-prose text-[14px] text-[#555555] mb-5 leading-relaxed">
+                  Can&apos;t find what you&apos;re looking for? Reach out directly to our team.
+                </p>
+                <a
+                  href="mailto:support@geofroggy.com"
+                  className="animate-btn-shake inline-block w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[14px] py-3 rounded-full transition-all duration-300 shadow-md"
+                >
+                  Contact Support
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -73,15 +73,14 @@ export default function AroundTheWorldSection() {
             <Link
               key={e.id}
               href={e.destination_url}
-              className="relative rounded-[10px] overflow-hidden group block bg-white transition-transform hover:-translate-y-1"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }}
+              className="card-hover-effect relative rounded-[12px] overflow-hidden group block bg-white border border-gray-100"
             >
-              <div className="relative aspect-[4/3]">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={e.feature_image}
                   alt={e.headline}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                 />
               </div>
 
@@ -96,7 +95,7 @@ export default function AroundTheWorldSection() {
                   </span>
                 </div>
 
-                <h3 className="font-display font-medium text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-secondary transition-colors">
+                <h3 className="font-display font-semibold text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-primary transition-colors">
                   {e.headline}
                 </h3>
 
@@ -104,8 +103,8 @@ export default function AroundTheWorldSection() {
                   {e.summary}
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-1 text-secondary font-display font-medium text-[13px]">
-                  Read more <ArrowUpRight className="w-3.5 h-3.5" />
+                <span className="mt-4 inline-flex items-center gap-1 text-secondary font-display font-medium text-[13px] group-hover:text-primary transition-colors">
+                  Read more <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </span>
               </div>
             </Link>

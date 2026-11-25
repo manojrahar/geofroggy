@@ -36,7 +36,7 @@ export default function ReadyToShareBanner() {
 
         <Link
           href="/submit-story"
-          className="inline-block bg-primary hover:bg-primary-dark text-white font-display font-medium text-[16px] px-8 py-3 rounded-[5px] transition-colors shadow-md"
+          className="animate-btn-shake inline-block bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[16px] px-10 py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95"
         >
           Share your experience
         </Link>

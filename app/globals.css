@@ -136,3 +136,41 @@
 .h-18\.5 {
   height: 74px !important;
 }
+
+/* Card Shadows & Interactive Hover Effects */
+.card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-hover-effect {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Button interactive states and shake animation */
+@keyframes button-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px) rotate(-1.5deg); }
+  40% { transform: translateX(4px) rotate(1.5deg); }
+  60% { transform: translateX(-2px) rotate(-0.5deg); }
+  80% { transform: translateX(2px) rotate(0.5deg); }
+}
+
+.animate-btn-shake:hover {
+  animation: button-shake 0.45s ease-in-out;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 14px 0 rgba(138, 198, 60, 0.39); }
+  50% { transform: scale(1.02); box-shadow: 0 6px 20px 0 rgba(138, 198, 60, 0.55); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
