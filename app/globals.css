@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #175883;
+    --primary-foreground: #ffffff;
+    --secondary: #8ac63c;
+    --secondary-foreground: #ffffff;
+    --brand-black: #1f1f1f;
+    --brand-text: #383838;
+  }
+
+  body {
+    color: var(--brand-text);
+    background-color: #ffffff;
+    font-family: var(--font-poppins), 'Poppins', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom design token utility classes */
+.bg-secondary {
+  background: linear-gradient(#8dc63f, #426f05) !important;
+}
+
+.bg-brand-blue {
+  background-color: #175883 !important;
+}
+
+.text-brand-blue {
+  color: #175883 !important;
+}
+
+.text-brand-green {
+  color: #8ac63c !important;
+}
+
+.border-brand-green {
+  border-color: #8ac63c !important;
+}
+
+.font-display {
+  font-family: var(--font-clash-display), 'Clash Display', sans-serif !important;
+}
+
+.font-body {
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+}
+
+.font-prose {
+  font-family: var(--font-roboto), 'Roboto', sans-serif !important;
+}
+
+.font-inter {
+  font-family: var(--font-inter), 'Inter', sans-serif !important;
+}
+
+.font-quote {
+  font-family: var(--font-philosopher), 'Philosopher', serif !important;
+}
+
+.font-script {
+  font-family: var(--font-yellowtail), 'Yellowtail', cursive !important;
+}
+
+/* Organic card border styling matching the live site */
+.leaf-border-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1.5px dashed rgba(138, 198, 60, 0.45);
+  box-shadow: 0 4px 20px -2px rgba(138, 198, 60, 0.08);
+  transition: all 0.3s ease;
+}
+
+.leaf-border-card:hover {
+  border-color: rgba(138, 198, 60, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -4px rgba(138, 198, 60, 0.16);
+}
