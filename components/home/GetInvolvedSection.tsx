@@ -35,7 +35,16 @@ const pathways = [
 
 export default function GetInvolvedSection() {
   return (
-    <section className="py-16 lg:py-20 relative overflow-hidden bg-white">
+    <section className="py-16 lg:py-20 relative overflow-hidden green-patch-bg border-y border-secondary/15">
+      {/* Subtle green globe pattern */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <Image
+          src="/website-images/green-splotch.png"
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Right side celebratory graphic */}
         <div className="hidden lg:block absolute top-0 right-0 w-[436px] z-20 pointer-events-none">
@@ -105,7 +114,7 @@ export default function GetInvolvedSection() {
             <Link
               key={idx}
               href={card.href}
-              className="group card-hover-effect bg-white rounded-[12px] px-4 py-5 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[235px] lg:shrink-0 border border-gray-100 hover:border-secondary/40 transition-all duration-300"
+              className="group card-hover-effect bg-white rounded-[16px] px-4 py-5 flex flex-col items-center text-center overflow-hidden lg:w-[227px] lg:h-[235px] lg:shrink-0 border-2 border-[#175883]/18 hover:border-secondary transition-all duration-300"
             >
               <div className="relative w-full h-16 mb-2 shrink-0 flex items-center justify-center">
                 <Image

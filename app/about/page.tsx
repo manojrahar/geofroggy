@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FroggyMascot from "@/components/FroggyMascot";
 import { Check, Heart, Globe, Users, BookOpen } from "lucide-react";
 
 export const metadata = {
@@ -56,7 +57,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Our Philosophy: Geography as Story */}
-      <section className="relative bg-white overflow-hidden py-16 lg:py-20">
+      <section className="relative green-patch-bg overflow-hidden py-16 lg:py-20 border-b border-secondary/15">
         <Image
           src="/website-images/abstractart2.png"
           alt=""
@@ -67,7 +68,8 @@ export default function AboutPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-2 mb-2">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <FroggyMascot size="sm" />
               <Image
                 src="/website-images/globeicon.png"
                 alt=""

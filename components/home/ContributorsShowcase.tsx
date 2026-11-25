@@ -36,7 +36,16 @@ const contributors = [
 
 export default function ContributorsShowcase() {
   return (
-    <section className="py-14 relative overflow-hidden bg-white">
+    <section className="py-16 relative overflow-hidden green-patch-bg border-b border-secondary/15">
+      {/* Subtle frog pattern backdrop */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
+        <Image
+          src="/website-images/contributor-bgpattern.png"
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-start justify-between mb-8">
           <div>
@@ -77,7 +86,7 @@ export default function ContributorsShowcase() {
           {contributors.map((c, i) => (
             <div
               key={i}
-              className="group card-hover-effect bg-white rounded-[12px] overflow-hidden flex flex-col border border-gray-100"
+              className="group card-hover-effect bg-white rounded-[16px] overflow-hidden flex flex-col border-2 border-[#175883]/18 hover:border-secondary"
             >
               <div className="p-2.5 pt-2.5">
                 <div className="relative aspect-[4/3] rounded-[10px] overflow-hidden">

@@ -38,8 +38,8 @@ const events = [
 
 export default function AroundTheWorldSection() {
   return (
-    <section className="py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20 bg-[#f8fbff] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-2">
             <Image
@@ -73,7 +73,7 @@ export default function AroundTheWorldSection() {
             <Link
               key={e.id}
               href={e.destination_url}
-              className="card-hover-effect relative rounded-[12px] overflow-hidden group block bg-white border border-gray-100"
+              className="card-hover-effect relative rounded-[16px] overflow-hidden group block bg-white border-2 border-[#175883]/18 hover:border-secondary"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image

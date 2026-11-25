@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import KaiMaBadge from "@/components/KaiMaBadge";
+import FroggyGuide from "@/components/FroggyGuide";
+import SoundManager from "@/components/SoundManager";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -76,10 +78,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-white text-[#383838]">
+        <SoundManager />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
         <KaiMaBadge />
+        <FroggyGuide />
       </body>
     </html>
   );

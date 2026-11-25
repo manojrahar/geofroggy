@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
+import FroggyMascot from "@/components/FroggyMascot";
 
 const regions = ["All", "Africa", "Asia", "Europe", "Americas", "Oceania"];
 const climates = ["All", "Tropical", "Desert", "Temperate", "Mediterranean", "Polar", "Mountain"];
@@ -358,8 +359,16 @@ export default function ExplorePage() {
       </section>
 
       {/* 3. Country Cards Grid */}
-      <section className="py-12 lg:py-16">
+      <section className="py-12 lg:py-16 green-patch-bg border-t border-secondary/15 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <FroggyMascot size="sm" />
+              <p className="font-display text-[16px] font-medium text-primary">
+                Tap any country card or Froggy to jump into a new culture!
+              </p>
+            </div>
+          </div>
           {displayed.length === 0 ? (
             <div className="text-center py-16 text-gray-500">
               No countries match your filters.

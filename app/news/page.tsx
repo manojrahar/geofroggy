@@ -95,7 +95,7 @@ export default function NewsPage() {
       </section>
 
       {/* 2. Platform News & Updates (4 Cards) */}
-      <section className="relative overflow-hidden bg-white py-16 lg:py-20">
+      <section className="relative overflow-hidden green-patch-bg py-16 lg:py-20 border-b border-secondary/15">
         <Image
           src="/website-images/abstractart2.png"
           alt=""

@@ -24,7 +24,17 @@ const offers = [
 
 export default function WhatWeOffer() {
   return (
-    <section className="bg-brand-bg pb-16 lg:pb-20 pt-10 relative overflow-hidden">
+    <section className="green-patch-bg pb-16 lg:pb-20 pt-12 relative overflow-hidden border-y border-secondary/15">
+      {/* Subtle green globe watermark */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
+        <Image
+          src="/website-images/green-splotch.png"
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
+
       {/* Abstract art in top left */}
       <Image
         src="/website-images/abstractart1.png"
@@ -57,7 +67,7 @@ export default function WhatWeOffer() {
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="group card-hover-effect relative text-center px-8 py-10 flex flex-col items-center rounded-[12px] bg-white/70 backdrop-blur-xs cursor-default"
+              className="group card-hover-effect relative text-center px-8 py-10 flex flex-col items-center rounded-[16px] bg-white border-2 border-[#175883]/18 hover:border-secondary cursor-default"
               style={{
                 backgroundImage: "url('/website-images/Rectangle-14.svg')",
                 backgroundSize: "100% 100%",

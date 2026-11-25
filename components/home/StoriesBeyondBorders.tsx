@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import FroggyMascot from "@/components/FroggyMascot";
 
 export default function StoriesBeyondBorders() {
   const photos = [
@@ -23,7 +24,8 @@ export default function StoriesBeyondBorders() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center mb-4">
-          <div className="relative inline-block mb-1">
+          <div className="relative inline-flex items-center gap-3 mb-1">
+            <FroggyMascot size="sm" />
             <span className="font-display font-semibold text-[36px] sm:text-[44px] text-secondary leading-tight">
               Geofroggy
             </span>
