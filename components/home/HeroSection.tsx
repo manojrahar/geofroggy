@@ -4,67 +4,70 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Slide {
-  image: string;
-  subtitle: string;
-  title: string;
-  description: string;
-}
-
-const slides: Slide[] = [
+const slides = [
   {
+    id: 1,
     image: "/website-images/hero/chinese_new_year.png",
-    subtitle: "Our Window, Your World",
-    title: "Engage! Share! Cultivate",
-    description:
-      "Welcome to Geofroggy -- a unique platform where the power of geography unites people from every corner of the world. Here, we believe that every place has a story to tell.",
+    alt: "Chinese New Year celebration",
   },
   {
+    id: 2,
     image: "/website-images/hero/diwali_india.png",
-    subtitle: "Global Festivities & Heritage",
-    title: "Celebrate Every Culture",
-    description:
-      "From glowing lanterns to vibrant festivals, experience the richness of human tradition through genuine eyewitness stories and regional lenses.",
+    alt: "Diwali celebration in India",
   },
   {
-    image: "/website-images/hero/timkat_ethiopia.png",
-    subtitle: "Sacred Encounters & Ancient Rhythms",
-    title: "Voices from the Source",
-    description:
-      "Discover the sacred melodies and living traditions of ancient highlands, told firsthand by the keepers of regional heritage.",
-  },
-  {
-    image: "/website-images/hero/mardi_gras.png",
-    subtitle: "Carnival & Cultural Tapestries",
-    title: "Colors Beyond Borders",
-    description:
-      "Witness how music, dance, and creative pageantry unite communities across continents in joyous expression.",
-  },
-  {
+    id: 3,
     image: "/website-images/hero/dia_de_los_muertos_mexico.png",
-    subtitle: "Remembrance & Life Celebrations",
-    title: "Stories Passed Down",
-    description:
-      "Explore age-old celebrations of ancestral memory, colorful altars, and deep familial bonds that shape communities.",
+    alt: "Día de los Muertos in Mexico",
+  },
+  {
+    id: 4,
+    image: "/website-images/hero/india2.png",
+    alt: "Festival in India",
+  },
+  {
+    id: 5,
+    image: "/website-images/hero/mardi_gras.png",
+    alt: "Mardi Gras parade",
+  },
+  {
+    id: 6,
+    image: "/website-images/hero/timkat_ethiopia.png",
+    alt: "Timkat festival in Ethiopia",
   },
 ];
 
-// Floating member faces positioned across hero (as seen in reference)
-const floatingMembers = [
-  { src: "/website-images/faces1.png", top: "18%", left: "6%", size: 48 },
-  { src: "/website-images/faces2.png", top: "25%", left: "19%", size: 56 },
-  { src: "/website-images/faces3.png", top: "18%", right: "26%", size: 52 },
-  { src: "/website-images/faces4.png", top: "22%", right: "9%", size: 54 },
-  { src: "/website-images/faces5.png", bottom: "28%", left: "28%", size: 44 },
-  { src: "/website-images/faces6.png", bottom: "22%", right: "21%", size: 46 },
-  { src: "/website-images/contributor1.png", bottom: "26%", left: "4%", size: 50 },
-  { src: "/website-images/contributor2.png", bottom: "22%", right: "12%", size: 48 },
+const content = {
+  title: "Our Window, Your World",
+  subtitle: "Engage! Share! Cultivate",
+  description:
+    "Welcome to Geofroggy—a unique platform where the power of geography unites people from every corner of the world. Here, we believe that every place has a story to tell.",
+};
+
+const floatingBubbles = [
+  { src: "/website-images/contributor1.png", size: 80, top: "12%", left: "6%" },
+  { src: "/website-images/contributor2.png", size: 60, top: "60%", left: "3%" },
+  { src: "/website-images/contributor3.png", size: 90, top: "25%", left: "18%" },
+  { src: "/website-images/contributor4.png", size: 70, top: "70%", left: "14%" },
+  { src: "/website-images/contributor1.png", size: 55, top: "45%", left: "28%" },
+  { src: "/website-images/contributor2.png", size: 75, top: "10%", right: "22%" },
+  { src: "/website-images/contributor3.png", size: 65, top: "55%", right: "18%" },
+  { src: "/website-images/contributor4.png", size: 85, top: "20%", right: "6%" },
+  { src: "/website-images/contributor1.png", size: 60, top: "72%", right: "8%" },
+  { src: "/website-images/contributor2.png", size: 50, top: "38%", right: "30%" },
+];
+
+const avatars = [
+  "/website-images/contributor1.png",
+  "/website-images/contributor2.png",
+  "/website-images/contributor3.png",
+  "/website-images/contributor4.png",
+  "/website-images/contributor1.png",
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto rotate slides every 6 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -72,129 +75,112 @@ export default function HeroSection() {
     return () => clearInterval(timer);
   }, []);
 
-  const slide = slides[currentSlide];
-
   return (
-    <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-black text-white">
-      {/* 1. Background Slider Images */}
-      {slides.map((s, index) => (
+    <section className="relative min-h-[740px] overflow-hidden flex items-start">
+      {/* Background carousel slides */}
+      {slides.map((slide, idx) => (
         <div
-          key={s.image}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          key={slide.id}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            idx === currentSlide ? "opacity-100" : "opacity-0"
           }`}
-          style={{ transition: "opacity 1s ease-in-out, transform 8s ease-out" }}
         >
           <Image
-            src={s.image}
-            alt={s.title}
+            src={slide.image}
+            alt={slide.alt}
             fill
-            className="object-cover object-center brightness-75"
-            priority={index === 0}
+            className="object-cover"
+            priority={idx === 0}
           />
         </div>
       ))}
 
-      {/* Dark Vignette Overlay for High Legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70 pointer-events-none" />
+      {/* Dim overlay */}
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Floating Member Face Bubbles (Hidden on small screens) */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block overflow-hidden">
-        {floatingMembers.map((member, i) => (
+      {/* Floating Contributor Avatars */}
+      <div
+        className={`absolute inset-0 pointer-events-none hidden lg:block transition-opacity duration-500 ${
+          currentSlide === 0 ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {floatingBubbles.map((bubble, i) => (
           <div
             key={i}
-            className="absolute rounded-full border-2 border-white/80 shadow-lg overflow-hidden transition-all duration-700 hover:scale-110"
+            className="absolute rounded-full overflow-hidden border-2 border-white/60 opacity-80"
             style={{
-              top: member.top,
-              bottom: member.bottom,
-              left: member.left,
-              right: member.right,
-              width: member.size,
-              height: member.size,
-              animation: `float ${(i % 3) + 4}s ease-in-out infinite alternate`,
+              width: bubble.size,
+              height: bubble.size,
+              top: bubble.top,
+              left: "left" in bubble ? bubble.left : undefined,
+              right: "right" in bubble ? bubble.right : undefined,
             }}
           >
-            <Image
-              src={member.src}
-              alt="Community Member"
-              width={member.size}
-              height={member.size}
-              className="object-cover w-full h-full"
-            />
+            <Image src={bubble.src} alt="" fill className="object-cover" />
           </div>
         ))}
       </div>
 
-      {/* 2. Hero Typography & Center Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-20 flex flex-col items-center">
-        {/* Subtitle with pill / text accent */}
-        <span className="inline-block text-[#8AC63C] text-sm sm:text-base font-semibold tracking-wide uppercase mb-3 font-display">
-          {slide.subtitle}
-        </span>
+      {/* Content */}
+      <div className="relative w-full max-w-360 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pt-16 pb-20">
+        <div className="flex items-center justify-center mb-3">
+          <span className="bg-linear-to-r from-secondary/0 via-secondary to-secondary/0 text-white font-display font-semibold text-[28px] sm:text-[36px] px-12 py-1 leading-tight">
+            {content.title}
+          </span>
+        </div>
 
-        {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6 leading-tight drop-shadow-md">
-          {slide.title}
+        <h1 className="text-white font-display font-semibold text-[38px] sm:text-[55px] leading-tight mb-8 max-w-2xl">
+          {content.subtitle}
         </h1>
 
-        {/* Sub-paragraph */}
-        <p className="max-w-2xl text-sm sm:text-base lg:text-lg text-gray-200 font-body leading-relaxed mb-8 drop-shadow">
-          {slide.description}
+        <p className="text-white font-prose text-[16px] sm:text-[18px] leading-[25px] max-w-[791px] mx-auto mb-10">
+          {content.description}
         </p>
 
-        {/* CTA Button + Social Proof Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6">
+        {/* CTA Button and Avatars */}
+        <div className="flex flex-col sm:flex-row items-center gap-5 mb-8">
           <Link
             href="/signup"
-            className="bg-[#8AC63C] text-[#1F1F1F] font-bold text-sm sm:text-base px-8 py-3 rounded-full hover:bg-[#7ab52e] hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[18px] px-8 py-2.5 rounded-[5px] transition-colors"
           >
             Join Now
           </Link>
 
-          {/* Overlapping Avatar Stack + 5k+ Badge */}
           <div className="flex items-center">
-            <div className="flex -space-x-3 overflow-hidden p-0.5">
-              {[
-                "/website-images/contributor1.png",
-                "/website-images/contributor2.png",
-                "/website-images/contributor3.png",
-                "/website-images/contributor4.png",
-              ].map((avatar, idx) => (
+            <div className="flex -space-x-3">
+              {avatars.map((src, i) => (
                 <div
-                  key={idx}
-                  className="inline-block w-9 h-9 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
+                  key={i}
+                  className="w-14 h-14 rounded-full border-2 border-white overflow-hidden relative bg-gray-300"
+                  style={{ zIndex: avatars.length - i }}
                 >
-                  <Image
-                    src={avatar}
-                    alt="Member"
-                    width={36}
-                    height={36}
-                    className="w-full h-full object-cover"
-                  />
+                  <Image src={src} alt="" fill className="object-cover" />
                 </div>
               ))}
             </div>
-
-            {/* 5k+ Blue Pill Badge */}
-            <div className="ml-2.5 bg-[#175883] text-white text-xs font-bold px-2.5 py-1.5 rounded-full ring-2 ring-white shadow-sm">
-              5k+
+            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center border-2 border-white -ml-3 z-10">
+              <span className="text-white font-display font-medium text-[18px] leading-none">
+                5k+
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Slider Indicator Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-2.5">
-        {slides.map((_, dotIndex) => (
+      {/* Slide Indicators */}
+      <div className="absolute inset-x-0 bottom-6 flex justify-center gap-2 z-10">
+        {slides.map((_, idx) => (
           <button
-            key={dotIndex}
-            onClick={() => setCurrentSlide(dotIndex)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              dotIndex === currentSlide
-                ? "bg-white w-7"
-                : "bg-white/40 hover:bg-white/70"
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Slide ${idx + 1}`}
+            className={`rounded-full transition-all duration-300 border border-white ${
+              idx === currentSlide
+                ? "w-8 h-2.5 bg-white"
+                : "w-2.5 h-2.5 bg-white/40"
             }`}
-            aria-label={`Go to slide ${dotIndex + 1}`}
           />
         ))}
       </div>

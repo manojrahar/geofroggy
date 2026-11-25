@@ -1,106 +1,116 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, ArrowRight } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 
-const stories = [
+const events = [
   {
-    image: "/website-images/hero/diwali_india.png",
-    category: "Festival",
-    date: "Nov 1, 2024",
-    title: "Diwali Lights Up Jaipur",
-    description:
-      "Rangolis, marigolds, and firecrackers turn the Pink City into an all-night celebration of light over darkness.",
-    link: "/explore",
+    id: 1,
+    headline: "Diwali Lights Up the Streets of Jaipur",
+    summary:
+      "Thousands gather across the Pink City with earthen oil lamps, creating an ocean of light celebrating the victory of good over evil.",
+    feature_image: "/website-images/diwali.png",
+    region: "INDIA",
+    event_date: "Nov 12, 2026",
+    destination_url: "/explore",
   },
   {
-    image: "/website-images/hero/timkat_ethiopia.png",
-    category: "Culture",
-    date: "Aug 15, 2024",
-    title: "Rio Carnival Rehearsals Begin",
-    description:
-      "Samba schools take over the streets weeks before the main parade -- a first look at this year's themes and costumes.",
-    link: "/explore",
+    id: 2,
+    headline: "Rio Carnival Ignites the Sambadrome",
+    summary:
+      "Vibrant samba schools present months of elaborate craftsmanship, rhythm, and passion in the world's most electrifying street celebration.",
+    feature_image: "/website-images/carnival.png",
+    region: "BRAZIL",
+    event_date: "Feb 17, 2026",
+    destination_url: "/explore",
   },
   {
-    image: "/website-images/hero/chinese_new_year.png",
-    category: "Tradition",
-    date: "Nov 15, 2024",
-    title: "Kyoto's Autumn Colors Peak",
-    description:
-      "Momiji season paints the temples red and gold; a photographer's guide to the best five spots outside the tourist crush.",
-    link: "/explore",
+    id: 3,
+    headline: "Kyoto Autumn Foliage Illumination",
+    summary:
+      "Ancient maple gardens surrounding historic wooden temples burst into crimson and gold under delicate night-time lantern glows.",
+    feature_image: "/website-images/kyoto.png",
+    region: "JAPAN",
+    event_date: "Nov 25, 2026",
+    destination_url: "/explore",
   },
 ];
 
 export default function AroundTheWorldSection() {
   return (
-    <section className="w-full py-16 lg:py-20 bg-gray-50/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Kicker & Heading */}
-        <div className="mb-10">
-          <div className="inline-flex items-center space-x-1.5 text-[#8AC63C] text-xs font-semibold uppercase tracking-wider mb-2">
-            <Clock className="w-4 h-4" />
-            <span>This Week</span>
+    <section className="py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-2">
+            <Image
+              src="/website-images/globeicon.png"
+              alt=""
+              width={22}
+              height={22}
+            />
+            <span className="font-display font-medium text-[28px] text-secondary">
+              This Week
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F]">
+
+          <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
             Around the World This Week
           </h2>
+
+          <div className="mt-2">
+            <Image
+              src="/website-images/moreimages/Vector-4.png"
+              alt=""
+              width={212}
+              height={14}
+            />
+          </div>
         </div>
 
-        {/* 3 Story Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {stories.map((story, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group"
+        {/* 3 Event Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((e) => (
+            <Link
+              key={e.id}
+              href={e.destination_url}
+              className="relative rounded-[10px] overflow-hidden group block bg-white transition-transform hover:-translate-y-1"
+              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.08)" }}
             >
-              {/* Image Banner */}
-              <div className="relative w-full h-52 overflow-hidden bg-gray-100">
+              <div className="relative aspect-[4/3]">
                 <Image
-                  src={story.image}
-                  alt={story.title}
+                  src={e.feature_image}
+                  alt={e.headline}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
-              {/* Card Body */}
-              <div className="p-5 flex-grow flex flex-col justify-between">
-                <div>
-                  {/* Category Pill & Date */}
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-2.5">
-                    <span className="font-semibold text-[#8AC63C] uppercase tracking-wide">
-                      {story.category}
-                    </span>
-                    <span>{story.date}</span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-bold text-lg font-display text-[#1F1F1F] mb-2 leading-snug group-hover:text-[#175883] transition-colors">
-                    {story.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#5E5E5E] font-body line-clamp-3 leading-relaxed mb-4">
-                    {story.description}
-                  </p>
+              <div className="p-5">
+                <div className="flex items-center gap-3 mb-2 text-[12px] text-[#6E6E6E] font-prose">
+                  <span className="uppercase tracking-wide font-medium text-secondary">
+                    {e.region}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {e.event_date}
+                  </span>
                 </div>
 
-                {/* Read More Link */}
-                <Link
-                  href={story.link}
-                  className="inline-flex items-center text-xs font-semibold text-[#8AC63C] group-hover:text-[#7ab52e] hover:underline transition-colors pt-2 border-t border-gray-50"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-                </Link>
+                <h3 className="font-display font-medium text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-secondary transition-colors">
+                  {e.headline}
+                </h3>
+
+                <p className="font-prose text-[14px] text-[#4B4B4B] leading-[22px] line-clamp-3">
+                  {e.summary}
+                </p>
+
+                <span className="mt-4 inline-flex items-center gap-1 text-secondary font-display font-medium text-[13px]">
+                  Read more <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

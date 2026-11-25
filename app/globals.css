@@ -8,8 +8,14 @@
     --primary-foreground: #ffffff;
     --secondary: #8ac63c;
     --secondary-foreground: #ffffff;
+    --secondary-dark: #7ab52e;
+    --brand-blue: #175883;
+    --brand-green: #8ac63c;
     --brand-black: #1f1f1f;
     --brand-text: #383838;
+    --brand-bg: #f9fafb;
+    --color-primary: #175883;
+    --color-secondary: #8ac63c;
   }
 
   body {
@@ -20,27 +26,7 @@
   }
 }
 
-/* Custom design token utility classes */
-.bg-secondary {
-  background: linear-gradient(#8dc63f, #426f05) !important;
-}
-
-.bg-brand-blue {
-  background-color: #175883 !important;
-}
-
-.text-brand-blue {
-  color: #175883 !important;
-}
-
-.text-brand-green {
-  color: #8ac63c !important;
-}
-
-.border-brand-green {
-  border-color: #8ac63c !important;
-}
-
+/* Ensure font families map properly */
 .font-display {
   font-family: var(--font-clash-display), 'Clash Display', sans-serif !important;
 }
@@ -65,18 +51,88 @@
   font-family: var(--font-yellowtail), 'Yellowtail', cursive !important;
 }
 
-/* Organic card border styling matching the live site */
-.leaf-border-card {
-  position: relative;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1.5px dashed rgba(138, 198, 60, 0.45);
-  box-shadow: 0 4px 20px -2px rgba(138, 198, 60, 0.08);
-  transition: all 0.3s ease;
+/* Custom background & text tokens */
+.bg-primary {
+  background-color: #175883 !important;
 }
 
-.leaf-border-card:hover {
-  border-color: rgba(138, 198, 60, 0.9);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px -4px rgba(138, 198, 60, 0.16);
+.bg-secondary {
+  background-color: #8ac63c !important;
+}
+
+.bg-secondary-dark {
+  background-color: #7ab52e !important;
+}
+
+.hover\:bg-secondary-dark:hover {
+  background-color: #7ab52e !important;
+}
+
+.hover\:bg-primary-dark:hover {
+  background-color: #144a6a !important;
+}
+
+.text-primary {
+  color: #175883 !important;
+}
+
+.text-secondary {
+  color: #8ac63c !important;
+}
+
+.border-secondary {
+  border-color: #8ac63c !important;
+}
+
+/* Gradient text / backgrounds matching Tailwind v4 */
+.bg-linear-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important;
+}
+
+.from-secondary\/0 {
+  --tw-gradient-from: rgba(138, 198, 60, 0) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(138, 198, 60, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-secondary {
+  --tw-gradient-to: rgba(138, 198, 60, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #8ac63c var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-secondary\/0 {
+  --tw-gradient-to: rgba(138, 198, 60, 0) var(--tw-gradient-to-position);
+}
+
+/* Max widths & custom dimensions matching live site */
+.max-w-360 {
+  max-width: 1440px !important;
+}
+
+.max-w-250 {
+  max-width: 1000px !important;
+}
+
+.max-w-215 {
+  max-width: 860px !important;
+}
+
+.max-w-197\.25 {
+  max-width: 789px !important;
+}
+
+.max-w-179\.5 {
+  max-width: 718px !important;
+}
+
+.h-15 {
+  height: 60px !important;
+}
+
+.w-18\.5 {
+  width: 74px !important;
+}
+
+.h-18\.5 {
+  height: 74px !important;
 }

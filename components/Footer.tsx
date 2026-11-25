@@ -3,215 +3,279 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, ArrowRight } from "lucide-react";
+import { Check, LoaderCircle } from "lucide-react";
+
+// Social Icons matching the live site
+function FacebookIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+const footerLinks = {
+  explore: [
+    { href: "/explore", label: "Explore" },
+    { href: "https://learningportal.geofroggy.com/", label: "Learn", external: true },
+  ],
+  community: [
+    { href: "/about", label: "About" },
+    { href: "/community-guidelines", label: "Community Guidelines" },
+    { href: "/faqs", label: "Help / FAQs" },
+    { href: "/contact", label: "Contact" },
+  ],
+  collaborate: [
+    { href: "/become-ambassador", label: "Ambassadors" },
+    { href: "/partner", label: "Volunteer or Partner" },
+    { href: "/donate", label: "Donate" },
+  ],
+  legal: [
+    { href: "/terms", label: "Terms of Use" },
+    { href: "/privacy", label: "Privacy Policy" },
+  ],
+};
+
+const socialLinks = [
+  { href: "https://facebook.com/geofroggy", icon: FacebookIcon, label: "Facebook" },
+  { href: "https://linkedin.com/company/geofroggy", icon: LinkedInIcon, label: "LinkedIn" },
+  { href: "https://instagram.com/geofroggy", icon: InstagramIcon, label: "Instagram" },
+];
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubmitted(true);
+  const handleSubscribe = async () => {
+    if (!email) return;
+    setStatus("loading");
+    setErrorMsg(null);
+    try {
+      await new Promise((r) => setTimeout(r, 600));
+      setStatus("success");
       setEmail("");
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setErrorMsg("Please try again.");
     }
   };
 
   return (
-    <footer className="w-full bg-[#175883] text-white relative overflow-hidden">
-      {/* Background Skyline Silhouette Art */}
-      <div 
-        className="absolute inset-0 opacity-15 pointer-events-none bg-bottom bg-repeat-x"
+    <footer className="relative text-white overflow-hidden bg-primary">
+      {/* Background artwork */}
+      <div className="absolute inset-0 opacity-60 pointer-events-none">
+        <Image
+          src="/website-images/footer_background_art.png"
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "url('/website-images/footer_background_art.png')",
-          backgroundSize: "contain",
-          backgroundPosition: "bottom center"
+          background: "linear-gradient(to bottom, #175883 0%, rgba(23, 88, 131, 0) 100%)",
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-10">
+      <div className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-10">
           
-          {/* Column 1: Brand Logo, Description, Socials (Span 2) */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
+          {/* Top row: Big Logo + Newsletter Postcard box */}
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 mb-10 lg:mb-14">
+            <div className="shrink-0">
               <Image
                 src="/website-images/footer-logo.png"
-                alt="GeoFroggy Logo"
-                width={190}
-                height={60}
-                className="h-12 w-auto object-contain brightness-0 invert"
+                alt="GeoFroggy — Got Culture"
+                width={220}
+                height={160}
+                className="w-auto h-[140px] lg:h-[160px]"
+                priority={false}
               />
-            </Link>
-
-            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-body">
-              Explore global stories, join meaningful conversations, and be part of a
-              worldwide community where every place has a voice.
-            </p>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-body">
-              Let geography become your guide to understanding people, traditions, and perspectives.
-            </p>
-
-            {/* Social Icons */}
-            <div className="flex items-center space-x-3 pt-2">
-              <a
-                href="https://facebook.com/geofroggy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#8AC63C] text-[#1F1F1F] flex items-center justify-center hover:bg-[#7ab52e] hover:scale-105 transition-all shadow-sm"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4 fill-current" />
-              </a>
-              <a
-                href="https://linkedin.com/company/geofroggy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#8AC63C] text-[#1F1F1F] flex items-center justify-center hover:bg-[#7ab52e] hover:scale-105 transition-all shadow-sm"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4 fill-current" />
-              </a>
-              <a
-                href="https://instagram.com/geofroggy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#8AC63C] text-[#1F1F1F] flex items-center justify-center hover:bg-[#7ab52e] hover:scale-105 transition-all shadow-sm"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
+            </div>
+            <div className="relative w-full max-w-[504px] aspect-[504/138]">
+              <Image
+                src="/website-images/footer_newsletter_outline.png"
+                alt=""
+                fill
+                className="object-contain"
+              />
+              <div className="relative h-full flex flex-col justify-center px-8 sm:px-12 py-6">
+                <h4 className="font-display font-semibold text-[20px] sm:text-[22px] text-white mb-2">
+                  Newsletter:
+                </h4>
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    placeholder="Enter Email here"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === "loading" || status === "success"}
+                    onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
+                    className="flex-1 h-10 px-4 rounded-[6px] bg-white/95 text-[#383838] placeholder:text-[#9E9E9E] font-prose text-[14px] focus:outline-none focus:ring-2 focus:ring-secondary"
+                  />
+                  <button
+                    onClick={handleSubscribe}
+                    disabled={status === "loading" || status === "success" || !email}
+                    className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[14px] px-5 h-10 rounded-[6px] transition-colors disabled:opacity-50 shrink-0"
+                  >
+                    {status === "loading" ? (
+                      <LoaderCircle className="w-4 h-4 animate-spin" />
+                    ) : status === "success" ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      "Notify"
+                    )}
+                  </button>
+                </div>
+                {errorMsg && (
+                  <p className="mt-2 text-[12px] text-red-100 bg-red-900/40 rounded px-2 py-1">
+                    {errorMsg}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Column 2: Explore Geofroggy */}
-          <div>
-            <h4 className="text-sm font-semibold tracking-wider uppercase text-white mb-4">
-              Explore Geofroggy
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-body">
-              <li>
-                <Link href="/explore" className="hover:text-amber-200 transition-colors">
-                  Explore
-                </Link>
-              </li>
-              <li>
-                <Link href="https://learningportal.geofroggy.com/" target="_blank" className="hover:text-amber-200 transition-colors">
-                  Learn
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* 5 Columns Navigation */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.55fr_1fr_1fr_1fr_1fr] gap-8 lg:gap-10">
+            {/* Col 1: Mission and Socials */}
+            <div className="lg:col-span-1">
+              <p className="font-prose italic font-bold text-[16px] text-white leading-[24px] mb-3">
+                Explore global stories, join meaningful conversations, and be part of a worldwide community where every place has a voice.
+              </p>
+              <p className="font-prose text-[16px] text-white leading-[24px] mb-5">
+                Let geography become your guide to understanding people, traditions, and perspectives.
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((s) => {
+                  const Icon = s.icon;
+                  return (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-secondary-dark transition-colors"
+                      aria-label={s.label}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
 
-          {/* Column 3: Community & Support */}
-          <div>
-            <h4 className="text-sm font-semibold tracking-wider uppercase text-white mb-4">
-              Community & Support
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-body">
-              <li>
-                <Link href="/about" className="hover:text-amber-200 transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/community-guidelines" className="hover:text-amber-200 transition-colors">
-                  Community Guidelines
-                </Link>
-              </li>
-              <li>
-                <Link href="/faqs" className="hover:text-amber-200 transition-colors">
-                  Help / FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-amber-200 transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Collaborate */}
-          <div>
-            <h4 className="text-sm font-semibold tracking-wider uppercase text-white mb-4">
-              Collaborate
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-body">
-              <li>
-                <Link href="/become-ambassador" className="hover:text-amber-200 transition-colors">
-                  Ambassadors
-                </Link>
-              </li>
-              <li>
-                <Link href="/partner" className="hover:text-amber-200 transition-colors">
-                  Volunteer or Partner
-                </Link>
-              </li>
-              <li>
-                <Link href="/donate" className="hover:text-amber-200 transition-colors">
-                  Donate
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Legal & Footer Newsletter */}
-          <div className="space-y-6">
+            {/* Col 2: Explore */}
             <div>
-              <h4 className="text-sm font-semibold tracking-wider uppercase text-white mb-3">
-                Legal
+              <h4 className="font-display font-semibold text-[17px] text-white mb-4">
+                Explore Geofroggy
               </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-300 font-body">
-                <li>
-                  <Link href="/terms" className="hover:text-amber-200 transition-colors">
-                    Terms of Use
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy" className="hover:text-amber-200 transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
+              <ul className="space-y-2.5">
+                {footerLinks.explore.map((l) => (
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      target={l.external ? "_blank" : undefined}
+                      rel={l.external ? "noopener noreferrer" : undefined}
+                      className="font-prose text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Compact Footer Newsletter */}
+            {/* Col 3: Community */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-2">
-                Newsletter:
+              <h4 className="font-display font-semibold text-[17px] text-white mb-4">
+                Community
               </h4>
-              <form onSubmit={handleSubmit} className="flex items-center max-w-xs">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter email here"
-                  required
-                  className="w-full text-xs bg-white text-gray-800 px-3 py-1.5 rounded-l-md outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-[#8AC63C]"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#8AC63C] hover:bg-[#7ab52e] text-[#1F1F1F] font-semibold text-xs px-3 py-1.5 rounded-r-md transition-colors flex items-center justify-center"
-                >
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </form>
-              {submitted && (
-                <p className="text-[11px] text-green-300 mt-1">Thank you for subscribing!</p>
-              )}
+              <ul className="space-y-2.5">
+                {footerLinks.community.map((l) => (
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      className="font-prose text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* Col 4: Collaborate */}
+            <div>
+              <h4 className="font-display font-semibold text-[17px] text-white mb-4">
+                Collaborate
+              </h4>
+              <ul className="space-y-2.5">
+                {footerLinks.collaborate.map((l) => (
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      className="font-prose text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 5: Legal */}
+            <div>
+              <h4 className="font-display font-semibold text-[17px] text-white mb-4">
+                Legal
+              </h4>
+              <ul className="space-y-2.5">
+                {footerLinks.legal.map((l) => (
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      className="font-prose text-[14px] text-white/80 hover:text-white transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
-        </div>
-
-        {/* Bottom Sub-footer Divider & Bar */}
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-300 font-body space-y-2 sm:space-y-0">
-          <div>© 2025 GeoFroggy</div>
-          <div className="text-center font-medium text-white/90">
-            Celebrating Cultures. Connecting People. One Story at a Time.
+          {/* Bottom Copyright */}
+          <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-white/60 font-prose">
+            <p>© {new Date().getFullYear()} Geofroggy. All rights reserved.</p>
+            <p className="flex items-center gap-2">
+              <span>Powered by KaiMa Foundry</span>
+            </p>
           </div>
-          <div>All Rights Reserved</div>
+
         </div>
       </div>
     </footer>

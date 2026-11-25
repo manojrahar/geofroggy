@@ -1,274 +1,260 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Globe, Users, BookOpen, Languages, Sparkles } from "lucide-react";
+import { Check, Heart, Globe, Users, BookOpen } from "lucide-react";
 
 export const metadata = {
-  title: "About Us - The Heart of Geofroggy",
+  title: "About Us - GeoFroggy",
   description:
-    "Explore the world through human stories. Learn about Geofroggy's mission, philosophy, and global community of cultural storytellers.",
+    "Behind the Frog: The Heart of Geofroggy. Celebrating cultures, connecting people, one story at a time.",
 };
 
+const stats = [
+  { value: "74+", label: "Countries Represented" },
+  { value: "12,000+", label: "Stories Shared" },
+  { value: "250+", label: "Cultural Traditions" },
+  { value: "30+", label: "Languages Spoken" },
+  { value: "400+", label: "Global Collaborations" },
+];
+
+const values = [
+  {
+    title: "Authentic Human Voice",
+    desc: "Stories written directly by the people who live them, preserving honest lived perspectives.",
+  },
+  {
+    title: "Borderless Empathy",
+    desc: "Transforming abstract geographic borders into bridges of understanding and genuine connection.",
+  },
+  {
+    title: "Living Cultural Preservation",
+    desc: "Documenting festivals, rituals, dialects, and traditions for future generations worldwide.",
+  },
+];
+
 export default function AboutPage() {
-  const stats = [
-    { value: "74+", label: "Active Countries", icon: Globe },
-    { value: "12,000+", label: "Stories Shared Worldwide", icon: BookOpen },
-    { value: "250+", label: "Cultural Tags", icon: Sparkles },
-    { value: "30+", label: "Languages Represented", icon: Languages },
-    { value: "400+", label: "Community Collaborations", icon: Users },
-  ];
-
-  const galleryImages = [
-    { src: "/website-images/geo_1.png", alt: "Traditional dancer" },
-    { src: "/website-images/geo_2.png", alt: "Cultural celebration" },
-    { src: "/website-images/geo_3.png", alt: "Carnival performers" },
-    { src: "/website-images/geo_4.png", alt: "Travelers connecting" },
-  ];
-
   return (
-    <div className="w-full flex flex-col bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-black text-white">
+    <div className="min-h-screen bg-white">
+      {/* 1. Hero Header */}
+      <section className="relative w-full h-[280px] sm:h-[320px] lg:h-[351px] overflow-hidden">
         <Image
-          src="/website-images/Rectangle-19.png"
-          alt="Carnival celebration"
+          src="/website-images/Rectangle-86.jpg"
+          alt="Geofroggy Community"
           fill
-          className="object-cover object-center brightness-60"
           priority
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block bg-[#8AC63C] text-[#1F1F1F] font-semibold text-xs sm:text-sm px-4 py-1 rounded-full uppercase tracking-wider mb-4 font-display">
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          <span className="bg-linear-to-r from-secondary/0 via-secondary to-secondary/0 text-white font-display font-semibold text-[24px] sm:text-[28px] lg:text-[32px] px-12 py-1 leading-tight mb-2">
             Behind the Frog
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white tracking-tight drop-shadow-md">
+          <h1 className="text-white font-display font-semibold text-[32px] sm:text-[40px] lg:text-[48px] leading-tight">
             The Heart of Geofroggy
           </h1>
         </div>
       </section>
 
-      {/* 2. Explore the World Through Human Stories */}
-      <section className="w-full py-16 lg:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* Left: Puzzle Mosaic Graphic (5 cols) */}
-            <div className="lg:col-span-5 relative">
-              <div className="inline-block bg-white text-[#8AC63C] font-bold text-xs px-3.5 py-1 rounded-full border border-gray-100 shadow-sm mb-3">
-                5000+ People Connected
-              </div>
-              <div className="relative w-full h-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-lg">
-                <Image
-                  src="/website-images/about_explore.png"
-                  alt="Explore stories mosaic"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+      {/* 2. Our Philosophy: Geography as Story */}
+      <section className="relative bg-white overflow-hidden py-16 lg:py-20">
+        <Image
+          src="/website-images/abstractart2.png"
+          alt=""
+          width={184}
+          height={186}
+          className="absolute -top-16 left-2 pointer-events-none rotate-[-1.39deg]"
+        />
 
-            {/* Right: Text & Narrative (7 cols) */}
-            <div className="lg:col-span-7 space-y-5">
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] leading-tight">
-                Explore the World Through Human Stories
-              </h2>
-              <div className="w-16 h-1 bg-[#8AC63C] rounded-full" />
-
-              <p className="text-sm sm:text-base text-[#4B4B4B] font-body leading-relaxed">
-                Welcome to Geofroggy — where the map comes alive through the stories of real
-                people. We believe geography isn&apos;t just about borders and cities; it&apos;s about the
-                laughter, challenges, traditions, and triumphs of everyday life around the world.
-                Whether you&apos;re from a bustling capital or a quiet countryside, your story helps paint
-                the full picture of our planet.
-              </p>
-
-              <p className="text-sm sm:text-base text-[#5E5E5E] font-body leading-relaxed">
-                Join a movement where culture isn&apos;t just consumed — it&apos;s shared, celebrated, and made
-                personal.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Our Philosophy & Geography as Story */}
-      <section 
-        className="w-full py-16 lg:py-24 bg-[#FAFAFA] relative overflow-hidden"
-        style={{
-          backgroundImage: "url('/website-images/contributor-bgpattern.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "320px",
-        }}
-      >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          
-          <div className="inline-flex items-center space-x-1.5 text-[#8AC63C] text-xs font-semibold uppercase tracking-wider mb-2">
-            <Globe className="w-4 h-4" />
-            <span>Our Philosophy</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mb-6">
-            Geography as Story
-          </h2>
-
-          <div className="max-w-3xl mx-auto space-y-4 text-sm sm:text-base text-[#4B4B4B] font-body leading-relaxed mb-12">
-            <p>
-              We look beyond the coordinates. To us, geography is made up of the stories that unfold
-              in each corner of the world — from sunlit markets in Morocco to snow-covered towns in
-              Finland.
-            </p>
-            <p>
-              Geofroggy is a space where people don&apos;t just mark locations; they bring them to life
-              through memories, voices, and lived experiences. This philosophy shapes everything we
-              do — and it&apos;s what makes our global archive unlike any other.
-            </p>
-          </div>
-
-          {/* 4 Circular Cultural Vignettes */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16">
-            {galleryImages.map((img, idx) => (
-              <div
-                key={idx}
-                className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden shadow-md border-4 border-white transition-transform hover:scale-105 duration-300"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={180}
-                  height={180}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* 5 Stats Counters */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-6 border-t border-gray-200/70">
-            {stats.map((s, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#8AC63C]">
-                  {s.value}
-                </span>
-                <span className="text-xs sm:text-sm text-[#5E5E5E] font-body mt-1 text-center">
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. Our Mission & Why We Exist */}
-      <section className="w-full py-16 lg:py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Copy (7 cols) */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-1.5 text-[#8AC63C] text-xs font-semibold uppercase tracking-wider">
-                <Globe className="w-4 h-4" />
-                <span>Our Mission</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F]">
-                Why We Exist
-              </h2>
-
-              <p className="text-sm sm:text-base text-[#4B4B4B] font-body leading-relaxed">
-                <strong>Geofroggy</strong> was created to bridge the distance between cultures by
-                empowering people to tell their stories. Our goal is to cultivate empathy,
-                curiosity, and shared humanity - one voice at a time. Through the lens of
-                storytelling, we foster respect for diversity, challenge cultural stereotypes, and
-                amplify the perspectives that make the world richer and more connected.
-              </p>
-
-              <p className="text-sm sm:text-base text-[#5E5E5E] font-body leading-relaxed">
-                This isn&apos;t just a platform — it&apos;s a global movement for cultural literacy and human
-                connection.
-              </p>
-            </div>
-
-            {/* Right Photo (5 cols) */}
-            <div className="lg:col-span-5 relative w-full h-[320px] sm:h-[380px] rounded-2xl overflow-hidden shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 mb-2">
               <Image
-                src="/website-images/our_mission_image.png"
-                alt="Diverse group of global contributors"
-                fill
-                className="object-cover object-center"
+                src="/website-images/globeicon.png"
+                alt=""
+                width={22}
+                height={22}
+              />
+              <span className="font-display font-medium text-[28px] text-secondary">
+                Our Philosophy
+              </span>
+            </div>
+
+            <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
+              Geography as Story
+            </h2>
+
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
               />
             </div>
 
+            <div className="mt-6 font-prose text-[18px] text-[#5E5E5E] leading-8 max-w-250 mx-auto space-y-4">
+              <p>
+                We look beyond coordinates on a map. To us, geography is the living mosaic of everyday life — from the aroma of spiced tea in Moroccan souks to midwinter lantern light across Finnish lakes.
+              </p>
+              <p>
+                Every culture holds answers to how humans create beauty, build solidarity, and endure adversity. When we share our stories, we make the globe smaller, kinder, and infinitely more fascinating.
+              </p>
+            </div>
+          </div>
+
+          {/* 4 Cultural Vignettes */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 my-12">
+            {[
+              { src: "/website-images/culture_about_1.png", title: "Folklore & Wisdom" },
+              { src: "/website-images/culture_about_2.png", title: "Shared Celebrations" },
+              { src: "/website-images/culture_about_3.png", title: "Culinary Heritage" },
+              { src: "/website-images/culture_about_1.png", title: "Generational Crafts" },
+            ].map((c, i) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-secondary/30 shadow-md mb-3 group">
+                  <Image
+                    src={c.src}
+                    alt={c.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h4 className="font-display font-medium text-[16px] text-[#383838]">
+                  {c.title}
+                </h4>
+              </div>
+            ))}
+          </div>
+
+          {/* 5 Live Counters */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-10 border-t border-gray-100 text-center">
+            {stats.map((s, idx) => (
+              <div key={idx} className="p-4 bg-gray-50 rounded-xl">
+                <div className="font-display font-semibold text-[32px] sm:text-[38px] text-primary">
+                  {s.value}
+                </div>
+                <div className="font-prose text-[13px] text-[#6E6E6E] mt-1">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Our Vision & Contributor Quote */}
-      <section className="w-full py-16 lg:py-20 bg-gray-50/50 border-t border-gray-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          
-          <div className="inline-flex items-center space-x-1.5 text-[#8AC63C] text-xs font-semibold uppercase tracking-wider mb-2">
-            <Globe className="w-4 h-4" />
-            <span>Our Vision</span>
+      {/* 3. Our Vision & Contributor Testimonial */}
+      <section className="relative py-16 lg:py-20 bg-[#F9FAFB] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Image
+                src="/website-images/globeicon.png"
+                alt=""
+                width={22}
+                height={22}
+              />
+              <span className="font-display font-medium text-[28px] text-secondary">
+                Our Vision
+              </span>
+            </div>
+
+            <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
+              A Connected World, One Story at a Time
+            </h2>
+
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+
+            <div className="mt-6 font-prose text-[18px] text-[#5E5E5E] leading-8 max-w-250 mx-auto space-y-4">
+              <p>
+                We dream of a world where borders don't divide — they inspire conversation. Where learning about another culture is just a scroll away. Our vision is a global tapestry stitched together with authentic voices from all walks of life.
+              </p>
+            </div>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mb-6">
-            A Connected World, One Story at a Time
-          </h2>
-
-          <div className="space-y-4 text-sm sm:text-base text-[#4B4B4B] font-body leading-relaxed mb-10 max-w-2xl mx-auto">
-            <p>
-              We dream of a world where borders don&apos;t divide — they inspire conversation. Where
-              learning about another culture is just a scroll away. Our vision is a global tapestry
-              stitched together with authentic voices from all walks of life — people sharing
-              festivals, family meals, traditions, migrations, milestones, and everything in between.
-            </p>
-            <p>
-              No matter where you&apos;re from, your story has a place here — and it might just change
-              someone&apos;s view of the world.
-            </p>
-          </div>
-
-          {/* Testimonial Quote */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-xs text-left max-w-2xl mx-auto">
-            <p className="font-quote italic text-sm sm:text-base text-[#175883] leading-relaxed mb-4">
-              &ldquo;Geofroggy helped me rediscover the stories of my hometown — and connect with
-              people who&apos;ve never even heard of it. It reminded me that every place has a voice, and
-              every voice deserves to be heard.&rdquo;
-            </p>
-            <span className="block font-script text-xl sm:text-2xl text-[#8AC63C]">
-              A Geofroggy Contributor from Kenya
+          {/* Featured Quote with Big Quotation Mark */}
+          <div className="max-w-250 mx-auto mt-10 bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+            <span
+              aria-hidden="true"
+              className="font-display font-bold text-secondary text-[64px] leading-none select-none flex-shrink-0"
+            >
+              “
             </span>
+            <div>
+              <p className="font-prose font-medium italic text-[18px] text-[#383838] leading-8">
+                “Geofroggy helped me rediscover the stories of my hometown — and connect with people who've never even heard of it. It reminded me that every place has a voice, and every voice deserves to be heard.”
+              </p>
+              <p className="font-script text-[28px] text-primary mt-4">
+                A Geofroggy Contributor from Kenya
+              </p>
+            </div>
           </div>
-
         </div>
       </section>
 
-      {/* 6. Join Our Global Movement Banner */}
-      <section
-        className="w-full py-16 lg:py-20 relative overflow-hidden bg-[#175883] text-white"
-        style={{
-          backgroundImage: "url('/website-images/bg_global_movement.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-4">
+      {/* 4. Why We Exist: Group Photo & Core Values */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/website-images/Rectangle-86-1.jpg"
+                alt="Our Global Community"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div>
+              <h2 className="font-display font-semibold text-[32px] sm:text-[38px] text-[#383838] leading-tight mb-4">
+                Why We Exist
+              </h2>
+              <p className="font-prose text-[16px] text-[#5E5E5E] leading-7 mb-8">
+                In an era of hyper-connected algorithms that often isolate us in filter bubbles, Geofroggy offers an open window to authentic human culture. We celebrate nuance, local pride, and genuine human kinship.
+              </p>
+
+              <div className="space-y-5">
+                {values.map((val, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-1 text-secondary">
+                      <Check className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-medium text-[17px] text-[#1F1F1F]">
+                        {val.title}
+                      </h4>
+                      <p className="font-prose text-[14px] text-[#6E6E6E] mt-0.5">
+                        {val.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Movement Banner CTA */}
+      <section className="bg-secondary py-14 px-4 text-center text-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display font-semibold text-[32px] sm:text-[38px] mb-3">
             Join Our Global Movement
           </h2>
-          <p className="text-sm sm:text-base text-gray-200 font-body max-w-2xl mx-auto mb-8 leading-relaxed">
-            Whether it&apos;s a childhood tradition, a local custom, or a moment that changed your view
-            of the world — your story matters. Join our community of global storytellers and help us
-            build a more empathetic, culturally rich tomorrow.
+          <p className="font-prose text-[16px] text-white/90 mb-8 max-w-xl mx-auto">
+            Become a part of the world's most vibrant archive of living human culture.
           </p>
           <Link
-            href="/submit-story"
-            className="inline-block bg-[#8AC63C] text-[#1F1F1F] font-bold text-sm sm:text-base px-8 py-3 rounded-full hover:bg-[#7ab52e] transition-all shadow-md hover:-translate-y-0.5"
+            href="/signup"
+            className="inline-block bg-primary hover:bg-primary-dark text-white font-display font-medium text-[16px] px-8 py-3 rounded-[5px] transition-colors shadow-md"
           >
-            Become a Contributor
+            Join the Community
           </Link>
         </div>
       </section>

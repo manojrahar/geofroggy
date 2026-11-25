@@ -2,132 +2,99 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { Check, LoaderCircle } from "lucide-react";
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-
     setStatus("loading");
-    setTimeout(() => {
+    try {
+      await new Promise((r) => setTimeout(r, 600));
       setStatus("success");
       setEmail("");
-    }, 600);
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+    }
   };
 
-  const avatars = [
-    "/website-images/faces1.png",
-    "/website-images/faces2.png",
-    "/website-images/faces3.png",
-    "/website-images/faces4.png",
-    "/website-images/faces5.png",
-    "/website-images/faces6.png",
-  ];
-
   return (
-    <section className="w-full py-16 lg:py-24 bg-white relative overflow-hidden border-t border-gray-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* Left Column: 6 Face Avatars Grid + Vintage Map Book Illustration */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            {/* 6 Face Avatars Grid */}
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-3 mb-4">
-              {avatars.map((av, idx) => (
-                <div
-                  key={idx}
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-gray-100 shadow-xs ring-1 ring-gray-100 transition-transform duration-300 hover:scale-105"
-                >
-                  <Image
-                    src={av}
-                    alt="Community reader"
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Vintage Map Book Illustration */}
-            <div className="relative w-56 h-28 opacity-90 transition-transform duration-300 hover:scale-105">
-              <Image
-                src="/website-images/Group-11.png"
-                alt="Vintage World Map"
-                fill
-                className="object-contain"
-              />
-            </div>
+    <section className="py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left: Graphic */}
+          <div className="order-2 lg:order-1 flex justify-center">
+            <Image
+              src="/website-images/culture.png"
+              alt="Culture in Your Inbox"
+              width={600}
+              height={500}
+              className="w-full max-w-[560px] h-auto object-contain"
+            />
           </div>
 
-          {/* Right Column: Copedia Newsletter Form (7 cols) */}
-          <div className="lg:col-span-7 space-y-4">
-            {/* Copedia Kicker */}
-            <div className="inline-flex items-center space-x-2">
-              <div className="w-5 h-5 rounded-md bg-[#8AC63C] text-[#1F1F1F] flex items-center justify-center font-bold text-xs">
-                C
-              </div>
-              <span className="text-[#8AC63C] font-semibold text-sm tracking-wide font-display">
+          {/* Right: Newsletter Copy & Form */}
+          <div className="order-1 lg:order-2">
+            <div className="flex items-center gap-2 mb-2">
+              <Image
+                src="/website-images/globeicon.png"
+                alt=""
+                width={22}
+                height={22}
+              />
+              <span className="font-display font-medium text-[28px] text-secondary">
                 Copedia
               </span>
             </div>
 
-            {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F]">
-              Culture In Your Inbox
+            <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
+              Culture in Your Inbox
             </h2>
 
-            {/* Copy */}
-            <p className="text-xs sm:text-sm text-[#4B4B4B] font-body leading-relaxed">
-              Get a fresh dose of global culture delivered straight to your inbox. From fun trivia
-              and cultural traditions to inspiring stories and platform updates — Copedia keeps you
-              connected to the heartbeat of the world.
+            <div className="mt-2 mb-6">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+
+            <p className="font-prose text-[16px] text-[#5E5E5E] leading-[26px] mb-8">
+              Subscribe to our weekly Copedia newsletter for hand-curated cultural stories, untold regional traditions, festival calendars, and community reflections from every corner of the world.
             </p>
-            <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-              Whether you&apos;re curious about distant rituals or daily life across oceans, our weekly
-              newsletter brings authentic global voices directly to you.
-            </p>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="pt-2">
-              <label htmlFor="email-input" className="block text-xs font-semibold text-[#1F1F1F] mb-1.5">
-                Email Address
-              </label>
-              <div className="flex max-w-md items-center">
-                <input
-                  id="email-input"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter Email here"
-                  required
-                  className="flex-grow px-4 py-2.5 text-xs sm:text-sm bg-gray-50 border border-gray-200 rounded-l-full focus:outline-none focus:border-[#8AC63C] focus:bg-white transition-colors"
-                />
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="bg-[#8AC63C] hover:bg-[#7ab52e] text-[#1F1F1F] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-r-full transition-colors shrink-0 shadow-xs"
-                >
-                  {status === "loading" ? "..." : "Notify"}
-                </button>
-              </div>
-
-              {/* Status Notice */}
-              {status === "success" && (
-                <p className="text-xs text-green-600 mt-2 font-medium">
-                  Thanks — you&apos;re on the list. Watch your inbox for the next Geofroggy Weekly.
-                </p>
-              )}
-
-              <p className="text-[11px] text-gray-400 mt-2">
-                We respect your inbox — no spam, just great global content.
-              </p>
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading" || status === "success"}
+                className="flex-1 h-12 px-4 rounded-[6px] border border-gray-300 bg-white text-[#383838] placeholder:text-[#9E9E9E] font-prose text-[15px] focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"
+                required
+              />
+              <button
+                type="submit"
+                disabled={status === "loading" || status === "success"}
+                className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[16px] px-8 h-12 rounded-[6px] transition-colors disabled:opacity-50 shrink-0 flex items-center justify-center gap-2"
+              >
+                {status === "loading" ? (
+                  <LoaderCircle className="w-5 h-5 animate-spin" />
+                ) : status === "success" ? (
+                  <>
+                    <Check className="w-5 h-5" /> Subscribed
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
+              </button>
             </form>
           </div>
-
         </div>
       </div>
     </section>

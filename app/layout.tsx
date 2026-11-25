@@ -67,6 +67,8 @@ export default function RootLayout({
       className={`${poppins.variable} ${inter.variable} ${roboto.variable} ${philosopher.variable} ${yellowtail.variable} ${averia.variable}`}
     >
       <head>
+        {/* Live site Tailwind v4 compiled utility styles */}
+        <link rel="stylesheet" href="/live_tailwind.css" />
         {/* Fontshare CDN for Clash Display */}
         <link
           rel="stylesheet"

@@ -1,211 +1,411 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
+const regions = ["All", "Africa", "Asia", "Europe", "Americas", "Oceania"];
+const climates = ["All", "Tropical", "Desert", "Temperate", "Mediterranean", "Polar", "Mountain"];
+
+const populationOptions = [
+  { value: "all", label: "Any size", test: () => true },
+  { value: "under1m", label: "Under 1M", test: (p: number) => p < 1000000 },
+  { value: "1m-10m", label: "1M – 10M", test: (p: number) => p >= 1000000 && p < 10000000 },
+  { value: "10m-100m", label: "10M – 100M", test: (p: number) => p >= 10000000 && p < 100000000 },
+  { value: "over100m", label: "Over 100M", test: (p: number) => p >= 100000000 },
+];
+
+function TwemojiFlag({ code, size = 24 }: { code: string; size?: number }) {
+  const n = code?.toUpperCase();
+  if (!n || n.length !== 2) return null;
+  const i = (127462 + n.charCodeAt(0) - 65).toString(16);
+  const l = (127462 + n.charCodeAt(1) - 65).toString(16);
+  const s = `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${i}-${l}.png`;
+  return (
+    <img
+      src={s}
+      alt={n}
+      width={size}
+      height={size}
+      className="rounded-sm inline-block"
+      loading="lazy"
+    />
+  );
+}
+
+// Initial country database
+const initialCountries = [
+  {
+    code: "NG",
+    name: "Nigeria",
+    region: "Africa",
+    description: "Vibrant home to Nollywood, Afrobeat rhythms, Kano dye pits, and over 250 diverse ethnic traditions.",
+    posts_count: 24,
+    languages: ["English", "Yoruba", "Hausa", "Igbo"],
+    population: 218541000,
+    climate: "Tropical",
+    image: "/website-images/contributor1.png",
+  },
+  {
+    code: "JP",
+    name: "Japan",
+    region: "Asia",
+    description: "Harmonious balance of ancient Shinto shrines, Zen gardens, tea ceremonies, and futuristic innovation.",
+    posts_count: 38,
+    languages: ["Japanese"],
+    population: 125120000,
+    climate: "Temperate",
+    image: "/website-images/kyoto.png",
+  },
+  {
+    code: "BR",
+    name: "Brazil",
+    region: "Americas",
+    description: "Land of samba, Amazonian biodiversity, world-famous Rio Carnival, and rich regional culinary heritage.",
+    posts_count: 31,
+    languages: ["Portuguese"],
+    population: 214300000,
+    climate: "Tropical",
+    image: "/website-images/carnival.png",
+  },
+  {
+    code: "IN",
+    name: "India",
+    region: "Asia",
+    description: "Subcontinent of ancient philosophical roots, dazzling festivals like Diwali, and vibrant cultural diversity.",
+    posts_count: 52,
+    languages: ["Hindi", "English", "Bengali"],
+    population: 1417000000,
+    climate: "Tropical",
+    image: "/website-images/diwali.png",
+  },
+  {
+    code: "IT",
+    name: "Italy",
+    region: "Europe",
+    description: "Cradle of Renaissance art, timeless Roman ruins, coastal culinary traditions, and passionate local heritage.",
+    posts_count: 27,
+    languages: ["Italian"],
+    population: 58850000,
+    climate: "Mediterranean",
+    image: "/website-images/contributor2.png",
+  },
+  {
+    code: "KE",
+    name: "Kenya",
+    region: "Africa",
+    description: "Majestic Great Rift Valley, Swahili coastal poetry, Maasai beadwork, and world-class athletic heritage.",
+    posts_count: 19,
+    languages: ["Swahili", "English"],
+    population: 54030000,
+    climate: "Tropical",
+    image: "/website-images/geo_1.png",
+  },
+  {
+    code: "MX",
+    name: "Mexico",
+    region: "Americas",
+    description: "Color-drenched Día de los Muertos, ancient Mayan pyramids, artisanal textiles, and UNESCO gastronomy.",
+    posts_count: 29,
+    languages: ["Spanish", "Nahuatl"],
+    population: 128500000,
+    climate: "Tropical",
+    image: "/website-images/hero/dia_de_los_muertos_mexico.png",
+  },
+  {
+    code: "FI",
+    name: "Finland",
+    region: "Europe",
+    description: "Lapland aurora borealis, sauna culture, serene thousand lakes, and innovative sustainable Nordic living.",
+    posts_count: 14,
+    languages: ["Finnish", "Swedish"],
+    population: 5541000,
+    climate: "Polar",
+    image: "/website-images/geo_2.png",
+  },
+  {
+    code: "MA",
+    name: "Morocco",
+    region: "Africa",
+    description: "Intricate mosaic zellige tilework, bustling historic medinas, aromatic tagines, and Atlas mountain valleys.",
+    posts_count: 22,
+    languages: ["Arabic", "Berber", "French"],
+    population: 37460000,
+    climate: "Mediterranean",
+    image: "/website-images/geo_3.png",
+  },
+  {
+    code: "ET",
+    name: "Ethiopia",
+    region: "Africa",
+    description: "Birthplace of coffee, rock-hewn churches of Lalibela, vibrant Timkat celebrations, and ancient script.",
+    posts_count: 16,
+    languages: ["Amharic", "Oromo"],
+    population: 123400000,
+    climate: "Mountain",
+    image: "/website-images/hero/timkat_ethiopia.png",
+  },
+  {
+    code: "AU",
+    name: "Australia",
+    region: "Oceania",
+    description: "65,000 years of Indigenous First Nations songlines, red desert outback, and the Great Barrier Reef.",
+    posts_count: 18,
+    languages: ["English"],
+    population: 26000000,
+    climate: "Temperate",
+    image: "/website-images/geo_4.png",
+  },
+  {
+    code: "PE",
+    name: "Peru",
+    region: "Americas",
+    description: "Ancient Incan citadel of Machu Picchu, vibrant Andean weaving, ceviche gastronomy, and Amazon rainforest.",
+    posts_count: 21,
+    languages: ["Spanish", "Quechua", "Aymara"],
+    population: 34000000,
+    climate: "Mountain",
+    image: "/website-images/Rectangle-86.jpg",
+  },
+];
+
 export default function ExplorePage() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("All");
+  const [selectedLanguage, setSelectedLanguage] = useState("All");
+  const [selectedPopulation, setSelectedPopulation] = useState("all");
+  const [selectedClimate, setSelectedClimate] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(12);
 
-  const regions = ["All", "Africa", "Asia", "Europe", "Americas", "Oceania"];
+  // Derive unique languages
+  const allLanguages = useMemo(() => {
+    const set = new Set<string>();
+    initialCountries.forEach((c) => c.languages.forEach((l) => set.add(l)));
+    return ["All", ...Array.from(set).sort()];
+  }, []);
 
-  const countries = [
-    {
-      name: "Japan",
-      region: "Asia",
-      flag: "🇯🇵",
-      tradition: "Hanami Cherry Blossom Festival",
-      stories: 84,
-      image: "/website-images/hero/chinese_new_year.png",
-    },
-    {
-      name: "Kenya",
-      region: "Africa",
-      flag: "🇰🇪",
-      tradition: "Maasai Rites of Passage",
-      stories: 52,
-      image: "/website-images/geo_1.png",
-    },
-    {
-      name: "Mexico",
-      region: "Americas",
-      flag: "🇲🇽",
-      tradition: "Día de los Muertos Altars",
-      stories: 96,
-      image: "/website-images/hero/dia_de_los_muertos_mexico.png",
-    },
-    {
-      name: "India",
-      region: "Asia",
-      flag: "🇮🇳",
-      tradition: "Diwali Festivals of Light",
-      stories: 142,
-      image: "/website-images/hero/diwali_india.png",
-    },
-    {
-      name: "Italy",
-      region: "Europe",
-      flag: "🇮🇹",
-      tradition: "Venetian Masked Carnivals",
-      stories: 68,
-      image: "/website-images/geo_3.png",
-    },
-    {
-      name: "Brazil",
-      region: "Americas",
-      flag: "🇧🇷",
-      tradition: "Samba & Street Pageantry",
-      stories: 110,
-      image: "/website-images/hero/mardi_gras.png",
-    },
-    {
-      name: "Ethiopia",
-      region: "Africa",
-      flag: "🇪🇹",
-      tradition: "Timkat Epiphany Processions",
-      stories: 45,
-      image: "/website-images/hero/timkat_ethiopia.png",
-    },
-    {
-      name: "Morocco",
-      region: "Africa",
-      flag: "🇲🇦",
-      tradition: "Medina Spice & Artisan Guilds",
-      stories: 61,
-      image: "/website-images/geo_4.png",
-    },
-    {
-      name: "New Zealand",
-      region: "Oceania",
-      flag: "🇳🇿",
-      tradition: "Māori Haka & Whānau Heritage",
-      stories: 38,
-      image: "/website-images/geo_2.png",
-    },
-  ];
+  const popTest = populationOptions.find((p) => p.value === selectedPopulation)?.test || (() => true);
 
-  const filtered = countries.filter((c) => {
-    const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          c.tradition.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRegion = selectedRegion === "All" || c.region === selectedRegion;
-    return matchesSearch && matchesRegion;
-  });
+  // Filter countries
+  const filteredCountries = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return initialCountries.filter((c) => {
+      const matchRegion = selectedRegion === "All" || c.region === selectedRegion;
+      const matchSearch = !q || c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q);
+      const matchLanguage = selectedLanguage === "All" || c.languages.includes(selectedLanguage);
+      const matchPop = popTest(c.population);
+      const matchClimate = selectedClimate === "All" || c.climate === selectedClimate;
+      return matchRegion && matchSearch && matchLanguage && matchPop && matchClimate;
+    });
+  }, [selectedRegion, searchQuery, selectedLanguage, selectedPopulation, selectedClimate, popTest]);
+
+  const displayed = filteredCountries.slice(0, visibleCount);
+
+  const resetFilters = () => {
+    setSelectedRegion("All");
+    setSelectedLanguage("All");
+    setSelectedPopulation("all");
+    setSelectedClimate("All");
+    setSearchQuery("");
+    setVisibleCount(12);
+  };
+
+  const hasActiveFilters =
+    selectedRegion !== "All" ||
+    selectedLanguage !== "All" ||
+    selectedPopulation !== "all" ||
+    selectedClimate !== "All" ||
+    Boolean(searchQuery);
 
   return (
-    <div className="w-full flex flex-col bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative w-full h-[360px] sm:h-[420px] flex items-center justify-center overflow-hidden bg-black text-white">
+    <div className="overflow-hidden min-h-screen bg-gray-50">
+      {/* 1. Hero Header */}
+      <section className="relative h-[300px] sm:h-[350px] lg:h-[400px] overflow-hidden">
         <Image
-          src="/website-images/culture.png"
-          alt="World explorer taking selfie with family"
+          src="/website-images/slide3-20260213.jpg"
+          alt="Explore the World"
           fill
-          className="object-cover object-center brightness-60"
+          className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block bg-[#8AC63C] text-[#1F1F1F] font-semibold text-xs sm:text-sm px-4 py-1 rounded-full uppercase tracking-wider mb-4 font-display">
-            Global Explorer
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white tracking-tight drop-shadow-md mb-3">
-            Explore the World by Country
-          </h1>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-200 font-body max-w-2xl mx-auto">
-            Every country has its own heartbeat — a blend of people, culture, landscapes, and
-            traditions.
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent" />
+        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <div className="max-w-2xl text-white">
+            <p className="text-secondary font-medium text-sm mb-2">
+              Global Explorer
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight font-display">
+              Explore the World by Country
+            </h1>
+            <p className="text-white/90 text-base sm:text-lg leading-relaxed font-prose">
+              Every country has its own heartbeat — a blend of people, culture, landscapes, and traditions.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* 2. Search & Filter Bar */}
-      <section className="w-full py-8 bg-gray-50 border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            
-            {/* Search Box */}
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+      <section className="py-8 bg-white border-b border-gray-100 shadow-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Search Input */}
+            <div className="relative w-full md:w-96">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search countries..."
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-xs sm:text-sm focus:outline-none focus:border-[#8AC63C] shadow-2xs"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(12);
+                }}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </div>
 
-            {/* Region Filter Buttons */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              {regions.map((region) => (
+            {/* Region Pills */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {regions.map((r) => (
                 <button
-                  key={region}
-                  onClick={() => setSelectedRegion(region)}
-                  className={`px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                    selectedRegion === region
-                      ? "bg-[#175883] text-white shadow-xs"
-                      : "bg-white text-gray-700 border border-gray-200 hover:border-[#8AC63C]"
+                  key={r}
+                  onClick={() => {
+                    setSelectedRegion(r);
+                    setVisibleCount(12);
+                  }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedRegion === r
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
-                  {region}
+                  {r}
                 </button>
               ))}
             </div>
-
           </div>
+
+          {/* Additional Filter Selects */}
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-end mt-4">
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <span className="text-xs uppercase tracking-wide text-gray-500">Language</span>
+              <select
+                value={selectedLanguage}
+                onChange={(e) => {
+                  setSelectedLanguage(e.target.value);
+                  setVisibleCount(12);
+                }}
+                className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                {allLanguages.map((l) => (
+                  <option key={l} value={l}>
+                    {l}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <span className="text-xs uppercase tracking-wide text-gray-500">Population</span>
+              <select
+                value={selectedPopulation}
+                onChange={(e) => {
+                  setSelectedPopulation(e.target.value);
+                  setVisibleCount(12);
+                }}
+                className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                {populationOptions.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <span className="text-xs uppercase tracking-wide text-gray-500">Climate</span>
+              <select
+                value={selectedClimate}
+                onChange={(e) => {
+                  setSelectedClimate(e.target.value);
+                  setVisibleCount(12);
+                }}
+                className="h-9 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                {climates.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {hasActiveFilters && (
+              <button
+                onClick={resetFilters}
+                className="text-sm text-primary hover:underline font-medium ml-2"
+              >
+                Reset filters
+              </button>
+            )}
+          </div>
+
+          <p className="mt-4 text-center text-sm text-gray-500">
+            Showing {displayed.length} of {filteredCountries.length} countries
+          </p>
         </div>
       </section>
 
       {/* 3. Country Cards Grid */}
-      <section className="w-full py-14 lg:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((country, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group"
-              >
-                <div className="relative w-full h-44 overflow-hidden bg-gray-100">
-                  <Image
-                    src={country.image}
-                    alt={country.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-xs font-bold shadow-xs">
-                    {country.flag} {country.name}
+      <section className="py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {displayed.length === 0 ? (
+            <div className="text-center py-16 text-gray-500">
+              No countries match your filters.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {displayed.map((country) => (
+                <div
+                  key={country.code}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={country.image}
+                      alt={country.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <TwemojiFlag code={country.code} size={22} />
+                        <h3 className="font-display font-semibold text-[18px] text-[#1F1F1F]">
+                          {country.name}
+                        </h3>
+                      </div>
+                      <span className="text-[11px] font-semibold text-secondary uppercase bg-secondary/10 px-2 py-0.5 rounded-full">
+                        {country.region}
+                      </span>
+                    </div>
+
+                    <p className="font-prose text-[13px] text-[#5E5E5E] leading-relaxed mb-4 flex-1 line-clamp-3">
+                      {country.description}
+                    </p>
+
+                    <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                      <span>{country.posts_count} stories shared</span>
+                      <span className="text-primary font-medium group-hover:underline">
+                        Explore stories →
+                      </span>
+                    </div>
                   </div>
                 </div>
-
-                <div className="p-5 flex-grow flex flex-col justify-between">
-                  <div>
-                    <span className="text-[11px] font-semibold text-[#8AC63C] uppercase tracking-wider">
-                      {country.region}
-                    </span>
-                    <h3 className="font-bold text-base font-display text-[#1F1F1F] mt-1 mb-2">
-                      {country.tradition}
-                    </h3>
-                  </div>
-
-                  <div className="pt-3 border-t border-gray-50 flex items-center justify-between text-xs text-gray-500">
-                    <span>{country.stories} stories documented</span>
-                    <Link
-                      href="/submit-story"
-                      className="font-semibold text-[#175883] hover:text-[#8AC63C] hover:underline transition-colors"
-                    >
-                      Explore →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-16 text-gray-400 font-body">
-              No countries match your search. Try another region or keyword.
+              ))}
             </div>
           )}
         </div>

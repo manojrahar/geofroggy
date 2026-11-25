@@ -1,382 +1,352 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageSquare, Flame, MapPin, Share2 } from "lucide-react";
+import { MessageSquare, TrendingUp, Flame, Calendar, ArrowUpRight } from "lucide-react";
 
 export const metadata = {
-  title: "Geofroggy Newsroom - Geography Through Human Story",
+  title: "News & Community Dispatches - GeoFroggy",
   description:
-    "Platform news, updates, community highlights, and cultural spotlights from around the world.",
+    "Platform news, cultural spotlights, viral stories, and community highlights from across the globe.",
 };
 
+const platformNews = [
+  {
+    title: "Global Story Map Now Live",
+    description:
+      "Explore stories across the globe using our new interactive map. Search by country, cultural tag, or contributor — and watch the world come to life.",
+    tag: "FEATURE",
+    date: "Nov 20, 2026",
+    image: "/website-images/news_card1.png",
+  },
+  {
+    title: "Audio Narration Launch",
+    description:
+      "You can now listen to stories in their original language or translated audio. Available in 20+ languages, with more coming soon.",
+    tag: "AUDIO",
+    date: "Nov 15, 2026",
+    image: "/website-images/news_card2.png",
+  },
+  {
+    title: "Cultural Documentation Grants",
+    description:
+      "Announcing micro-grants for local cultural storytellers documenting endangered indigenous traditions in South America and West Africa.",
+    tag: "GRANTS",
+    date: "Nov 08, 2026",
+    image: "/website-images/news_card3.png",
+  },
+  {
+    title: "Community Milestone: 12,000 Stories",
+    description:
+      "Over 12,000 stories across 74 countries are now archived on Geofroggy, celebrating our shared human heritage.",
+    tag: "MILESTONE",
+    date: "Nov 01, 2026",
+    image: "/website-images/platform_4.png",
+  },
+];
+
+const spotlights = [
+  {
+    title: "Lunar New Year Across the Global Diaspora",
+    excerpt:
+      "From San Francisco's Chinatown to Singapore's River Hongbao, discover how generational families keep ancient reunion dinners alive.",
+    image: "/website-images/hero/chinese_new_year.png",
+    region: "EAST ASIA & DIASPORA",
+    readTime: "6 min read",
+  },
+  {
+    title: "Indigenous Language Revival in the High Andes",
+    excerpt:
+      "How youth in Peru and Bolivia are pairing modern hip-hop with Quechua and Aymara dialects to inspire language preservation.",
+    image: "/website-images/hero/dia_de_los_muertos_mexico.png",
+    region: "SOUTH AMERICA",
+    readTime: "8 min read",
+  },
+  {
+    title: "Diaspora Dialogues: Memory, Food, and Home",
+    excerpt:
+      "Third-generation culinary storytellers reconstruct ancestral recipes that traveled across oceans during major migration waves.",
+    image: "/website-images/hero/timkat_ethiopia.png",
+    region: "GLOBAL VOICES",
+    readTime: "5 min read",
+  },
+];
+
 export default function NewsPage() {
-  const platformUpdates = [
-    {
-      title: "Global Story Map Now Live",
-      description:
-        "Explore stories across the globe using our new interactive map. Search by country, cultural tag, or contributor -- and watch the world come to life.",
-      image: "/website-images/platform_1.png",
-    },
-    {
-      title: "Audio Narration Launch",
-      description:
-        "You can now listen to stories in their original language or translated audio. Available in 20+ languages, with more coming soon.",
-      image: "/website-images/platform_2.png",
-    },
-    {
-      title: "Mobile Experience Improved",
-      description:
-        "We've made it easier to browse and submit stories on your phone. Faster loading, cleaner design, and offline-saving support now live.",
-      image: "/website-images/platform_3.png",
-    },
-    {
-      title: "Regional Hubs Expanded",
-      description:
-        "New dedicated pages launched for East Africa, Central Asia, and the Caribbean -- highlighting local ambassadors and regional stories.",
-      image: "/website-images/platform_4.png",
-    },
-  ];
-
   return (
-    <div className="w-full flex flex-col bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-black text-white">
+    <div className="min-h-screen bg-white">
+      {/* 1. Header Banner */}
+      <section className="relative w-full h-[260px] sm:h-[300px] lg:h-[340px] overflow-hidden">
         <Image
-          src="/website-images/culture_about_1.png"
-          alt="Outdoor dining and global connections"
+          src="/website-images/Rectangle-86.jpg"
+          alt="News & Dispatches"
           fill
-          className="object-cover object-center brightness-60"
           priority
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block bg-[#8AC63C] text-[#1F1F1F] font-semibold text-xs sm:text-sm px-4 py-1 rounded-full uppercase tracking-wider mb-4 font-display">
-            Geofroggy Newsroom
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white tracking-tight drop-shadow-md">
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          <span className="bg-linear-to-r from-secondary/0 via-secondary to-secondary/0 text-white font-display font-semibold text-[22px] sm:text-[26px] lg:text-[30px] px-12 py-1 leading-tight mb-2">
             Geography Through Human Story
+          </span>
+          <h1 className="text-white font-display font-semibold text-[32px] sm:text-[40px] lg:text-[48px] leading-tight">
+            News & Platform Dispatches
           </h1>
         </div>
       </section>
 
-      {/* 2. Platform News & Updates */}
-      <section className="w-full py-16 lg:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mb-3">
+      {/* 2. Platform News & Updates (4 Cards) */}
+      <section className="relative overflow-hidden bg-white py-16 lg:py-20">
+        <Image
+          src="/website-images/abstractart2.png"
+          alt=""
+          width={184}
+          height={186}
+          className="pointer-events-none absolute -top-16 left-2 rotate-[-1.39deg] select-none"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center lg:mb-12">
+            <h2 className="font-display text-[36px] font-semibold leading-tight text-[#383838] lg:text-[40px]">
               Platform News & Updates
             </h2>
-            <div className="w-12 h-1 bg-[#8AC63C] mx-auto rounded-full mb-4" />
-            <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-              Stay informed about what&apos;s happening at Geofroggy — from exciting new features and
-              rollouts to community growth and platform milestones. We&apos;re always evolving to help
-              you connect through culture.
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+            <p className="mx-auto mt-6 max-w-[924px] font-prose text-[16px] leading-[30px] text-[#5E5E5E]">
+              Stay informed about what’s happening at Geofroggy — from exciting new features and rollouts to community growth and platform milestones. We’re always evolving to help you connect through culture.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {platformUpdates.map((item, idx) => (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {platformNews.map((news, i) => (
+              <article
+                key={i}
+                className="flex flex-col overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
+                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+              >
+                <div className="px-[10px] pt-3">
+                  <div className="relative aspect-[16/9] rounded-[8px] overflow-hidden">
+                    <Image
+                      src={news.image}
+                      alt={news.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col px-[15px] pt-4 pb-5">
+                  <div className="flex items-center justify-between mb-2 text-[11px] font-prose text-[#8A8A8A]">
+                    <span className="font-semibold text-secondary">{news.tag}</span>
+                    <span>{news.date}</span>
+                  </div>
+                  <h3 className="mb-2 font-display text-[18px] font-medium leading-tight text-[#383838]">
+                    {news.title}
+                  </h3>
+                  <p className="font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
+                    {news.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Inside Geofroggy: What’s Buzzing (Split Layout) */}
+      <section className="relative overflow-hidden py-16 lg:py-20 bg-gray-50">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <div className="inline-flex items-center gap-2">
+              <Image
+                src="/website-images/globeicon.png"
+                alt=""
+                width={22}
+                height={22}
+              />
+              <span className="font-display text-[28px] font-medium text-secondary">
+                Inside Geofroggy
+              </span>
+            </div>
+            <h2 className="mt-2 font-display text-[36px] font-semibold leading-tight text-[#383838] lg:text-[40px]">
+              What’s Buzzing on Geofroggy
+            </h2>
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+            <p className="mx-auto mt-6 max-w-[924px] font-prose text-[16px] leading-[30px] text-[#5E5E5E]">
+              Discover trending cultural moments, viral stories, and community reactions that are lighting up the Geofroggy platform right now.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Buzz 1: Yangon Street Art */}
+            <article
+              className="flex flex-col sm:flex-row overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
+              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+            >
+              <div className="relative aspect-[248/329] sm:w-[248px] sm:flex-shrink-0 sm:m-[7px] sm:rounded-[10px] sm:overflow-hidden">
+                <Image
+                  src="/website-images/buzzing_1.png"
+                  alt="Street Art as Resistance in Myanmar"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5 sm:py-6 sm:pr-6 sm:pl-4">
+                <div className="mb-3 flex items-center gap-2">
+                  <Image
+                    src="/website-images/3d-fire.png"
+                    alt=""
+                    width={26}
+                    height={26}
+                  />
+                  <span className="font-display text-[18px] font-medium leading-tight text-[#383838]">
+                    Most Viewed Story This Week
+                  </span>
+                </div>
+                <h3 className="mb-3 font-display text-[17px] font-semibold leading-tight text-[#383838]">
+                  Street Art as Resistance in Myanmar
+                </h3>
+                <p className="mb-4 font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
+                  A contributor’s photo essay from Yangon has become the most-read story of the week — sparking global discussions on youth expression, resilience, and creative cultural protest.
+                </p>
+                <p className="mt-auto font-prose text-[12px] text-[#8A8A8A]">
+                  📈 12,400 views &nbsp;|&nbsp; 💬 130 comments
+                </p>
+              </div>
+            </article>
+
+            {/* Buzz 2: Migration Diaries */}
+            <article
+              className="flex flex-col sm:flex-row overflow-hidden rounded-[10px] bg-white transition-transform hover:-translate-y-1"
+              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+            >
+              <div className="relative aspect-[248/329] sm:w-[248px] sm:flex-shrink-0 sm:m-[7px] sm:rounded-[10px] sm:overflow-hidden">
+                <Image
+                  src="/website-images/buzzing_2.png"
+                  alt="#MigrationDiaries Series"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5 sm:py-6 sm:pr-6 sm:pl-4">
+                <div className="mb-3 flex items-center gap-2">
+                  <Image
+                    src="/website-images/3d-fire.png"
+                    alt=""
+                    width={26}
+                    height={26}
+                  />
+                  <span className="font-display text-[18px] font-medium leading-tight text-[#383838]">
+                    Community Movement
+                  </span>
+                </div>
+                <h3 className="mb-3 font-display text-[17px] font-semibold leading-tight text-[#383838]">
+                  #MigrationDiaries Series Goes Global
+                </h3>
+                <p className="mb-4 font-prose text-[13px] leading-[20px] text-[#5E5E5E]">
+                  Over 40 contributors from 18 nations contributed personal letters documenting generational family migrations, tracing the paths that shaped modern cultural crossroads.
+                </p>
+                <p className="mt-auto font-prose text-[12px] text-[#8A8A8A]">
+                  📈 9,800 views &nbsp;|&nbsp; 💬 94 comments
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Cultural Spotlights & Deep Dives (3 Cards) */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-[36px] font-semibold leading-tight text-[#383838] lg:text-[40px]">
+              Cultural Spotlights & Deep Dives
+            </h2>
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {spotlights.map((spot, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group"
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col"
               >
-                <div className="relative w-full h-36 rounded-xl overflow-hidden mb-4 bg-gray-50">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={spot.image}
+                    alt={spot.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <h3 className="font-bold text-base font-display text-[#1F1F1F] mb-2 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-[#5E5E5E] font-body leading-relaxed">
-                  {item.description}
-                </p>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-center justify-between text-xs font-semibold text-secondary mb-2">
+                    <span>{spot.region}</span>
+                    <span className="text-gray-400 font-normal">{spot.readTime}</span>
+                  </div>
+                  <h3 className="font-display font-medium text-[20px] text-[#1F1F1F] leading-snug mb-2 group-hover:text-secondary transition-colors">
+                    {spot.title}
+                  </h3>
+                  <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed mb-4 flex-1">
+                    {spot.excerpt}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-secondary font-display font-medium text-[14px]">
+                    Read story <ArrowUpRight className="w-4 h-4" />
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Inside Geofroggy / What's Buzzing */}
-      <section 
-        className="w-full py-16 lg:py-24 bg-gray-50/60 relative"
-        style={{
-          backgroundImage: "url('/website-images/contributor-bgpattern.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "320px",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-              🌐 Inside Geofroggy
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mt-1 mb-3">
-              What&apos;s Buzzing on Geofroggy
-            </h2>
-            <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-              Discover trending cultural moments, viral stories, and community reactions that are
-              lighting up the Geofroggy platform right now.
-            </p>
-          </div>
-
-          {/* Top 2 Large Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            {/* Card 1: Most Viewed Story */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm flex flex-col sm:flex-row gap-5 items-center">
-              <div className="relative w-full sm:w-44 h-48 rounded-xl overflow-hidden shrink-0">
-                <Image
-                  src="/website-images/buzzing_1.png"
-                  alt="Street Art"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="inline-flex items-center space-x-1.5 text-xs font-semibold text-rose-500">
-                  <Flame className="w-4 h-4 fill-current" />
-                  <span>Most Viewed Story This Week</span>
-                </div>
-                <h3 className="font-bold text-base font-display text-[#1F1F1F]">
-                  Title: Street Art as Resistance in Myanmar
-                </h3>
-                <p className="text-xs text-[#5E5E5E] font-body leading-relaxed">
-                  A contributor&apos;s photo essay from Yangon has become the most-read story of the week
-                  — sparking discussions on youth culture, freedom, and creative protest.
-                </p>
-                <div className="text-[11px] text-gray-400 font-medium pt-1">
-                  📈 12,400 views | 💬 130 comments
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Global Top Tag */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm flex flex-col sm:flex-row gap-5 items-center">
-              <div className="relative w-full sm:w-44 h-48 rounded-xl overflow-hidden shrink-0">
-                <Image
-                  src="/website-images/buzzing_2.png"
-                  alt="Airport flight board"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-500">
-                  <span>🏷️</span>
-                  <span>Global Top Tag:</span>
-                </div>
-                <h3 className="font-bold text-base font-display text-[#1F1F1F]">
-                  #MigrationDiaries
-                </h3>
-                <p className="text-xs text-[#5E5E5E] font-body leading-relaxed">
-                  The tag #MigrationDiaries is trending globally as users share family migration
-                  stories from Iran, Colombia, and Sudan.
-                </p>
-                <p className="text-xs italic text-[#175883] font-quote border-l-2 border-[#8AC63C] pl-2">
-                  &ldquo;My grandfather hid maps under the lining of his coat. This is how we arrived.&rdquo;
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom 3 Highlights Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Comment of the Week */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
-              <div className="flex items-center space-x-2 text-xs font-semibold text-sky-600 mb-2">
-                <MessageSquare className="w-4 h-4" />
-                <span>Comment of the Week</span>
-              </div>
-              <p className="text-xs text-[#4B4B4B] italic font-body mb-2">
-                &ldquo;I didn&apos;t even know this festival existed. It made me proud of my roots again.&rdquo;
-              </p>
-              <span className="block text-[11px] font-semibold text-[#8AC63C]">— A reader from Morocco</span>
-              <p className="text-[10px] text-gray-400 mt-2">Story: The Forgotten Fire Rituals of North Africa</p>
-            </div>
-
-            {/* Fastest Growing Country Hub */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
-              <div className="flex items-center space-x-2 text-xs font-semibold text-indigo-600 mb-2">
-                <MapPin className="w-4 h-4" />
-                <span>Fastest Growing Country Hub</span>
-              </div>
-              <h4 className="font-bold text-sm text-[#1F1F1F] mb-1">🇺🇸 United States</h4>
-              <p className="text-xs text-green-600 font-semibold mb-1">+380% story submissions</p>
-              <p className="text-xs text-[#5E5E5E] font-body leading-relaxed">
-                Thanks to new contributors and local outreach, the United States Hub has become one
-                of the fastest-growing on the platform.
-              </p>
-            </div>
-
-            {/* Most Shared Moment */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-xs">
-              <div className="flex items-center space-x-2 text-xs font-semibold text-emerald-600 mb-2">
-                <Share2 className="w-4 h-4" />
-                <span>Most Shared Moment</span>
-              </div>
-              <h4 className="font-bold text-xs font-display text-[#1F1F1F] mb-1">
-                &ldquo;Tiny Village in Iceland Revives its Mythical Frog Festival&rdquo;
-              </h4>
-              <p className="text-xs text-emerald-600 font-semibold mb-1">🟢 2,100+ shares in 48 hours</p>
-              <p className="text-xs text-[#5E5E5E] font-body leading-relaxed">
-                A quirky, beautiful piece that brought people together across generations — and
-                continents.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. Cultural Spotlights & Deep Dives */}
-      <section className="w-full py-16 lg:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-              🌐 Culture
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mt-1">
-              Cultural Spotlights & Deep Dives
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            {/* Big Feature Card (7 cols) */}
-            <div className="lg:col-span-7 bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm flex flex-col justify-between">
-              <div className="relative w-full h-64 sm:h-72">
-                <Image
-                  src="/website-images/story_belong_1.png"
-                  alt="Lunar New Year Across Asia"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-bold text-xl font-display text-[#1F1F1F] mb-2">
-                  Lunar New Year Across Asia
-                </h3>
-                <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed mb-4">
-                  While the Lunar New Year is celebrated in many Asian countries, the details — from
-                  food and colors to rituals and meanings — vary tremendously.
-                </p>
-                <span className="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
-                  Coming Soon
-                </span>
-              </div>
-            </div>
-
-            {/* Stacked Cards (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-xs p-4 flex gap-4 items-center">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden shrink-0">
-                  <Image
-                    src="/website-images/culture_about_2.png"
-                    alt="Indigenous Language Revival"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm font-display text-[#1F1F1F] mb-1">
-                    The Indigenous Language Revival
-                  </h4>
-                  <p className="text-xs text-[#5E5E5E] font-body line-clamp-2 mb-2">
-                    In classrooms and online platforms, people are reviving languages that were once
-                    silenced.
-                  </p>
-                  <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
-                    Coming Soon
-                  </span>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-xs p-4 flex gap-4 items-center">
-                <div className="relative w-28 h-28 rounded-xl overflow-hidden shrink-0">
-                  <Image
-                    src="/website-images/culture_about_3.png"
-                    alt="Diaspora Dialogues"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm font-display text-[#1F1F1F] mb-1">
-                    Diaspora Dialogues
-                  </h4>
-                  <p className="text-xs text-[#5E5E5E] font-body line-clamp-2 mb-2">
-                    For those living between worlds, culture isn&apos;t a location — it&apos;s a negotiation.
-                  </p>
-                  <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
-                    Coming Soon
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 5. Ambassador Highlights */}
-      <section className="w-full py-16 lg:py-20 bg-gray-50/50 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Content (7 cols) */}
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-                🌐 Ambassador Highlights
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F]">
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-secondary font-display font-medium text-[16px] uppercase tracking-wider">
                 Global Voices in Action
+              </span>
+              <h2 className="font-display font-semibold text-[32px] sm:text-[40px] text-[#383838] leading-tight mt-2 mb-4">
+                Empowering Regional Ambassadors
               </h2>
-              <p className="text-xs sm:text-sm text-[#4B4B4B] font-body leading-relaxed">
-                Geofroggy Ambassadors are the heart of our global platform — cultural connectors who
-                bring local stories to the world. From organizing story circles to mentoring youth
-                contributors, these passionate individuals help build a more connected, compassionate
-                planet.
+              <p className="font-prose text-[16px] text-[#5E5E5E] leading-relaxed mb-6">
+                Our ambassadors bridge local communities with the global stage. They host regional storytelling workshops, translate oral folklore, and ensure that indigenous perspectives are heard with dignity.
               </p>
-
-              <div className="space-y-3 pt-3 text-xs sm:text-sm text-[#1F1F1F] font-body">
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base">🌐</span>
-                  <div>
-                    <strong>58+ Countries Represented</strong>
-                    <p className="text-xs text-[#5E5E5E]">Our ambassador network spans continents — from remote villages to urban hubs.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base">✍️</span>
-                  <div>
-                    <strong>1,200+ Stories Shared</strong>
-                    <p className="text-xs text-[#5E5E5E]">Real voices and rich narratives that reflect life from the ground up.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2.5">
-                  <span className="text-base">🧒</span>
-                  <div>
-                    <strong>240+ Youth Ambassadors</strong>
-                    <p className="text-xs text-[#5E5E5E]">Empowering the next generation to preserve and share their cultural identity.</p>
-                  </div>
-                </div>
-              </div>
+              <Link
+                href="/become-ambassador"
+                className="inline-block bg-primary hover:bg-primary-dark text-white font-display font-medium text-[15px] px-6 py-2.5 rounded-[5px] transition-colors shadow-sm"
+              >
+                Become an Ambassador
+              </Link>
             </div>
 
-            {/* Right Image (5 cols) */}
-            <div className="lg:col-span-5 relative w-full h-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-lg">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
               <Image
                 src="/website-images/group-business-people-1.png"
-                alt="Ambassadors holding world map cutouts"
+                alt="Ambassadors in action"
                 fill
-                className="object-cover object-center"
+                className="object-cover"
               />
             </div>
-
           </div>
         </div>
       </section>

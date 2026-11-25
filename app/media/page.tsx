@@ -1,321 +1,293 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Download, FileText, Mail, ExternalLink } from "lucide-react";
+import { Download, Mail, ExternalLink, ArrowUpRight } from "lucide-react";
 
 export const metadata = {
-  title: "Geofroggy Media Hub - Assets to Amplify Geofroggy",
+  title: "Media & Press Kit - GeoFroggy",
   description:
-    "Official brand assets, logo downloads, typography guidelines, press kit materials, and approved photography.",
+    "Assets to Amplify Geofroggy: Official brand guidelines, logos, photography, and press inquiries.",
 };
 
+const brandAssets = [
+  {
+    title: "Primary Brand Logos",
+    format: "PNG, SVG, WebP",
+    desc: "Horizontal lockups, isolated frog icon, and monochrome versions for light and dark backgrounds.",
+    icon: "/website-images/brand_asset_icon1.png",
+  },
+  {
+    title: "Color Palette Guide",
+    format: "HEX, RGB, CMYK",
+    desc: "Primary Deep Blue (#175883), Emerald Green (#8AC63C), Golden Sun (#FFC107), and neutral shades.",
+    icon: "/website-images/brand_asset_icon2.png",
+  },
+  {
+    title: "Typography Standards",
+    format: "OTF, TTF, WebFonts",
+    desc: "Guidance on pairing Clash Display, Poppins, Roboto, and Yellowtail for editorial storytelling.",
+    icon: "/website-images/brand_asset_icon3.png",
+  },
+  {
+    title: "Brand Voice & Standards",
+    format: "PDF Document (12 MB)",
+    desc: "Our ethos, editorial guidelines, interview principles, and community storytelling values.",
+    icon: "/website-images/brand_asset_icon4.png",
+  },
+];
+
+const mediaCoverage = [
+  {
+    outlet: "Global Culture Weekly",
+    date: "Oct 24, 2026",
+    title: "How Geofroggy Is Turning Geographic Curiosity into Borderless Human Empathy",
+    link: "#",
+  },
+  {
+    outlet: "Storytellers Digest",
+    date: "Sep 18, 2026",
+    title: "The Digital Platform Archiving Oral Traditions Before They Fade",
+    link: "#",
+  },
+  {
+    outlet: "Tech & Society Review",
+    date: "Aug 05, 2026",
+    title: "Decentralized Storytelling: Geofroggy's Ambassador Network in Underserved Regions",
+    link: "#",
+  },
+];
+
+const galleryImages = [
+  { src: "/website-images/gallery1.png", caption: "Cultural workshop in Nairobi" },
+  { src: "/website-images/gallery2.png", caption: "Community storytelling circle" },
+  { src: "/website-images/gallery3.png", caption: "Field recording in Rajasthan" },
+  { src: "/website-images/gallery4.png", caption: "Youth folklore gathering" },
+  { src: "/website-images/gallery5.png", caption: "Artisanal textile documentation" },
+  { src: "/website-images/gallery6.png", caption: "Traditional harvest celebration" },
+];
+
 export default function MediaPage() {
-  const brandAssets = [
-    {
-      title: "Logos (Full-color, dark/white, PNG + SVG)",
-      icon: "/website-images/brand_asset_icon1.png",
-    },
-    {
-      title: "Color Palette (Primary HEX + RGB values)",
-      icon: "/website-images/brand_asset_icon2.png",
-    },
-    {
-      title: "Typography (Web + print fonts)",
-      icon: "/website-images/brand_asset_icon3.png",
-    },
-    {
-      title: "Logo Usage Guidelines (Do's and Don'ts)",
-      icon: "/website-images/brand_asset_icon4.png",
-    },
-  ];
-
-  const pressMentions = [
-    {
-      title: '"Geofroggy Named Top Cultural Startup"',
-      source: "Global Explorer Journal",
-      image: "/website-images/news_card1.png",
-    },
-    {
-      title: '"Storytelling that Unites Borders"',
-      source: "The Culture Times",
-      image: "/website-images/news_card2.png",
-    },
-    {
-      title: '"Youth Voices Take Center Stage on Geofroggy"',
-      source: "WorldEd News",
-      image: "/website-images/news_card3.png",
-    },
-  ];
-
-  const galleryImages = [
-    "/website-images/gallery1.png",
-    "/website-images/gallery2.png",
-    "/website-images/gallery3.png",
-    "/website-images/gallery4.png",
-    "/website-images/gallery5.png",
-    "/website-images/gallery6.png",
-  ];
-
   return (
-    <div className="w-full flex flex-col bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-black text-white">
+    <div className="min-h-screen bg-white">
+      {/* 1. Hero Banner */}
+      <section className="relative w-full h-[280px] sm:h-[320px] lg:h-[360px] overflow-hidden">
         <Image
           src="/website-images/media_hero.png"
-          alt="Traditional festival aerial view"
+          alt="Media & Brand Assets"
           fill
-          className="object-cover object-center brightness-60"
           priority
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block bg-[#8AC63C] text-[#1F1F1F] font-semibold text-xs sm:text-sm px-4 py-1 rounded-full uppercase tracking-wider mb-4 font-display">
-            Geofroggy Media Hub
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto">
+          <span className="bg-linear-to-r from-secondary/0 via-secondary to-secondary/0 text-white font-display font-semibold text-[22px] sm:text-[26px] lg:text-[30px] px-12 py-1 leading-tight mb-2">
+            Press & Media
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white tracking-tight drop-shadow-md">
-            Assets to Amplify Geofroggy.
+          <h1 className="text-white font-display font-semibold text-[32px] sm:text-[42px] lg:text-[50px] leading-tight">
+            Assets to Amplify Geofroggy
           </h1>
-        </div>
-      </section>
-
-      {/* 2. About Geofroggy Brief */}
-      <section className="w-full py-14 bg-white text-center">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold font-display text-[#1F1F1F] mb-3">
-            About Geofroggy
-          </h2>
-          <div className="w-12 h-1 bg-[#8AC63C] mx-auto rounded-full mb-4" />
-          <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-            Geofroggy is a global storytelling platform that brings geography to life through
-            cultural experiences, personal stories, and human connection. We empower contributors
-            from around the world to share insights that transcend borders, spark empathy, and
-            celebrate the beauty of our shared humanity. From everyday voices to extraordinary
-            journeys, Geofroggy is where culture becomes connection — one story at a time.
+          <p className="text-white/90 font-prose text-[16px] sm:text-[18px] mt-3 max-w-2xl">
+            Use our approved brand assets to accurately represent Geofroggy in media, press, or collaboration.
           </p>
         </div>
       </section>
 
-      {/* 3. Official Brand Assets */}
-      <section className="w-full py-16 bg-gray-50/60 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left Column (7 cols) */}
-            <div className="lg:col-span-7 space-y-5">
-              <div>
-                <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-                  🌐 Brand Assets
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mt-1 mb-2">
-                  Official Brand Assets
-                </h2>
-                <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-                  Use our approved brand assets to accurately represent Geofroggy in media, press,
-                  or collaboration.
-                </p>
-              </div>
+      {/* 2. Official Brand Assets (Split with Laptop Mockup) */}
+      <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
+        <Image
+          src="/website-images/moreimages/abstractart2.png"
+          alt=""
+          width={249}
+          height={250}
+          className="pointer-events-none absolute -top-16 left-2 rotate-[-1.39deg] opacity-60"
+        />
 
-              {/* 4 Asset Cards Grid (2x2) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {brandAssets.map((asset, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-xl border border-gray-100 p-4 shadow-xs flex items-center space-x-3.5"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-[#EFF7E3] flex items-center justify-center shrink-0">
-                      <Image
-                        src={asset.icon}
-                        alt="Asset icon"
-                        width={22}
-                        height={22}
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="text-xs font-medium text-[#1F1F1F] leading-snug">
-                      {asset.title}
-                    </span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-12">
+            <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
+              Official Brand Assets
+            </h2>
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
+            <p className="font-prose text-[16px] text-[#5E5E5E] max-w-2xl mx-auto mt-4">
+              Download high-resolution logos, brand guidelines, color palettes, and typography packages.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: 4 Assets download cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {brandAssets.map((asset, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-secondary/15 flex items-center justify-center mb-4">
+                    <Image
+                      src={asset.icon}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="object-contain"
+                    />
                   </div>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                className="inline-flex items-center space-x-2 bg-gray-400 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-lg cursor-not-allowed shadow-xs"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download — Coming Soon</span>
-              </button>
+                  <h3 className="font-display font-semibold text-[17px] text-[#1F1F1F] mb-1">
+                    {asset.title}
+                  </h3>
+                  <span className="text-[12px] font-semibold text-secondary mb-2">
+                    {asset.format}
+                  </span>
+                  <p className="font-prose text-[13px] text-[#6E6E6E] leading-relaxed mb-4 flex-1">
+                    {asset.desc}
+                  </p>
+                  <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
+                    <Download className="w-3.5 h-3.5" /> Download Pack
+                  </button>
+                </div>
+              ))}
             </div>
 
-            {/* Right Column: Laptop Mockup (5 cols) */}
-            <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-full max-w-[420px] h-[280px]">
+            {/* Right: Laptop Mockup */}
+            <div className="relative flex justify-center">
+              <div className="relative w-full max-w-[540px] aspect-[16/11]">
                 <Image
                   src="/website-images/laptop_mockup.png"
                   alt="Geofroggy on laptop"
                   fill
-                  className="object-contain"
+                  className="object-contain drop-shadow-2xl"
                 />
               </div>
-              <span className="text-[11px] text-gray-400 italic mt-2">
-                Approved By Kyle Keenan
-              </span>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 4. Press Kit & Overview */}
-      <section 
-        className="w-full py-16 lg:py-24 bg-white relative"
-        style={{
-          backgroundImage: "url('/website-images/contributor-bgpattern.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "320px",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left: 3D Press Kit Mockup (5 cols) */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-64 h-80 sm:w-72 sm:h-96">
-                <Image
-                  src="/website-images/presskit_feature_image.png"
-                  alt="Geofroggy Press Kit"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+      {/* 3. Press Kit Showcase & Inquiries */}
+      <section className="py-16 bg-gray-50 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/website-images/presskit_feature_image.png"
+                alt="Geofroggy Press Kit"
+                fill
+                className="object-cover"
+              />
             </div>
 
-            {/* Right: Press Materials Bullet Points (7 cols) */}
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-                📰 Press Kit
+            <div>
+              <span className="text-secondary font-display font-medium text-[16px] uppercase tracking-wider">
+                Press Kit
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F]">
-                Press Kit & Overview
+              <h2 className="font-display font-semibold text-[32px] sm:text-[40px] text-[#383838] leading-tight mt-2 mb-4">
+                Everything You Need to Cover Geofroggy
               </h2>
-              <p className="text-xs sm:text-sm text-[#5E5E5E] font-body leading-relaxed">
-                Download our official press materials to include Geofroggy in articles, features,
-                or event coverage.
+              <p className="font-prose text-[16px] text-[#5E5E5E] leading-relaxed mb-6">
+                Our press kit includes executive bios, founder photos, platform fact sheets, high-resolution product screenshots, and statistical growth milestones.
               </p>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#4B4B4B] font-body pt-2">
-                <li className="flex items-center space-x-2.5">
-                  <FileText className="w-4 h-4 text-[#8AC63C]" />
-                  <span>Company Overview PDF</span>
-                </li>
-                <li className="flex items-center space-x-2.5">
-                  <FileText className="w-4 h-4 text-[#8AC63C]" />
-                  <span>Founding Story + Mission</span>
-                </li>
-                <li className="flex items-center space-x-2.5">
-                  <FileText className="w-4 h-4 text-[#8AC63C]" />
-                  <span>Fast Facts & Stats (reach, users, stories)</span>
-                </li>
-                <li className="flex items-center space-x-2.5">
-                  <FileText className="w-4 h-4 text-[#8AC63C]" />
-                  <span>Notable Press Mentions</span>
-                </li>
-              </ul>
-
-              <div className="pt-2 flex items-center space-x-2 text-xs text-gray-500 font-body">
-                <Mail className="w-4 h-4 text-[#8AC63C]" />
-                <span>Media Contact:</span>
-                <a href="mailto:media@geofroggy.com" className="text-[#175883] font-semibold hover:underline">
-                  media@geofroggy.com
-                </a>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="button"
-                  className="bg-gray-400 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-lg cursor-not-allowed shadow-xs"
-                >
-                  Press Kit — Coming Soon
+              <div className="flex flex-wrap gap-4 mb-8">
+                <button className="bg-primary hover:bg-primary-dark text-white font-display font-medium text-[15px] px-6 py-3 rounded-[5px] transition-colors flex items-center gap-2 shadow-sm">
+                  <Download className="w-4 h-4" /> Download Complete Press Kit (45 MB)
                 </button>
               </div>
-            </div>
 
+              <div className="p-4 bg-white rounded-xl border border-gray-200 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-display font-medium text-[15px] text-[#1F1F1F]">
+                    Direct Media Inquiries
+                  </h4>
+                  <a
+                    href="mailto:press@geofroggy.com"
+                    className="font-prose text-[14px] text-primary hover:underline"
+                  >
+                    press@geofroggy.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. In the News: Recent Press & Mentions */}
-      <section className="w-full py-16 bg-gray-50/60 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[#8AC63C] text-xs font-semibold uppercase tracking-wider font-display">
-              📰 In the News
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mt-1 mb-2">
+      {/* 4. Recent Media Mentions */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-display font-semibold text-[32px] sm:text-[38px] text-[#383838]">
               Recent Press & Mentions
             </h2>
-            <p className="text-xs sm:text-sm text-[#5E5E5E] font-body">
-              See where Geofroggy is making headlines. We&apos;re proud to be featured by cultural and
-              media voices around the world.
-            </p>
+            <div className="mt-2 flex justify-center">
+              <Image
+                src="/website-images/moreimages/Vector-4.png"
+                alt=""
+                width={212}
+                height={14}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pressMentions.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
+            {mediaCoverage.map((m, i) => (
+              <a
+                key={i}
+                href={m.link}
+                className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs hover:shadow-md hover:border-secondary transition-all group block"
               >
-                <div className="relative w-full h-44 overflow-hidden bg-gray-100">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="flex items-center justify-between text-xs text-gray-400 mb-3 font-prose">
+                  <span className="font-semibold text-secondary">{m.outlet}</span>
+                  <span>{m.date}</span>
                 </div>
-                <div className="p-5 flex-grow flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-bold text-base font-display text-[#1F1F1F] mb-3 leading-snug">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <div className="pt-3 border-t border-gray-50 flex items-center justify-between text-xs">
-                    <span className="font-medium text-[#175883]">{item.source}</span>
-                    <span className="w-7 h-7 rounded-full bg-[#EFF7E3] text-[#8AC63C] flex items-center justify-center">
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </div>
-              </div>
+                <h3 className="font-display font-medium text-[18px] text-[#1F1F1F] group-hover:text-primary transition-colors leading-snug">
+                  {m.title}
+                </h3>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs text-primary font-medium">
+                  Read article <ExternalLink className="w-3 h-3" />
+                </span>
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. Approved Imagery & Photography */}
-      <section className="w-full py-16 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold font-display text-[#1F1F1F] mb-2">
+      {/* 5. Approved Photography Gallery */}
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="font-display font-semibold text-[32px] sm:text-[38px] text-[#383838]">
               Approved Imagery & Photography
             </h2>
-            <div className="w-12 h-1 bg-[#8AC63C] mx-auto rounded-full" />
+            <p className="font-prose text-[14px] text-gray-500 mt-2">
+              High-resolution cultural photographs cleared for editorial and press usage with attribution to Geofroggy.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {galleryImages.map((src, idx) => (
+            {galleryImages.map((img, idx) => (
               <div
                 key={idx}
-                className="relative h-56 sm:h-64 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all"
+                className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-sm group"
               >
                 <Image
-                  src={src}
-                  alt={`Approved cultural media ${idx + 1}`}
+                  src={img.src}
+                  alt={img.caption}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <p className="text-white text-xs sm:text-sm font-prose">
+                    {img.caption}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
