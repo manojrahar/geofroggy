@@ -3,13 +3,6 @@ import Image from "next/image";
 import FroggyMascot from "@/components/FroggyMascot";
 
 export default function StoriesBeyondBorders() {
-  const photos = [
-    { src: "/website-images/geo_1.png", alt: "Cultural celebration 1" },
-    { src: "/website-images/geo_2.png", alt: "Cultural celebration 2" },
-    { src: "/website-images/geo_3.png", alt: "Cultural celebration 3" },
-    { src: "/website-images/geo_4.png", alt: "Cultural celebration 4" },
-  ];
-
   return (
     <section className="py-16 lg:py-20 bg-white overflow-hidden relative">
       {/* Abstract art in top left corner */}
@@ -69,22 +62,16 @@ export default function StoriesBeyondBorders() {
           </blockquote>
         </div>
 
-        {/* 4 Cultural Photo Cards with Arched Tops */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {photos.map((photo, i) => (
-            <div
-              key={i}
-              className="card-hover-effect relative aspect-[3/4] rounded-t-[100px] rounded-b-2xl overflow-hidden group cursor-pointer"
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-          ))}
+        {/* Exact 4-Panel Curved Cultural Photo Showcase */}
+        <div className="relative w-full max-w-[1200px] mx-auto group">
+          <Image
+            src="/website-images/Mask-group.png"
+            alt="Cultural celebrations from around the world"
+            width={1200}
+            height={450}
+            className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01] drop-shadow-[0_12px_28px_rgba(23,88,131,0.12)]"
+            priority
+          />
         </div>
       </div>
     </section>
