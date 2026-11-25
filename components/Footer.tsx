@@ -66,12 +66,12 @@ const socialLinks = [
 export default function Footer() {
   const pathname = usePathname();
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   if (pathname === "/signup" || pathname === "/login") {
     return null;
   }
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSubscribe = async () => {
     if (!email) return;

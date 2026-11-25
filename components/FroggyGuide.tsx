@@ -101,7 +101,7 @@ export default function FroggyGuide() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 left-5 z-50 flex flex-col items-start gap-3">
       {/* Interactive Helper Popover */}
       {open && (
         <div className="w-80 sm:w-88 rounded-2xl bg-white border-2 border-secondary shadow-[0_20px_50px_rgba(23,88,131,0.24)] overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
@@ -178,8 +178,23 @@ export default function FroggyGuide() {
         </div>
       )}
 
-      {/* Floating Sound Toggle Pill + Jumping Froggy */}
+      {/* Floating Jumping Froggy + Sound Toggle Pill */}
       <div className="flex items-end gap-2">
+        <div className="relative">
+          {!open && (
+            <span className="pointer-events-none absolute -top-7 left-0 px-2.5 py-0.5 rounded-full bg-primary text-white font-display text-[11px] font-semibold shadow-md whitespace-nowrap animate-bounce">
+              Ribbit! Tap me
+            </span>
+          )}
+          <FroggyMascot
+            size="md"
+            onClick={() => {
+              playFrogRibbit();
+              setOpen((prev) => !prev);
+            }}
+          />
+        </div>
+
         <button
           type="button"
           data-no-sound="true"
@@ -200,21 +215,6 @@ export default function FroggyGuide() {
             </>
           )}
         </button>
-
-        <div className="relative">
-          {!open && (
-            <span className="pointer-events-none absolute -top-7 right-0 px-2.5 py-0.5 rounded-full bg-primary text-white font-display text-[11px] font-semibold shadow-md whitespace-nowrap animate-bounce">
-              Ribbit! Tap me
-            </span>
-          )}
-          <FroggyMascot
-            size="md"
-            onClick={() => {
-              playFrogRibbit();
-              setOpen((prev) => !prev);
-            }}
-          />
-        </div>
       </div>
     </div>
   );
