@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Volume2, VolumeX, Sparkles, X, Compass, BookOpen } from "lucide-react";
-import FroggyMascot from "./FroggyMascot";
+import FroggyMascot, { FroggyVariant } from "./FroggyMascot";
 import {
   isSoundEnabled,
   setSoundEnabled,
@@ -68,6 +68,7 @@ export default function FroggyGuide() {
   const [soundOn, setSoundOn] = useState(true);
   const [factIndex, setFactIndex] = useState(0);
   const [showFact, setShowFact] = useState(false);
+  const [frogOutfit, setFrogOutfit] = useState<FroggyVariant>("traveller");
 
   useEffect(() => {
     setSoundOn(isSoundEnabled());
@@ -156,6 +157,24 @@ export default function FroggyGuide() {
                 {showFact ? "Another Fun Fact" : "Cultural Fun Fact"}
               </button>
 
+              <button
+                type="button"
+                data-no-sound="true"
+                onClick={() => {
+                  playFrogRibbit();
+                  setFrogOutfit((prev) =>
+                    prev === "traveller"
+                      ? "umbrella"
+                      : prev === "umbrella"
+                      ? "classic"
+                      : "traveller"
+                  );
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 font-display font-semibold text-[12.5px] border border-amber-300/60 transition-all cursor-pointer"
+              >
+                Switch Outfit ({frogOutfit === "traveller" ? "Traveller" : frogOutfit === "umbrella" ? "Umbrella" : "Classic"})
+              </button>
+
               <Link
                 href={pageTip.ctaHref}
                 onClick={() => setOpen(false)}
@@ -187,9 +206,10 @@ export default function FroggyGuide() {
             </span>
           )}
           <FroggyMascot
+            variant={frogOutfit}
             size="md"
+            catchInsect={true}
             onClick={() => {
-              playFrogRibbit();
               setOpen((prev) => !prev);
             }}
           />

@@ -25,7 +25,7 @@ export default function StoriesBeyondBorders() {
         {/* Section Header */}
         <div className="text-center mb-4">
           <div className="relative inline-flex items-center gap-3 mb-1">
-            <FroggyMascot size="sm" />
+            <FroggyMascot variant="traveller" size="md" catchInsect={true} />
             <span className="font-display font-semibold text-[36px] sm:text-[44px] text-secondary leading-tight">
               Geofroggy
             </span>

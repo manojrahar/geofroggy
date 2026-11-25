@@ -137,3 +137,74 @@ export function playSuccessChime(): void {
     // Ignore audio errors
   }
 }
+
+/**
+ * Plays a playful elastic "Zzip-slurp!" sound when Froggy catches an insect with its tongue.
+ */
+export function playTongueSnap(): void {
+  if (!isSoundEnabled()) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  try {
+    const now = ctx.currentTime;
+
+    // Quick upward zip (tongue shooting out)
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = "sine";
+    osc1.frequency.setValueAtTime(240, now);
+    osc1.frequency.exponentialRampToValueAtTime(920, now + 0.09);
+    gain1.gain.setValueAtTime(0.11, now);
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(now);
+    osc1.stop(now + 0.12);
+
+    // Cute gulp pop at the end
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(480, now + 0.14);
+    osc2.frequency.exponentialRampToValueAtTime(190, now + 0.24);
+    gain2.gain.setValueAtTime(0.001, now + 0.14);
+    gain2.gain.linearRampToValueAtTime(0.12, now + 0.16);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.26);
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.start(now + 0.14);
+    osc2.stop(now + 0.27);
+  } catch {
+    // Ignore audio errors
+  }
+}
+
+/**
+ * Plays a bouncy "Boing!" + ribbit when a frog jumps.
+ */
+export function playHappyJump(): void {
+  if (!isSoundEnabled()) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  try {
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(200, now);
+    osc.frequency.exponentialRampToValueAtTime(560, now + 0.18);
+
+    gain.gain.setValueAtTime(0.11, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.23);
+  } catch {
+    // Ignore audio errors
+  }
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FroggyMascot from "@/components/FroggyMascot";
 
 const pathways = [
   {
@@ -59,9 +60,12 @@ export default function GetInvolvedSection() {
 
         {/* Left Side Content */}
         <div className="lg:max-w-[calc(100%-480px)]">
-          <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
-            Get Involved with Geofroggy
-          </h2>
+          <div className="flex items-center gap-3">
+            <FroggyMascot variant="umbrella" size="md" catchInsect={true} />
+            <h2 className="font-display font-semibold text-[36px] lg:text-[40px] text-[#383838] leading-tight">
+              Get Involved with Geofroggy
+            </h2>
+          </div>
 
           <div className="mt-2 mb-6">
             <Image

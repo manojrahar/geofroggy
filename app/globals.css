@@ -196,6 +196,29 @@
   animation: frog-super-hop 0.62s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Buzzing insect orbit animation */
+@keyframes fly-buzz {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(6px, -7px) rotate(8deg); }
+  50% { transform: translate(-4px, -11px) rotate(-6deg); }
+  75% { transform: translate(5px, -3px) rotate(5deg); }
+}
+
+.animate-fly-buzz {
+  animation: fly-buzz 1.8s ease-in-out infinite;
+}
+
+/* Raindrop fall animation for Umbrella Frog */
+@keyframes rain-drop {
+  0% { transform: translateY(-4px); opacity: 0; }
+  30% { opacity: 0.75; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+.animate-rain-drop {
+  animation: rain-drop 1.4s linear infinite;
+}
+
 /* Button interactive states and shake animation */
 @keyframes button-shake {
   0%, 100% { transform: translateX(0); }

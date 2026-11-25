@@ -363,9 +363,9 @@ export default function ExplorePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <FroggyMascot size="sm" />
+              <FroggyMascot variant="traveller" size="md" catchInsect={true} />
               <p className="font-display text-[16px] font-medium text-primary">
-                Tap any country card or Froggy to jump into a new culture!
+                Tap any country card or Traveller Froggy to jump into a new culture!
               </p>
             </div>
           </div>
