@@ -9,11 +9,11 @@ import { playClickPop } from "@/lib/soundEffects";
 const events = [
   {
     id: 1,
-    headline: "Diwali Lights Up the Streets of Jaipur",
+    headline: "Lanterns & Lion Dances Light Up Lunar Festivities",
     summary:
-      "Thousands gather across the Pink City with earthen oil lamps, creating an ocean of light celebrating the victory of good over evil.",
-    feature_image: "/website-images/diwali.png",
-    region: "INDIA",
+      "Ornate traditional opera performers and vibrant lion dancers gather beside glowing altar candles to celebrate heritage, luck, and community.",
+    feature_image: "/website-images/around-the-world-1.jpg",
+    region: "CHINA",
     event_date: "Nov 12, 2026",
     destination_url: "/explore",
   },
@@ -21,25 +21,25 @@ const events = [
     id: 2,
     headline: "Rio Carnival Ignites the Sambadrome",
     summary:
-      "Vibrant samba schools present months of elaborate craftsmanship, rhythm, and passion in the world's most electrifying street celebration.",
-    feature_image: "/website-images/carnival.png",
+      "Vibrant samba schools present months of elaborate craftsmanship, rhythm, and confetti-filled joy in the world's most electrifying street celebration.",
+    feature_image: "/website-images/around-the-world-2.jpg",
     region: "BRAZIL",
     event_date: "Feb 17, 2026",
     destination_url: "/explore",
   },
   {
     id: 3,
-    headline: "Kyoto Autumn Foliage Illumination",
+    headline: "Coastal Table Traditions Across the Mediterranean",
     summary:
-      "Ancient maple gardens surrounding historic wooden temples burst into crimson and gold under delicate night-time lantern glows.",
-    feature_image: "/website-images/kyoto.png",
-    region: "JAPAN",
+      "Friends and neighbors gather on sunlit terraces to share homemade dishes, warm conversation, and timeless hospitality by the sea.",
+    feature_image: "/website-images/around-the-world-3.jpg",
+    region: "ITALY",
     event_date: "Nov 25, 2026",
     destination_url: "/explore",
   },
 ];
 
-const regions = ["ALL", "INDIA", "BRAZIL", "JAPAN"];
+const regions = ["ALL", "CHINA", "BRAZIL", "ITALY"];
 
 export default function AroundTheWorldSection() {
   const [selectedRegion, setSelectedRegion] = useState("ALL");

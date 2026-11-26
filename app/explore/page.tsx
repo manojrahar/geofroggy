@@ -57,7 +57,7 @@ const initialCountries = [
     languages: ["Japanese"],
     population: 125120000,
     climate: "Temperate",
-    image: "/website-images/kyoto.png",
+    image: "/website-images/gallery6.png",
   },
   {
     code: "BR",
@@ -68,7 +68,7 @@ const initialCountries = [
     languages: ["Portuguese"],
     population: 214300000,
     climate: "Tropical",
-    image: "/website-images/carnival.png",
+    image: "/website-images/around-the-world-2.jpg",
   },
   {
     code: "IN",
@@ -79,7 +79,7 @@ const initialCountries = [
     languages: ["Hindi", "English", "Bengali"],
     population: 1417000000,
     climate: "Tropical",
-    image: "/website-images/diwali.png",
+    image: "/website-images/hero/diwali_india.png",
   },
   {
     code: "IT",

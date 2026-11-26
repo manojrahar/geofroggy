@@ -67,7 +67,7 @@ export default function WhatWeOffer() {
           </h2>
           <div className="flex justify-center mt-2 mb-4">
             <Image
-              src="/website-images/moreimages/Vector-2.png"
+              src="/website-images/moreimages/Vector-2.svg"
               alt=""
               width={160}
               height={12}

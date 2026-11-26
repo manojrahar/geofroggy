@@ -95,7 +95,7 @@ export default function MediaPage() {
       {/* 2. Official Brand Assets (Split with Laptop Mockup) */}
       <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
         <Image
-          src="/website-images/moreimages/abstractart2.png"
+          src="/website-images/abstractart2.png"
           alt=""
           width={249}
           height={250}
