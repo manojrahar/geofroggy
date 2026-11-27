@@ -330,7 +330,7 @@ export default function NewsPage() {
               </p>
               <Link
                 href="/become-ambassador"
-                className="animate-btn-shake inline-block bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[15px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
+                className="btn-theme animate-btn-shake active:scale-95"
               >
                 Become an Ambassador
               </Link>

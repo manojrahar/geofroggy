@@ -193,12 +193,12 @@ export default function MediaPage() {
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
-                <button className="animate-btn-shake bg-primary hover:bg-primary-dark text-white font-display font-semibold text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg transform hover:scale-102 active:scale-95">
+                <button className="btn-theme animate-btn-shake gap-2 active:scale-95">
                   <Download className="w-4 h-4" /> Download Complete Press Kit (45 MB)
                 </button>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-gray-200 flex items-center gap-4">
+              <div className="p-4 bg-white rounded-xl card-hover-effect card-interactive flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
@@ -241,7 +241,7 @@ export default function MediaPage() {
               <a
                 key={i}
                 href={m.link}
-                className="p-6 bg-white rounded-xl border border-gray-200 shadow-xs hover:shadow-md hover:border-secondary transition-all group block"
+                className="p-6 bg-white rounded-2xl card-hover-effect card-interactive group block"
               >
                 <div className="flex items-center justify-between text-xs text-gray-400 mb-3 font-prose">
                   <span className="font-semibold text-secondary">{m.outlet}</span>

@@ -23,7 +23,7 @@
     color: var(--brand-text);
     background-color: #ffffff;
     font-family: var(--font-poppins), 'Poppins', sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
   }
@@ -153,22 +153,22 @@
   height: 74px !important;
 }
 
-/* Card Shadows, Crisp Borders & Interactive Hover Effects */
+/* Card Shadows, Prominent Dark Borders & Interactive Hover Effects */
 .card-shadow {
-  border: 1.5px solid rgba(23, 88, 131, 0.16) !important;
-  box-shadow: 0 6px 24px -4px rgba(23, 88, 131, 0.10), 0 2px 8px -1px rgba(0, 0, 0, 0.05) !important;
+  border: 2px solid rgba(23, 88, 131, 0.34) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.14), 0 3px 10px -2px rgba(0, 0, 0, 0.09) !important;
 }
 
 .card-hover-effect {
-  border: 1.5px solid rgba(23, 88, 131, 0.18) !important;
+  border: 2px solid rgba(23, 88, 131, 0.36) !important;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 6px 24px -4px rgba(23, 88, 131, 0.10), 0 2px 8px -1px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.14), 0 3px 10px -2px rgba(0, 0, 0, 0.09) !important;
 }
 
 .card-hover-effect:hover {
-  transform: translateY(-6px) !important;
-  border-color: rgba(138, 198, 60, 0.85) !important;
-  box-shadow: 0 22px 38px -8px rgba(23, 88, 131, 0.18), 0 10px 18px -5px rgba(138, 198, 60, 0.18) !important;
+  transform: translateY(-7px) !important;
+  border-color: rgba(138, 198, 60, 0.95) !important;
+  box-shadow: 0 24px 44px -8px rgba(0, 0, 0, 0.28), 0 12px 22px -6px rgba(0, 0, 0, 0.18) !important;
 }
 
 /* Organic Green-Patched Section Background */
@@ -235,33 +235,10 @@
   animation: rain-drop 1.4s linear infinite;
 }
 
-/* Interactive Card Shimmer & Glow Sweep */
+/* Clean Interactive Card Container (no harsh reflection bar) */
 .card-interactive {
   position: relative;
   overflow: hidden;
-}
-
-.card-interactive::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 100%
-  );
-  transform: skewX(-18deg);
-  transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  z-index: 15;
-}
-
-.card-interactive:hover::after {
-  left: 140%;
 }
 
 /* Gentle floating animation for big Frog characters */
@@ -272,6 +249,52 @@
 
 .animate-float-gentle {
   animation: float-gentle 3.8s ease-in-out infinite;
+}
+
+/* GeoFroggy Theme CTA Button (exact Join Now pill gradient, font & rounded corners) */
+.btn-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #8AC63C 0%, #5B8E14 100%) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 11px 32px;
+  font-family: var(--font-clash-display), 'Clash Display', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  box-shadow: 0 6px 18px rgba(80, 130, 10, 0.28);
+  transition: all 0.25s ease !important;
+}
+
+.btn-theme:hover {
+  background: linear-gradient(180deg, #95d144 0%, #4b7b09 100%) !important;
+  box-shadow: 0 10px 24px rgba(80, 130, 10, 0.38);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Blue Theme CTA Button (for green backgrounds, matching Navbar & Footer #175883) */
+.btn-theme-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #1E6FA6 0%, #175883 55%, #0F3D5C 100%) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 11px 32px;
+  font-family: var(--font-clash-display), 'Clash Display', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  box-shadow: 0 6px 18px rgba(15, 61, 92, 0.3);
+  transition: all 0.25s ease !important;
+}
+
+.btn-theme-blue:hover {
+  background: linear-gradient(180deg, #247DB8 0%, #144A6A 60%, #0B2E46 100%) !important;
+  box-shadow: 0 10px 24px rgba(15, 61, 92, 0.42);
+  transform: translateY(-2px) scale(1.03);
 }
 
 /* Button interactive states and shake animation */

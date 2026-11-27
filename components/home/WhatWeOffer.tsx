@@ -1,57 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { playSuccessChime } from "@/lib/soundEffects";
+import ParallaxAccent from "@/components/ParallaxAccent";
 
 const offers = [
   {
-    icon: "/website-images/globeicon.png",
+    icon: "/website-images/Frame-20.png",
+    hasCircle: true,
     title: "Connect Across Cultures",
     description:
       "Engage with a vibrant global community, exchanging stories and perspectives that help foster understanding and unity.",
-    actionLabel: "Meet Contributors",
-    actionHref: "/contributors",
-    tag: "Community",
   },
   {
-    icon: "/website-images/Flags.png",
+    icon: "/website-images/Simplification.png",
+    hasCircle: false,
     title: "Discover New Perspectives",
     description:
       "Browse personal narratives, images, and videos that explore the beauty and complexity of our world's cultures.",
-    actionLabel: "Explore Countries",
-    actionHref: "/explore",
-    tag: "195+ Cultures",
   },
   {
-    icon: "/website-images/Chat.png",
+    icon: "/website-images/Simplification-1.png",
+    hasCircle: false,
     title: "Share Your Story",
     description:
       "Whether it's a travel tale, local tradition, or personal milestone — your story helps us all see the world a little more clearly.",
-    actionLabel: "Submit a Story",
-    actionHref: "/submit-story",
-    tag: "Your Voice",
   },
 ];
 
 export default function WhatWeOffer() {
-  const [activeIdx, setActiveIdx] = useState<number>(1);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="green-patch-bg pb-16 lg:pb-20 pt-12 relative overflow-hidden border-y border-secondary/15">
-      {/* Subtle green globe watermark */}
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-        <Image
-          src="/website-images/green-splotch.png"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      {/* Abstract art in top left */}
+    <section ref={sectionRef} className="bg-white pb-16 lg:pb-20 pt-12 relative overflow-hidden">
+      {/* Geometric star art in top left */}
       <Image
         src="/website-images/abstractart1.png"
         alt=""
@@ -59,9 +58,26 @@ export default function WhatWeOffer() {
         height={182}
         className="absolute -top-6 left-10 pointer-events-none rotate-[-55.39deg]"
       />
+      {/* Parallax peeking frog legs in bottom right */}
+      <ParallaxAccent
+        speed={0.07}
+        className="hidden lg:block absolute -bottom-12 right-4 pointer-events-none"
+      >
+        <Image
+          src="/website-images/abstractart2.png"
+          alt=""
+          width={165}
+          height={167}
+          className="rotate-[165deg] opacity-75"
+        />
+      </ParallaxAccent>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 transition-all duration-700 ease-out ${
+            revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
           <h2 className="font-display font-semibold text-[36px] sm:text-[44px] text-[#383838]">
             What We Offer
           </h2>
@@ -74,78 +90,54 @@ export default function WhatWeOffer() {
             />
           </div>
           <p className="font-prose text-[16px] text-[#5E5E5E] max-w-179.5 mx-auto leading-6.25">
-            A home for the stories, voices, and traditions that don&apos;t make the headlines. Click any card below to preview and jump right in.
+            A home for the stories, voices, and traditions that don&apos;t make the headlines. Follow the cultures that move you, share what your corner of the world looks like, and discover places through the people who actually live there.
           </p>
         </div>
 
-        {/* 3 Interactive Leaf Border Cards */}
+        {/* 3 Staggered Scroll-Revealed Leaf-Bordered Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {offers.map((offer, idx) => {
-            const isSelected = activeIdx === idx;
-            return (
+          {offers.map((offer, idx) => (
+            <div
+              key={idx}
+              className={`transition-all duration-700 ease-out ${
+                revealed
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-10 scale-[0.96]"
+              }`}
+              style={{ transitionDelay: `${idx * 130}ms` }}
+            >
               <div
-                key={idx}
-                role="button"
-                tabIndex={0}
-                onClick={() => {
-                  setActiveIdx(idx);
-                  playSuccessChime();
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveIdx(idx);
-                    playSuccessChime();
-                  }
-                }}
-                className={`group card-hover-effect card-interactive relative text-center px-8 py-10 flex flex-col items-center rounded-[18px] bg-white cursor-pointer transition-all duration-300 ${
-                  isSelected
-                    ? "ring-4 ring-secondary/35 -translate-y-1.5"
-                    : ""
-                }`}
+                className="group relative h-full text-center px-8 py-12 flex flex-col items-center cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2.5 drop-shadow-[0_8px_18px_rgba(0,0,0,0.14)] hover:drop-shadow-[0_24px_38px_rgba(0,0,0,0.28)]"
                 style={{
                   backgroundImage: "url('/website-images/Rectangle-14.svg')",
                   backgroundSize: "100% 100%",
+                  backgroundRepeat: "no-repeat",
                 }}
               >
-                <span className="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-primary/10 text-primary font-display text-[11px] font-semibold mb-4">
-                  <Sparkles className="w-3 h-3 text-secondary" />
-                  {offer.tag}
-                </span>
-
-                <div className="w-18.5 h-18.5 mx-auto mb-5 rounded-full bg-secondary/40 flex items-center justify-center transition-all duration-300 group-hover:scale-115 group-hover:bg-secondary/65 group-hover:rotate-6">
+                <div
+                  className={`w-18.5 h-18.5 mx-auto mb-5 rounded-full flex items-center justify-center transition-transform duration-700 ease-out group-hover:scale-115 group-hover:[transform:rotateY(360deg)_scale(1.15)] ${
+                    offer.hasCircle ? "" : "bg-[#8ac63c]/25"
+                  }`}
+                >
                   <Image
                     src={offer.icon}
-                    alt=""
-                    width={34}
-                    height={34}
-                    className="object-contain transition-transform duration-300"
+                    alt={offer.title}
+                    width={offer.hasCircle ? 74 : 36}
+                    height={offer.hasCircle ? 74 : 36}
+                    className="object-contain transition-transform duration-500 group-hover:rotate-12"
                   />
                 </div>
 
-                <h3 className="font-display font-semibold text-[22px] text-[#383838] group-hover:text-primary transition-colors mb-3">
+                <h3 className="font-display font-medium text-[22px] text-[#383838] group-hover:text-primary transition-colors mb-3">
                   {offer.title}
                 </h3>
 
-                <p className="font-prose text-[15.5px] text-[#5E5E5E] leading-6.25 text-center mb-5 flex-1">
+                <p className="font-prose text-[16px] text-[#5E5E5E] leading-6.25 text-center">
                   {offer.description}
                 </p>
-
-                <Link
-                  href={offer.actionHref}
-                  onClick={(e) => e.stopPropagation()}
-                  className={`inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-display text-[13.5px] font-semibold transition-all duration-300 ${
-                    isSelected
-                      ? "bg-secondary text-white shadow-md scale-105"
-                      : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white"
-                  }`}
-                >
-                  {offer.actionLabel}
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

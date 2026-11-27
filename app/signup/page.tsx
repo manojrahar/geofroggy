@@ -36,8 +36,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-100">
+    <div className="min-h-screen flex items-center justify-center green-patch-bg py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden card-hover-effect bg-white">
         {/* Left: Illustration / Photo */}
         <div className="relative hidden lg:block bg-brand-blue min-h-[560px]">
           <Image
@@ -158,7 +158,7 @@ export default function SignUpPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-[50px] mt-2 rounded-[6px] bg-brand-blue hover:bg-primary-dark text-white font-prose font-medium text-[17px] transition disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+                  className="btn-theme animate-btn-shake w-full h-[50px] mt-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-95"
                 >
                   {loading ? "Creating account…" : "Register"}
                 </button>

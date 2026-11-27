@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import KaiMaBadge from "@/components/KaiMaBadge";
 import FroggyGuide from "@/components/FroggyGuide";
 import SoundManager from "@/components/SoundManager";
+import FrogThemeAccents from "@/components/FrogThemeAccents";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -79,6 +80,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-white text-[#383838]">
         <SoundManager />
+        <FrogThemeAccents />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

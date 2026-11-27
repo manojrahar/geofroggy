@@ -142,7 +142,7 @@ export default function GetInvolvedPage() {
 
                 <Link
                   href={sec.buttonHref}
-                  className="animate-btn-shake mt-6 inline-block rounded-full bg-secondary hover:bg-secondary-dark px-8 py-3.5 font-display text-[15px] font-semibold text-white transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
+                  className="btn-theme animate-btn-shake mt-6 active:scale-95"
                 >
                   {sec.buttonText}
                 </Link>

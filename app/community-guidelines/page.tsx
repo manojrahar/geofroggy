@@ -24,10 +24,11 @@ export default function CommunityGuidelinesPage() {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden bg-white py-16 lg:py-20">
+      <section className="relative overflow-hidden green-patch-bg py-16 lg:py-20">
         <Image src="/website-images/abstractart2.png" alt="" width={184} height={186} className="pointer-events-none absolute -top-16 left-2 rotate-[-1.39deg]" />
         <Image src="/website-images/abstractart1.png" alt="" width={320} height={320} className="pointer-events-none absolute right-0 top-[38%] hidden lg:block" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 card-hover-effect">
           <p className="font-display text-[18px] font-semibold text-[#383838]">
 Welcome to Geofroggy, a platform by
  
@@ -134,6 +135,7 @@ Thank you for being part of
  
               <a href="https://geoffmedia.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#D63848] underline underline-offset-2 hover:text-[#B02A39]">GeoffMedia.</a>
             </p>
+          </div>
           </div>
         </div>
       </section>

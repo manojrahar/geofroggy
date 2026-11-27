@@ -1,19 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
-import { playClickPop } from "@/lib/soundEffects";
+import { playClickPop, unlockAudio } from "@/lib/soundEffects";
 
 /**
- * Listens for clicks on buttons, links, and interactive cards across the app
- * to provide subtle, responsive audio feedback.
+ * Unlocks Web Audio on first user interaction and plays subtle click feedback
+ * on buttons, links, and interactive cards across the entire website.
  */
 export default function SoundManager() {
   useEffect(() => {
+    const handleUnlock = () => {
+      unlockAudio();
+    };
+
     const handleClick = (e: MouseEvent) => {
+      unlockAudio();
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // Skip if element or ancestor opts out or handles its own frog sound
       if (target.closest("[data-no-sound]") || target.closest("[data-frog-sound]")) {
         return;
       }
@@ -26,8 +30,17 @@ export default function SoundManager() {
       }
     };
 
+    window.addEventListener("pointerdown", handleUnlock, { once: true, passive: true });
+    window.addEventListener("touchstart", handleUnlock, { once: true, passive: true });
+    window.addEventListener("keydown", handleUnlock, { once: true, passive: true });
     document.addEventListener("click", handleClick, { passive: true });
-    return () => document.removeEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("pointerdown", handleUnlock);
+      window.removeEventListener("touchstart", handleUnlock);
+      window.removeEventListener("keydown", handleUnlock);
+      document.removeEventListener("click", handleClick);
+    };
   }, []);
 
   return null;

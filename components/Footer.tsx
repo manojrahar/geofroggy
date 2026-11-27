@@ -145,7 +145,7 @@ export default function Footer() {
                   <button
                     onClick={handleSubscribe}
                     disabled={status === "loading" || status === "success" || !email}
-                    className="bg-secondary hover:bg-secondary-dark text-white font-display font-medium text-[14px] px-5 h-10 rounded-[6px] transition-colors disabled:opacity-50 shrink-0"
+                    className="btn-theme animate-btn-shake !py-2 !px-5 !text-[14px] h-10 disabled:opacity-50 shrink-0"
                   >
                     {status === "loading" ? (
                       <LoaderCircle className="w-4 h-4 animate-spin" />

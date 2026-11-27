@@ -312,7 +312,7 @@ export default function FAQsPage() {
                 </p>
                 <a
                   href="mailto:support@geofroggy.com"
-                  className="animate-btn-shake inline-block w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[14px] py-3 rounded-full transition-all duration-300 shadow-md"
+                  className="btn-theme animate-btn-shake w-full !text-[14px] !py-3"
                 >
                   Contact Support
                 </a>

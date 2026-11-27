@@ -24,10 +24,11 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden bg-white py-16 lg:py-20">
+      <section className="relative overflow-hidden green-patch-bg py-16 lg:py-20">
         <Image src="/website-images/abstractart2.png" alt="" width={184} height={186} className="pointer-events-none absolute -top-16 left-2 rotate-[-1.39deg]" />
         <Image src="/website-images/abstractart1.png" alt="" width={320} height={320} className="pointer-events-none absolute right-0 top-[28%] hidden lg:block" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 card-hover-effect">
           <p className="font-prose text-[16px] leading-[26px] text-[#4B4B4B]">
             <span className="font-semibold text-[#383838]">Last Updated:</span>
  
@@ -178,6 +179,7 @@ If you have questions about this Privacy Policy or how your data is handled, con
                 <a href="mailto:privacy@geofroggy.com" className="font-display text-[16px] font-semibold text-secondary underline underline-offset-2 hover:text-[#5f8a1c]">privacy@geofroggy.com</a>
               </p>
             </div>
+          </div>
           </div>
         </div>
       </section>

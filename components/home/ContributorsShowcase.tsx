@@ -1,78 +1,74 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Heart } from "lucide-react";
-import { playClickPop } from "@/lib/soundEffects";
+import { ArrowUpRight } from "lucide-react";
 
 const contributors = [
   {
     name: "Adam Watts",
     country: "USA",
     image: "/website-images/contributor1.png",
-    tag: "Street Jazz",
-    bio: "Capturing vibrant neighborhood music traditions and oral histories across New Orleans.",
-    initialLikes: 42,
+    tag: "Colors of Kano",
+    bio: "Adam is a documentary photographer and cultural archivist focusing on West African craft traditions.",
   },
   {
     name: "Luca Romano",
     country: "Italy",
     image: "/website-images/contributor2.png",
-    tag: "Artisan Craft",
-    bio: "Documenting family-run ceramic workshops and coastal culinary rituals in southern Italy.",
-    initialLikes: 58,
+    tag: "Mediterranean Roots",
+    bio: "Culinary anthropologist exploring ancestral recipes and seasonal food traditions across coastal Italy.",
   },
   {
     name: "Anaya Patel",
     country: "India",
     image: "/website-images/contributor3.png",
-    tag: "Festival Lights",
-    bio: "Visual storyteller preserving regional folk dances, textiles, and Diwali traditions.",
-    initialLikes: 74,
+    tag: "Diwali Jaipur",
+    bio: "Cultural journalist capturing living folk traditions, indigenous craft communities, and festival rituals.",
   },
   {
     name: "Diego Rojas",
     country: "Mexico",
     image: "/website-images/contributor4.png",
-    tag: "Heritage Art",
-    bio: "Photographer celebrating Indigenous markets, marigold altars, and community murals.",
-    initialLikes: 63,
+    tag: "Oaxaca Weavers",
+    bio: "Writer and educator documenting indigenous Zapotec and Mixtec textile collectives in southern Mexico.",
   },
 ];
 
 export default function ContributorsShowcase() {
-  const [likes, setLikes] = useState<number[]>(contributors.map((c) => c.initialLikes));
-  const [liked, setLiked] = useState<boolean[]>(contributors.map(() => false));
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [revealed, setRevealed] = useState(false);
 
-  const toggleLike = (idx: number, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    playClickPop();
-    setLiked((prev) => {
-      const next = [...prev];
-      next[idx] = !next[idx];
-      return next;
-    });
-    setLikes((prev) => {
-      const next = [...prev];
-      next[idx] = liked[idx] ? next[idx] - 1 : next[idx] + 1;
-      return next;
-    });
-  };
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="py-16 relative overflow-hidden green-patch-bg border-b border-secondary/15">
-      {/* Subtle frog pattern backdrop */}
-      <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
+    <section ref={sectionRef} className="py-16 relative overflow-hidden bg-white">
+      {/* Exact Rectangle-19.png frog pattern backdrop */}
+      <div className="absolute inset-0 pointer-events-none">
         <Image
-          src="/website-images/contributor-bgpattern.png"
+          src="/website-images/Rectangle-19.png"
           alt=""
           fill
-          className="object-cover"
+          className="object-cover opacity-90"
         />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-start justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -101,75 +97,74 @@ export default function ContributorsShowcase() {
 
           <Link
             href="/contributors"
-            className="animate-btn-shake shrink-0 bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[15px] px-7 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 mt-2"
+            className="btn-theme animate-btn-shake shrink-0 font-display mt-2"
           >
             View All
           </Link>
         </div>
 
-        {/* 4 Interactive Cards Grid */}
+        {/* 4 Staggered Scroll-Revealed Shaped Cards with Subtle Frog Watermark */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {contributors.map((c, i) => (
             <div
               key={i}
-              className="group card-hover-effect card-interactive bg-white rounded-[16px] overflow-hidden flex flex-col"
+              className={`group card-hover-effect card-interactive bg-white rounded-tl-[28px] rounded-br-[28px] rounded-tr-[10px] rounded-bl-[10px] overflow-hidden flex flex-col relative transition-all duration-700 ease-out ${
+                revealed
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-10 scale-[0.96]"
+              }`}
+              style={{ transitionDelay: `${i * 110}ms` }}
             >
+              {/* Minimal half-peeking frog silhouette shadow (no features) */}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 opacity-[0.12] group-hover:opacity-[0.22] group-hover:scale-110 transition-all duration-300 pointer-events-none">
+                <svg width="56" height="32" viewBox="0 0 80 46" fill="none" className="text-[#175883]">
+                  <path
+                    d="M40 12C49 12 56 17 59 24C67 27 72 35 70 46H10C8 35 13 27 21 24C24 17 31 12 40 12Z"
+                    fill="currentColor"
+                  />
+                  <circle cx="26" cy="14" r="9" fill="currentColor" />
+                  <circle cx="54" cy="14" r="9" fill="currentColor" />
+                </svg>
+              </div>
+
               <div className="p-2.5 pt-2.5">
-                <div className="relative aspect-[4/3] rounded-[12px] overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-tl-[22px] rounded-br-[18px] rounded-tr-[8px] rounded-bl-[8px] overflow-hidden">
                   <Image
                     src={c.image}
                     alt={c.name}
                     fill
                     className="object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                   />
-                  {/* Interactive Applaud / Like Pill */}
-                  <button
-                    type="button"
-                    onClick={(e) => toggleLike(i, e)}
-                    aria-label={`Applaud ${c.name}`}
-                    className={`absolute top-2.5 right-2.5 z-20 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-display font-semibold shadow-md transition-all duration-200 active:scale-90 ${
-                      liked[i]
-                        ? "bg-rose-500 text-white scale-105"
-                        : "bg-white/90 text-gray-700 hover:bg-white"
-                    }`}
-                  >
-                    <Heart
-                      className={`w-3.5 h-3.5 transition-transform ${
-                        liked[i] ? "fill-white scale-110" : "text-rose-500"
-                      }`}
-                    />
-                    {likes[i]}
-                  </button>
                 </div>
               </div>
 
-              <div className="p-4 flex flex-col flex-1">
+              <div className="p-4 flex flex-col flex-1 relative z-10">
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <span className="font-display font-semibold text-[17px] text-[#383838] truncate group-hover:text-primary transition-colors">
                     {c.name}
                   </span>
-                  <span className="shrink-0 bg-primary/10 text-primary font-prose text-[11px] font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                  <span className="shrink-0 bg-[#E53935] text-white font-prose text-[10px] px-2.5 py-0.5 rounded-full whitespace-nowrap">
                     {c.tag}
                   </span>
                 </div>
 
-                <p className="font-prose text-[13px] text-[#5E5E5E] leading-5 mb-3 flex-1">
+                <p className="font-prose text-[13px] text-[#5E5E5E] leading-5 mb-4 flex-1">
                   {c.bio}
                 </p>
 
                 <div className="flex items-center justify-between pt-2 border-t border-gray-100">
                   <Link
                     href="/contributors"
-                    className="font-prose text-[13px] text-primary font-semibold hover:underline underline-offset-2"
+                    className="font-prose text-[13px] text-primary font-semibold underline underline-offset-2 hover:text-primary-dark"
                   >
                     {c.country}
                   </Link>
                   <Link
                     href="/contributors"
                     aria-label={`View ${c.name}`}
-                    className="w-8 h-8 rounded-full bg-secondary/20 group-hover:bg-secondary group-hover:text-white flex items-center justify-center text-secondary transition-all duration-300 transform group-hover:rotate-45"
+                    className="w-8 h-8 rounded-full bg-[#8ac63c]/20 text-[#8ac63c] group-hover:bg-[#8ac63c] group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:rotate-45 shadow-2xs"
                   >
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="w-4 h-4 stroke-[2.25]" />
                   </Link>
                 </div>
               </div>

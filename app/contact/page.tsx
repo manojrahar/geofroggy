@@ -153,7 +153,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="animate-btn-shake w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-secondary hover:bg-secondary-dark px-10 py-3.5 font-display text-[15px] font-semibold text-white shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-60 transform hover:scale-102 active:scale-95"
+                  className="btn-theme animate-btn-shake w-full sm:w-auto disabled:opacity-60 active:scale-95"
                 >
                   {loading ? "Sending…" : "Submit Message"}
                 </button>

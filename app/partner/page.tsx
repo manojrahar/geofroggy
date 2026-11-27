@@ -62,7 +62,7 @@ export default function PartnerPage() {
       {/* 1. Hero Header */}
       <section className="relative w-full h-[320px] sm:h-[360px] lg:h-[400px] overflow-hidden">
         <Image
-          src="/website-images/involved_hero_image.png"
+          src="/website-images/partner_hero_bg.png"
           alt="Partner with Geofroggy"
           fill
           priority
@@ -103,9 +103,9 @@ export default function PartnerPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
-                <Globe className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group">
+              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <Image src="/website-images/visibility_icon.png" alt="" width={34} height={34} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
                 Authentic Global Audience
@@ -115,9 +115,9 @@ export default function PartnerPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
-                <Building2 className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group">
+              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <Image src="/website-images/authentic_icon.png" alt="" width={34} height={34} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
                 Brand Values Alignment
@@ -127,15 +127,38 @@ export default function PartnerPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-5">
-                <Sparkles className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group">
+              <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <Image src="/website-images/target_reach_icon.png" alt="" width={34} height={34} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2">
                 Measurable Cultural Impact
               </h3>
               <p className="font-prose text-[14px] text-[#5E5E5E] leading-relaxed">
                 Every sponsorship dollar directly funds community storytellers, regional workshops, and multilingual translations.
+              </p>
+            </div>
+          </div>
+
+          {/* Value Your Brand Visual Highlight */}
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-[#f8fbff] rounded-3xl p-8 sm:p-10 card-hover-effect">
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+              <Image
+                src="/website-images/value_your_brand_image.png"
+                alt="Partner brand value"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <span className="font-display font-medium text-[20px] text-secondary">
+                Collaborate With Purpose
+              </span>
+              <h3 className="font-display font-semibold text-[28px] sm:text-[34px] text-[#383838] mt-1 mb-4">
+                Align Your Brand With Global Storytelling
+              </h3>
+              <p className="font-prose text-[15.5px] text-[#5E5E5E] leading-relaxed">
+                Join universities, cultural foundations, and mission-driven brands empowering authentic local voices around the globe.
               </p>
             </div>
           </div>
@@ -158,10 +181,10 @@ export default function PartnerPage() {
             {tiers.map((tier, idx) => (
               <div
                 key={idx}
-                className={`bg-white rounded-2xl p-8 border flex flex-col transition-all relative ${
+                className={`bg-white rounded-2xl p-8 card-hover-effect card-interactive flex flex-col relative ${
                   tier.popular
-                    ? "border-secondary shadow-lg scale-105 z-10"
-                    : "border-gray-200 shadow-sm"
+                    ? "ring-4 ring-secondary/35 scale-105 z-10"
+                    : ""
                 }`}
               >
                 {tier.popular && (
@@ -191,11 +214,7 @@ export default function PartnerPage() {
                 <a
                   href="#partner-form"
                   onClick={() => setFormData({ ...formData, tier: tier.name })}
-                  className={`animate-btn-shake w-full py-3 rounded-full text-center font-display font-semibold text-[15px] transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-102 active:scale-95 ${
-                    tier.popular
-                      ? "bg-secondary hover:bg-secondary-dark text-white"
-                      : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-                  }`}
+                  className="btn-theme animate-btn-shake w-full active:scale-95"
                 >
                   Inquire About Tier
                 </a>
@@ -217,7 +236,7 @@ export default function PartnerPage() {
             </p>
           </div>
 
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-md">
+          <div className="bg-white p-8 sm:p-10 rounded-3xl card-hover-effect">
             {submitted ? (
               <div className="text-center py-10">
                 <div className="w-16 h-16 rounded-full bg-secondary/20 text-secondary flex items-center justify-center mx-auto mb-4">

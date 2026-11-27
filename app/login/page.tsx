@@ -81,12 +81,12 @@ export default function LoginPage() {
           className="hidden lg:block absolute top-8 right-10 w-[65px] h-auto -rotate-[13deg] pointer-events-none select-none z-10"
         />
 
-        <div className="relative z-10 w-full max-w-[475px]">
-          <h1 className="font-display font-semibold uppercase text-[36px] lg:text-[54px] text-fg text-center leading-none">
+        <div className="relative z-10 w-full max-w-[475px] bg-white/95 backdrop-blur-sm p-8 sm:p-10 rounded-3xl card-hover-effect">
+          <h1 className="font-display font-semibold uppercase text-[36px] lg:text-[48px] text-[#383838] text-center leading-none">
             Welcome
           </h1>
-          <p className="font-prose text-[16px] lg:text-[18px] text-fg-muted text-center mt-2">
-            Login with Gmail
+          <p className="font-prose text-[16px] lg:text-[18px] text-gray-500 text-center mt-2">
+            Login with Email
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 lg:mt-8 space-y-4">
@@ -97,32 +97,32 @@ export default function LoginPage() {
             )}
 
             <div className="relative">
-              <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 lg:w-6 lg:h-6 text-fg-subtle pointer-events-none" />
+              <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 lg:w-6 lg:h-6 text-gray-400 pointer-events-none" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="iberways@gmail.com"
                 required
-                className="w-full h-[58px] lg:h-[64px] pl-14 pr-5 rounded-[10px] border border-divider-strong bg-surface font-prose text-[16px] lg:text-[18px] text-fg placeholder:text-fg-subtle focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition"
+                className="w-full h-[56px] pl-14 pr-5 rounded-xl border border-gray-300 bg-white font-prose text-[16px] text-[#383838] placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition"
               />
             </div>
 
             <div className="relative">
-              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 lg:w-6 lg:h-6 text-fg-subtle pointer-events-none" />
+              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 lg:w-6 lg:h-6 text-gray-400 pointer-events-none" />
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••"
                 required
-                className="w-full h-[58px] lg:h-[64px] pl-14 pr-12 rounded-[10px] border border-divider-strong bg-surface font-prose text-[16px] lg:text-[18px] text-fg placeholder:text-fg-subtle focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition"
+                className="w-full h-[56px] pl-14 pr-12 rounded-xl border border-gray-300 bg-white font-prose text-[16px] text-[#383838] placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-fg-subtle hover:text-fg"
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#383838]"
               >
                 {showPassword ? (
                   <EyeOff className="w-5 h-5" />
@@ -135,7 +135,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-[48px] lg:h-[52px] rounded-[5px] bg-brand-blue text-white font-prose font-medium text-[18px] lg:text-[20px] hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition shadow-sm"
+              className="btn-theme animate-btn-shake w-full h-[50px] disabled:opacity-60 disabled:cursor-not-allowed active:scale-95"
             >
               {loading ? "Signing in…" : "Login"}
             </button>

@@ -25,22 +25,22 @@ const waysToGive = [
   {
     title: "One Time Donation",
     description: "Make a quick impact with a single gift. Every dollar helps amplify real stories from around the globe.",
-    icon: "/website-images/Price-tag.png",
+    icon: "/website-images/give_1.png",
   },
   {
     title: "Monthly Supporter",
     description: "Join our circle of monthly givers to globalize storytelling year-round. Your ongoing support keeps voices alive.",
-    icon: "/website-images/globeicon.png",
+    icon: "/website-images/give_2.png",
   },
   {
     title: "Sponsor a Country/Region",
     description: "Fund focused cultural coverage from a place that matters to you. Help bring regional stories to light.",
-    icon: "/website-images/Flags.png",
+    icon: "/website-images/give_3.png",
   },
   {
     title: "Corporate Giving",
     description: "Partner with us to align your brand with global connection and empathy. Corporate gifts create lasting change.",
-    icon: "/website-images/Chat.png",
+    icon: "/website-images/give_4.png",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function DonatePage() {
       {/* 1. Header Banner */}
       <section className="relative w-full h-[280px] sm:h-[320px] lg:h-[350px] overflow-hidden">
         <Image
-          src="/website-images/Rectangle-86.jpg"
+          src="/website-images/donate_hero.png"
           alt="Support Geofroggy"
           fill
           priority
@@ -153,8 +153,48 @@ export default function DonatePage() {
       </section>
 
       {/* 3. How Would You Like to Give (4 Cards with Rectangle-14.svg) */}
-      <section className="relative overflow-hidden py-16 lg:py-20 bg-gray-50">
+      <section className="relative overflow-hidden py-16 lg:py-20 green-patch-bg border-y border-secondary/15">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Faces & Transparency Visual Row */}
+          <div className="mb-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl p-8 sm:p-10 card-hover-effect">
+            <div>
+              <span className="font-display font-medium text-[20px] text-secondary">
+                Where Your Money Goes
+              </span>
+              <h3 className="font-display font-semibold text-[28px] sm:text-[34px] text-[#383838] mt-1 mb-4">
+                100% Dedicated to Cultural Voices
+              </h3>
+              <p className="font-prose text-[15.5px] text-[#5E5E5E] leading-relaxed mb-6">
+                Every contribution directly supports field contributors, multilingual story translations, educational outreach, and keeping our cultural archive open to everyone worldwide.
+              </p>
+              <div className="flex items-center -space-x-3">
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <div
+                    key={n}
+                    className="relative w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-sm"
+                  >
+                    <Image
+                      src={`/website-images/faces${n}.png`}
+                      alt={`Community supporter ${n}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+                <span className="pl-5 font-display text-[14px] font-semibold text-primary">
+                  Supported by 2,500+ global donors
+                </span>
+              </div>
+            </div>
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden">
+              <Image
+                src="/website-images/money_goes.png"
+                alt="Where your donation goes"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
           <div className="text-center">
             <h2 className="font-display text-[38px] font-semibold leading-tight text-brand-black sm:text-[44px]">
               How Would You Like to Give?
@@ -250,7 +290,7 @@ export default function DonatePage() {
             </div>
           </div>
 
-          <div className="mx-auto max-w-[814px] rounded-2xl bg-white px-8 py-10 shadow-sm sm:px-10 border border-gray-100">
+          <div className="mx-auto max-w-[814px] rounded-3xl bg-white px-8 py-10 sm:px-10 card-hover-effect card-interactive">
             {submitted ? (
               <div className="py-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4 text-secondary">
@@ -408,7 +448,7 @@ export default function DonatePage() {
                 <button
                   type="submit"
                   disabled={finalAmount <= 0 || !email}
-                  className="animate-btn-shake w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[17px] py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 flex items-center justify-center gap-2 transform hover:scale-102 active:scale-95"
+                  className="btn-theme animate-btn-shake w-full !py-4 !text-[17px] disabled:opacity-50 gap-2 active:scale-95"
                 >
                   <Heart className="w-5 h-5 fill-current" />
                   Give ${finalAmount} {frequency === "One - Time" ? "Now" : `(${frequency})`}

@@ -53,7 +53,7 @@ export default function BecomeAmbassadorPage() {
       {/* 1. Hero Header */}
       <section className="relative w-full h-[320px] sm:h-[360px] lg:h-[400px] overflow-hidden">
         <Image
-          src="/website-images/involve_ambassador_2.png"
+          src="/website-images/ambassador_hero_bg.png"
           alt="Geofroggy Ambassadors"
           fill
           priority
@@ -94,9 +94,9 @@ export default function BecomeAmbassadorPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
-              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
-                <Globe className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group cursor-default">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center mb-5 transition-all duration-300">
+                <Image src="/website-images/amabassador_do_icon1.png" alt="" width={36} height={36} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Represent Your Nation
@@ -106,9 +106,9 @@ export default function BecomeAmbassadorPage() {
               </p>
             </div>
 
-            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
-              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
-                <Users className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group cursor-default">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center mb-5 transition-all duration-300">
+                <Image src="/website-images/amabassador_do_icon2.png" alt="" width={36} height={36} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Host Storytelling Circles
@@ -118,9 +118,9 @@ export default function BecomeAmbassadorPage() {
               </p>
             </div>
 
-            <div className="card-hover-effect p-8 rounded-2xl bg-white border border-gray-100 flex flex-col items-center text-center group cursor-default shadow-xs">
-              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center text-secondary mb-5 transition-all duration-300">
-                <Award className="w-8 h-8" />
+            <div className="card-hover-effect card-interactive p-8 rounded-2xl bg-white flex flex-col items-center text-center group cursor-default">
+              <div className="w-16 h-16 rounded-2xl bg-secondary/15 group-hover:bg-secondary/30 group-hover:scale-110 flex items-center justify-center mb-5 transition-all duration-300">
+                <Image src="/website-images/amabassador_do_icon3.png" alt="" width={36} height={36} className="object-contain" />
               </div>
               <h3 className="font-display font-semibold text-[20px] text-brand-black mb-2 group-hover:text-primary transition-colors">
                 Grants & Recognition
@@ -129,6 +129,23 @@ export default function BecomeAmbassadorPage() {
                 Access micro-grants for local cultural documentation, editorial mentorship, and official verified badges.
               </p>
             </div>
+          </div>
+
+          {/* Ambassador Curiosity & Community Photo Strip */}
+          <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {[1, 2, 3, 4].map((num) => (
+              <div
+                key={num}
+                className="group card-hover-effect card-interactive relative aspect-[4/3] rounded-2xl overflow-hidden bg-white"
+              >
+                <Image
+                  src={`/website-images/ambassador_curiosity${num}.png`}
+                  alt={`Ambassador community highlight ${num}`}
+                  fill
+                  className="object-cover group-hover:scale-108 transition-transform duration-500"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -145,7 +162,7 @@ export default function BecomeAmbassadorPage() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-gray-100 text-center relative">
+          <div className="max-w-3xl mx-auto bg-white p-8 sm:p-12 rounded-3xl card-hover-effect card-interactive text-center relative">
             <div className="flex justify-center gap-1 mb-4 text-[#FFC107]">
               {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-current" />
@@ -202,7 +219,7 @@ export default function BecomeAmbassadorPage() {
             </p>
           </div>
 
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-md">
+          <div className="bg-white p-8 sm:p-10 rounded-3xl card-hover-effect">
             {submitted ? (
               <div className="text-center py-10">
                 <div className="w-16 h-16 rounded-full bg-secondary/20 text-secondary flex items-center justify-center mx-auto mb-4">
@@ -318,7 +335,7 @@ export default function BecomeAmbassadorPage() {
 
                 <button
                   type="submit"
-                  className="animate-btn-shake w-full bg-secondary hover:bg-secondary-dark text-white font-display font-semibold text-[16px] py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-102 active:scale-95"
+                  className="btn-theme animate-btn-shake w-full !py-4 active:scale-95"
                 >
                   Submit Ambassador Application
                 </button>
